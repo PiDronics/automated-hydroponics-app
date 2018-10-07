@@ -1,1 +1,1 @@
-# HackAgainstHunger- Automated Hydroponics system
+# HackAgainstHunger- Automated Hydroponics system app
