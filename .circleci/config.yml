@@ -22,7 +22,7 @@ jobs:
       - run: # Deploy to Firebase
           name: Deploy Master branch to Firebase Hosting
 #          command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
 #  deploy-job:
 #    docker:
 #    - image: my-image-version-tag
