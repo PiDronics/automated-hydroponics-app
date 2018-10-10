@@ -2,52 +2,106 @@ import React, { Component } from 'react';
 import './App.css';
 import ToolbarTop from "./ToolbarTop/ToolbarTop";
 import SensorCard from "./SensorCard/SensorCard";
-import fire from './fire';
+import * as fire from 'firebase';
 
 class App extends Component {
 
     constructor(){
         super();
 
-        this.dataRef = fire.database().ref("systems").child('pi-1');
 
         this.state = {
             sensors: [],
             device: ""
-        }
+        };
     }
 
     updateData(e){
-        e.preventDefault(); // <- prevent form submit from reloading the page
-        /* Send the message to Firebase */
-        this.dataRef.child('conc').child('avg').set( parseFloat(this.inputEl.value));
-        this.inputEl.value = ''; // <- clear the input
+        e.preventDefault();
+        var device = this.state.device;
+        const dataRef = fire.database().ref("systems").child(device);
+        dataRef.child('conc').child("avg").set( parseFloat(this.inputEl.value));
+        this.inputEl.value = '';
+    }
+
+    addData(e){
+        e.preventDefault();
+        var device = this.state.device;
+        const dataRef = fire.database().ref("systems").child(device);
+        dataRef.child('temp').child("allData").push({
+            reading: this.inputEl2.value,
+            time: fire.database.ServerValue.TIMESTAMP
+        });
+        this.calculateVals();
+        this.inputEl2.value = '';
+    }
+
+    calculateVals = function(){
+        var device = this.state.device;
+        var last24hr = new Date().getTime()-(24 * 3600 * 1000);
+        const dataRef = fire.database().ref("systems").child(device);
+        dataRef.child("temp/allData").orderByChild('time').startAt(last24hr).on('value' , function(snap){
+            var readingsArr = [];
+            snap.forEach(function(n){
+                readingsArr.push(parseFloat(n.val()["reading"]));
+            });
+            if(readingsArr.length>0){
+                var min = Math.min.apply(null,readingsArr);
+                var max = Math.max.apply(null,readingsArr);
+                var avg=0;
+                for(var x in readingsArr){
+                    avg += readingsArr[x];
+                }
+                avg = (avg/readingsArr.length).toFixed(2);
+                dataRef.child('temp').child("current").set(readingsArr[readingsArr.length-1]);
+                dataRef.child('temp').child("min").set(parseFloat(min));
+                dataRef.child('temp').child("max").set(parseFloat(max));
+                dataRef.child('temp').child("avg").set(parseFloat(avg));
+            }
+            else{
+                dataRef.child('temp').child("current").set(0);
+                dataRef.child('temp').child("min").set(0);
+                dataRef.child('temp').child("max").set(0);
+                dataRef.child('temp').child("avg").set(0);
+            }
+        });
     }
 
     componentDidMount(){
         //get some device here
         var device = "pi-1";
         this.setState({
-            device: device
-        });
+            device: device,
+        })
         //
 
-        var sensorData = [];
-        var count = 0;
-        this.dataRef.on("child_added", snap => {
-            var status = snap.child("status").val();
+        function getSensorName(key){
+            return key==="conc" ? "Nutrient Concentration (g/l)"
+                : key==="temp" ? "Water Temperature (C)"
+                : key==="oxygen" ? "Dissolved Oxygen (cm3/l)"
+                : key==="humidity" ? "Humidity (%)"
+                : "Unavailable";
+        }
 
-            if(status){
-                sensorData[count] = {};
-                snap.forEach(function(val){
-                    sensorData[count][val.key] = val.val();
-                });
-                sensorData[count]['id'] = snap.key;
-                count++;
-            }
+        const dataRef = fire.database().ref("systems").child(device);
+
+        dataRef.on("value", snap => {
+            var sensorData = [];
+            var count = 0;
+            snap.forEach(function(sensor){
+                if(sensor.child("status").val()){
+                    sensorData[count] = {
+                        id:getSensorName(sensor.key)
+                    }
+                    sensor.forEach(function(val){
+                        sensorData[count][val.key] = val.val();
+                    });
+                    count++;
+                }
+            });
             this.setState({
                 sensors: sensorData
-            });
+            })
         });
     }
 
@@ -60,6 +114,11 @@ class App extends Component {
                     <form onSubmit={this.updateData.bind(this)}>
                         <label>Update conc avg value</label>
                         <input type="text" ref={ el => this.inputEl = el }/>
+                        <input type="submit"/>
+                    </form>
+                    <form onSubmit={this.addData.bind(this)}>
+                        <label>Add data readings to temp for calculations</label>
+                        <input type="text" ref={ el => this.inputEl2 = el }/>
                         <input type="submit"/>
                     </form>
                 </div>

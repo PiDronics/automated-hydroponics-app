@@ -27,7 +27,6 @@ const styles = {
 
 function sensorCard(props) {
     const { classes } = props;
-
     return (
         <Card className={classes.card}>
             <CardContent className={classes.innerContent}>
