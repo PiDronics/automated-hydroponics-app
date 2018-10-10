@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import ToolbarTop from "./ToolbarTop/ToolbarTop";
 import SensorCard from "./SensorCard/SensorCard";
-import * as fire from 'firebase';
+import firebase from 'firebase';
+import fire from './fire';
 
 class App extends Component {
 
@@ -30,7 +31,7 @@ class App extends Component {
         const dataRef = fire.database().ref("systems").child(device);
         dataRef.child('temp').child("allData").push({
             reading: this.inputEl2.value,
-            time: fire.database.ServerValue.TIMESTAMP
+            time: firebase.database.ServerValue.TIMESTAMP
         });
         this.calculateVals();
         this.inputEl2.value = '';
