@@ -27,18 +27,17 @@ const styles = {
 
 function sensorCard(props) {
     const { classes } = props;
-
     return (
         <Card className={classes.card}>
             <CardContent className={classes.innerContent}>
                 <Typography variant="h5" component="h2">
-                    Monitoring Unit 001
+                    Monitoring Unit: {props.device}
                 </Typography>
                 <Typography className={classes.subtitle} color="textSecondary">
                     (Values are updated every 2 minutes)
                 </Typography>
                 <Divider />
-                <DataTable />
+                <DataTable sensors={props.sensors}/>
             </CardContent>
         </Card>
     );
