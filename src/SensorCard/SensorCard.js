@@ -54,7 +54,7 @@ function sensorCard(props) {
                         </MuiThemeProvider>
                         <MuiThemeProvider theme = {theme}>
                             <Typography className={classes.subtitle} color="textSecondary">
-                                (Values are updated every 2 minutes)
+                                (Values are updated every 5 minutes)
                             </Typography>
                         </MuiThemeProvider>
                         <Divider />
