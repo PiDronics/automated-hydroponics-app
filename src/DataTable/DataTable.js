@@ -7,7 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import MediaQuery from 'react-responsive';
 import Responsive from 'react-responsive';
 
 const Desktop = props => <Responsive {...props} minWidth={992} />;
