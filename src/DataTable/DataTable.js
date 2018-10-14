@@ -7,6 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import MediaQuery from 'react-responsive';
+
+const Desktop = props => <Responsive {...props} minWidth={992} />;
+const Mobile = props => <Responsive {...props} maxWidth={767} />;
 
 const styles = theme => ({
     root: {
