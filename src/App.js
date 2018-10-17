@@ -80,7 +80,7 @@ class App extends Component {
         this.setState({
             device: device,
         })
-        //
+
 
         function getSensorName(key){
             return key==="conc" ? "Nutrient Concentration (g/l)"
