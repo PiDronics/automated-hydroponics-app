@@ -36,6 +36,9 @@ const styles = {
     }
 };
 
+/**
+ * Renders the main Top bar containing nav info
+ * */
 class ToolbarTop extends Component {
 
     state = {

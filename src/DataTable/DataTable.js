@@ -19,6 +19,11 @@ const styles = {
     },
 };
 
+/**
+ * @method dataTable - React function component. Renders a Material Design table containing sensor values. Table was
+ * abstracted as a separate component to be implemented elsewhere as well.
+ * @param {Object} props
+ * */
 function dataTable(props) {
     const { classes } = props;
     return (

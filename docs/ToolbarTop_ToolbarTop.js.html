@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ToolbarTop/ToolbarTop.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ToolbarTop/ToolbarTop.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import List from "@material-ui/core/List/List";
+import Drawer from "@material-ui/core/Drawer/Drawer";
+import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import ListItem from "@material-ui/core/ListItem/ListItem";
+import Divider from "@material-ui/core/Divider/Divider";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+
+const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+    },
+});
+
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+    center: {
+        textAlign: "center"
+    }
+};
+
+/**
+ * Renders the main Top bar containing nav info
+ * */
+class ToolbarTop extends Component {
+
+    state = {
+        bottom: false
+    };
+
+    toggleDrawer = (toggle) => () => {
+        this.setState({
+            bottom: toggle,
+        });
+    };
+
+    render() {
+        const {classes} = this.props;
+
+        const sideList = (
+            &lt;div>
+                &lt;List>
+                    &lt;ListItem button className = {classes.center}>
+                        &lt;ListItemText primary = "Home" />
+                    &lt;/ListItem>
+                    &lt;Divider />
+                    &lt;ListItem button className = {classes.center}>
+                        &lt;ListItemText primary = "Configuration" />
+                    &lt;/ListItem>
+                    &lt;Divider />
+                    &lt;ListItem button className = {classes.center}>
+                        &lt;ListItemText primary = "Support" />
+                    &lt;/ListItem>
+                    &lt;Divider />
+                    &lt;ListItem button className = {classes.center}>
+                        &lt;ListItemText primary = "About" />
+                    &lt;/ListItem>
+                &lt;/List>
+            &lt;/div>
+        );
+
+        return (
+            &lt;div>
+
+                &lt;div className={classes.root}>
+                    &lt;AppBar position="static">
+                        &lt;Toolbar>
+                            &lt;IconButton id = "menu_button" onClick={this.toggleDrawer(true)} className={classes.menuButton} color="inherit" aria-label="Menu">
+                                &lt;MenuIcon />
+                            &lt;/IconButton>
+                            &lt;MuiThemeProvider theme = {theme}>
+                                &lt;Typography variant="h6" color="inherit" className={classes.grow}>
+                                    PiDronics Monitoring System
+                                &lt;/Typography>
+                            &lt;/MuiThemeProvider>
+                        &lt;/Toolbar>
+                    &lt;/AppBar>
+                &lt;/div>
+
+                &lt;Drawer
+                    anchor="bottom"
+                    open={this.state.bottom}
+                    onClose={this.toggleDrawer(false)}>
+                    &lt;div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.toggleDrawer(false)}
+                        onKeyDown={this.toggleDrawer(false)}>
+                        {sideList}
+                    &lt;/div>
+                &lt;/Drawer>
+            &lt;/div>
+        );
+
+    }
+
+}
+
+ToolbarTop.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+
+export default withStyles(styles)(ToolbarTop);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="ToolbarTop.html">ToolbarTop</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dataTable-Reactfunctioncomponent.RendersaMaterialDesigntablecontainingsensorvalues.Tablewasabstractedasaseparatecomponenttobeimplementedelsewhereaswell.">dataTable - React function component. Renders a Material Design table containing sensor values. Table was
+abstracted as a separate component to be implemented elsewhere as well.</a></li><li><a href="global.html#sensorCard-Reactfunctioncomponent.RendersaMaterialDesigncardcontainingcontrollerinformationandatable">sensorCard - React function component. Renders a Material Design card containing controller information
+and a table</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Oct 16 2018 22:43:36 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

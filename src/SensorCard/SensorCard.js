@@ -34,6 +34,11 @@ const theme = createMuiTheme({
     },
 });
 
+/**
+ * @method sensorCard - React function component. Renders a Material Design card containing controller information
+ * and a table
+ * @param {Object} props
+ * */
 function sensorCard(props) {
     const { classes } = props;
     return (
