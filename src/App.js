@@ -117,9 +117,9 @@ class App extends Component {
         function getSensorName(key){
             return key==="conc" ? "Nutrient Concentration (g/l)"
                 : key==="temp" ? "Water Temperature (C)"
-                    : key==="oxygen" ? "Dissolved Oxygen (cm3/l)"
-                        : key==="humidity" ? "Humidity (%)"
-                            : "Unavailable";
+                : key==="oxygen" ? "Dissolved Oxygen (cm3/l)"
+                : key==="humidity" ? "Humidity (%)"
+                : "Unavailable";
         }
 
         const dataRef = fire.database().ref("systems").child(device);
