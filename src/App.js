@@ -17,7 +17,6 @@ class App extends Component {
     constructor(){
         super();
 
-
         this.state = {
             sensors: [],
             device: ""
@@ -48,11 +47,10 @@ class App extends Component {
         e.preventDefault();
         var device = this.state.device;
         const dataRef = fire.database().ref("systems").child(device);
-        dataRef.child('temp').child("allData").push({
+        dataRef.child(this.inputEl3.value).child("allData").push({
             reading: this.inputEl2.value,
             time: firebase.database.ServerValue.TIMESTAMP
         });
-        this.calculateVals();
         this.inputEl2.value = '';
     }
 
@@ -67,30 +65,38 @@ class App extends Component {
         var device = this.state.device;
         var last24hr = new Date().getTime()-(24 * 3600 * 1000);
         const dataRef = fire.database().ref("systems").child(device);
-        dataRef.child("temp/allData").orderByChild('time').startAt(last24hr).on('value' , function(snap){
-            var readingsArr = [];
-            snap.forEach(function(n){
-                readingsArr.push(parseFloat(n.val()["reading"]));
+        const sensors = [];
+        dataRef.once('value', function(snap){
+            snap.forEach(function(sensor){
+                sensors.push(sensor.key);
             });
-            if(readingsArr.length>0){
-                var min = Math.min.apply(null,readingsArr);
-                var max = Math.max.apply(null,readingsArr);
-                var avg=0;
-                for(var x in readingsArr){
-                    avg += readingsArr[x];
+        });
+        sensors.forEach(function(sensor){
+            dataRef.child(sensor+"/allData").orderByChild('time').startAt(last24hr).on('value' , function(snap){
+                var readingsArr = [];
+                snap.forEach(function(n){
+                    readingsArr.push(parseFloat(n.val()["reading"]));
+                });
+                if(readingsArr.length>0){
+                    var min = Math.min.apply(null,readingsArr);
+                    var max = Math.max.apply(null,readingsArr);
+                    var avg=0;
+                    for(var x in readingsArr){
+                        avg += readingsArr[x];
+                    }
+                    avg = (avg/readingsArr.length).toFixed(2);
+                    dataRef.child(sensor).child("current").set(readingsArr[readingsArr.length-1]);
+                    dataRef.child(sensor).child("min").set(parseFloat(min));
+                    dataRef.child(sensor).child("max").set(parseFloat(max));
+                    dataRef.child(sensor).child("avg").set(parseFloat(avg));
                 }
-                avg = (avg/readingsArr.length).toFixed(2);
-                dataRef.child('temp').child("current").set(readingsArr[readingsArr.length-1]);
-                dataRef.child('temp').child("min").set(parseFloat(min));
-                dataRef.child('temp').child("max").set(parseFloat(max));
-                dataRef.child('temp').child("avg").set(parseFloat(avg));
-            }
-            else{
-                dataRef.child('temp').child("current").set(0);
-                dataRef.child('temp').child("min").set(0);
-                dataRef.child('temp').child("max").set(0);
-                dataRef.child('temp').child("avg").set(0);
-            }
+                else{
+                    dataRef.child(sensor).child("current").set(0);
+                    dataRef.child(sensor).child("min").set(0);
+                    dataRef.child(sensor).child("max").set(0);
+                    dataRef.child(sensor).child("avg").set(0);
+                }
+            });
         });
     };
 
@@ -105,6 +111,7 @@ class App extends Component {
         var device = "pi-1";
         this.setState({
             device: device,
+<<<<<<< HEAD
         });
 
         /**
@@ -113,6 +120,10 @@ class App extends Component {
          * @param {string} key - The abbreviation to be converted
          * @return {string} result
          * */
+=======
+        })
+
+>>>>>>> feature/pd-12
 
         function getSensorName(key){
             return key==="conc" ? "Nutrient Concentration (g/l)"
@@ -138,6 +149,7 @@ class App extends Component {
                     count++;
                 }
             });
+            this.calculateVals();
             this.setState({
                 sensors: sensorData
             })
@@ -160,9 +172,17 @@ class App extends Component {
                         <input type="text" ref={ el => this.inputEl = el }/>
                         <input type="submit"/>
                     </form>
+                    <br/>
                     <form onSubmit={this.addData.bind(this)}>
                         <label>Add data readings to temp for calculations</label>
                         <input type="text" ref={ el => this.inputEl2 = el }/>
+                        <select name="sensor" id="sensor" ref={s => this.inputEl3 = s} value={this.state.dropdown}>
+                            <option value="temp">temp</option>
+                            <option value="conc">conc</option>
+                            <option value="oxygen">oxygen</option>
+                            <option value="humidity">humidity</option>
+                            <option value="ph">ph</option>
+                        </select>
                         <input type="submit"/>
                     </form>
                 </div>
