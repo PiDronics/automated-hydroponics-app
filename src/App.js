@@ -32,7 +32,7 @@ class App extends Component {
     updateData(e){
         e.preventDefault();
         var device = this.state.device;
-        const dataRef = fire.database().ref("systems").child(device);
+        const dataRef = fire.database().ref("users/user1/systems").child(device+"/sensors");
         dataRef.child('conc').child("avg").set( parseFloat(this.inputEl.value));
         this.inputEl.value = '';
     }
@@ -46,8 +46,8 @@ class App extends Component {
     addData(e){
         e.preventDefault();
         var device = this.state.device;
-        const dataRef = fire.database().ref("systems").child(device);
-        dataRef.child(this.inputEl3.value).child("allData").push({
+        const dataRef = fire.database().ref("users/user1/systems").child(device+"/sensors");
+        dataRef.child("sensors/"+this.inputEl3.value).child("allData").push({
             reading: this.inputEl2.value,
             time: firebase.database.ServerValue.TIMESTAMP
         });
@@ -64,7 +64,7 @@ class App extends Component {
     calculateVals = function(){
         var device = this.state.device;
         var last24hr = new Date().getTime()-(24 * 3600 * 1000);
-        const dataRef = fire.database().ref("systems").child(device);
+        const dataRef = fire.database().ref("users/user1/systems").child(device+"/sensors");
         const sensors = [];
         dataRef.once('value', function(snap){
             snap.forEach(function(sensor){
@@ -128,7 +128,7 @@ class App extends Component {
                 : "Unavailable";
         }
 
-        const dataRef = fire.database().ref("systems").child(device);
+        const dataRef = fire.database().ref("users/user1/systems").child(device+"/sensors");
 
         dataRef.on("value", snap => {
             var sensorData = [];
@@ -136,7 +136,7 @@ class App extends Component {
             snap.forEach(function(sensor){
                 if(sensor.child("status").val()){
                     sensorData[count] = {
-                        id: getSensorName(sensor.key)
+                        id: sensor.key
                     };
                     sensor.forEach(function(val){
                         sensorData[count][val.key] = val.val();
