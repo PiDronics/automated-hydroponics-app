@@ -1,20 +1,23 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {mount} from 'enzyme';
 import ToolbarTop from './ToolbarTop';
-import Typography from '@material-ui/core/Typography';
+import IconButton from "@material-ui/core/IconButton/IconButton";
 
 describe('Testing Toolbar on top of page', () => {
     let toolbar;
 
     beforeEach(() => {
-        toolbar = shallow(<ToolbarTop />)
+        toolbar = mount(<ToolbarTop />)
     });
 
     it('should render on the page', () => {
         expect(toolbar.exists()).toBe(true);
     });
 
-    it('should contain the appropriate title', () => {
-        toolbar.contains(<Typography>PiDronics Monitoring System</Typography>)
+    it('should contain an icon button', () => {
+       let button = toolbar.find(IconButton);
+       expect(button.exists()).toBe(true);
     });
+
+
 });

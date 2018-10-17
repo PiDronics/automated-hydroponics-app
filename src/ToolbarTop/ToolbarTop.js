@@ -38,8 +38,6 @@ const styles = {
 
 class ToolbarTop extends Component {
 
-
-
     state = {
         bottom: false
     };
@@ -81,7 +79,7 @@ class ToolbarTop extends Component {
                 <div className={classes.root}>
                     <AppBar position="static">
                         <Toolbar>
-                            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} color="inherit" aria-label="Menu">
+                            <IconButton id = "menu_button" onClick={this.toggleDrawer(true)} className={classes.menuButton} color="inherit" aria-label="Menu">
                                 <MenuIcon />
                             </IconButton>
                             <MuiThemeProvider theme = {theme}>
