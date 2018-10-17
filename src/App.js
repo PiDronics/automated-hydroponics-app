@@ -111,8 +111,8 @@ class App extends Component {
         var device = "pi-1";
         this.setState({
             device: device,
-<<<<<<< HEAD
-        });
+        })
+
 
         /**
          * @memberOf App
@@ -120,11 +120,6 @@ class App extends Component {
          * @param {string} key - The abbreviation to be converted
          * @return {string} result
          * */
-=======
-        })
-
->>>>>>> feature/pd-12
-
         function getSensorName(key){
             return key==="conc" ? "Nutrient Concentration (g/l)"
                 : key==="temp" ? "Water Temperature (C)"
