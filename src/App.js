@@ -45,20 +45,12 @@ class App extends Component {
                 sensors.push(sensor.key);
             });
         });
-        console.log(sensors);
         sensors.forEach(function(sensor){
             dataRef.child(sensor+"/allData").orderByChild('time').startAt(last24hr).on('value' , function(snap){
                 var readingsArr = [];
                 snap.forEach(function(n){
                     readingsArr.push(parseFloat(n.val()["reading"]));
                 });
-                var lastVal = dataRef.child(sensor+"/allData").orderByChild('time').limitToLast(1).;
-                if(lastVal!=null){
-                    console.log(lastVal);
-                }
-                else{
-                    dataRef.child(sensor).child("current").set(0);
-                }
                 if(readingsArr.length>0){
                     var min = Math.min.apply(null,readingsArr);
                     var max = Math.max.apply(null,readingsArr);
@@ -67,11 +59,13 @@ class App extends Component {
                         avg += readingsArr[x];
                     }
                     avg = (avg/readingsArr.length).toFixed(2);
+                    dataRef.child(sensor).child("current").set(readingsArr[readingsArr.length-1]);
                     dataRef.child(sensor).child("min").set(parseFloat(min));
                     dataRef.child(sensor).child("max").set(parseFloat(max));
                     dataRef.child(sensor).child("avg").set(parseFloat(avg));
                 }
                 else{
+                    dataRef.child(sensor).child("current").set(0);
                     dataRef.child(sensor).child("min").set(0);
                     dataRef.child(sensor).child("max").set(0);
                     dataRef.child(sensor).child("avg").set(0);
@@ -113,7 +107,6 @@ class App extends Component {
                 }
             });
             this.calculateVals();
-
             this.setState({
                 sensors: sensorData
             })
