@@ -120,13 +120,13 @@ class App extends Component {
          * @param {string} key - The abbreviation to be converted
          * @return {string} result
          * */
-        function getSensorName(key){
-            return key==="conc" ? "Nutrient Concentration (g/l)"
-                : key==="temp" ? "Water Temperature (C)"
-                : key==="oxygen" ? "Dissolved Oxygen (cm3/l)"
-                : key==="humidity" ? "Humidity (%)"
-                : "Unavailable";
-        }
+        // function getSensorName(key){
+        //     return key==="conc" ? "Nutrient Concentration (g/l)"
+        //         : key==="temp" ? "Water Temperature (C)"
+        //         : key==="oxygen" ? "Dissolved Oxygen (cm3/l)"
+        //         : key==="humidity" ? "Humidity (%)"
+        //         : "Unavailable";
+        // }
 
         const dataRef = fire.database().ref("users/user1/systems").child(device+"/sensors");
 
