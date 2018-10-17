@@ -13,6 +13,18 @@ Hydroponics is a compact and efficient alternative to soil agriculture. One of t
 - To help farmers better understand the needs of their crops
 - To encourage more people to get involved in hydroponics
 
+## Serve
+
+Running `npm run start` to serve to localhost:3000. Webpack is listening for changes in your IDE so you don't need to restart everytime.
+
+## Build
+
+Running `npm run build` to produce an optimized, deployable React Application
+
+## Testing
+
+Running `npm run test` will run all of the testing suites in the `/src` folder. Note that react testing files are typically names `component_name.test.js`
+
 ## Coming soon
 - Acceptable ranges of values
 - Real time graphs

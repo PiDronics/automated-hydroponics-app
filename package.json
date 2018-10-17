@@ -16,7 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "firebase deploy",
-    "doc": "jsdoc src -r -d docs"
+    "doc": "jsdoc README.md src -r -d docs"
   },
   "eslintConfig": {
     "extends": "react-app"
