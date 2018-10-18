@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Sensor from '../sensor/Sensor';
-import fire from '../../fire';
+import firebase from '../../fire';
 
 class System extends Component{
 
@@ -16,7 +16,7 @@ class System extends Component{
     }
 
     componentDidMount(){
-        const dataRef = fire.database().ref("users/user1");
+        const dataRef = firebase.database().ref("users/user1");
 
         dataRef.child("systemCard/"+this.state.id).on("value", snap => {
             var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";

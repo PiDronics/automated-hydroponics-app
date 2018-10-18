@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SystemCard from '../system/SystemCard';
-import firebase from 'firebase';
-import fire from '../../fire';
+import firebase from '../../fire';
 
 class Dashboard extends Component{
 
@@ -25,7 +24,7 @@ class Dashboard extends Component{
             device: device,
         })
 
-        const dataRef = fire.database().ref("users/user1/systemCard");
+        const dataRef = firebase.database().ref("users/user1/systemCard");
 
         dataRef.on("value", snap => {
             var systems = [];

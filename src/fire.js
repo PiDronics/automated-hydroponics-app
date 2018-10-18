@@ -1,4 +1,6 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 // Initialize Firebase
 const config = {
@@ -9,6 +11,7 @@ const config = {
     storageBucket: "comp3613-pisynthesis.appspot.com",
     messagingSenderId: "466720894084"
 };
-var fire = firebase.initializeApp(config);
 
-export default fire;
+firebase.initializeApp(config);
+
+export default firebase;
