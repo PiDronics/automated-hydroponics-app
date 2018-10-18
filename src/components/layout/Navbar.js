@@ -18,7 +18,7 @@ class NavbarFeatures extends Component {
     }
     render() {
         return (
-            <Navbar color="indigo" dark expand="md" scrolling>
+            <Navbar color="indigo" dark expand="md" fixed="top" scrolling>
                 <NavbarBrand href="#">
                     <img src="/img/bg.jpg" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>

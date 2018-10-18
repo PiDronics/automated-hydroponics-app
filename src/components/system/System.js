@@ -45,9 +45,9 @@ class System extends Component{
 
     render(){
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
-                    <div className="container text-center">
+                    <div className="container-fluid text-center">
                         <h1>{this.state.systemName}</h1>
                         <h6 className="font-italic text-muted">{this.state.lastUpdated}</h6>
                     </div>

@@ -41,15 +41,15 @@ class Dashboard extends Component{
     }
     render(){
         return (
-            <div className="container dashboard">
+            <div className="container-fluid dashboard">
                 <div className="row">
-                    <div className="container text-center">
+                    <div className="container-fluid text-center">
                         <h2>PiDronics Monitoring System</h2>
                         <p>Manage complicated hydroponic farms with ease!</p>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="container">
+                    <div className="container-fluid">
                         <h2 className="text-center">Systems</h2>
                     </div>
                 </div>

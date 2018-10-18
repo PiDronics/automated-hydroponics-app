@@ -11,15 +11,19 @@ class App extends Component {
             <BrowserRouter>
                 <div className="App">
                     <NavbarFeatures/>
-                    <div className="row">
-                        <div className="container">
-                            <Switch>
-                                <Route exact path='/' component={Dashboard}></Route>
-                                <Route path='/system/:id' component={System}></Route>
-                                {/*<Route path='/configuration' component={Configuration}></Route>*/}
-                                {/*<Route path='/support' component={Support}></Route>*/}
-                                {/*<Route path='/about' component={About}></Route>*/}
-                            </Switch>
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="container mt-5">
+                                <div className="row mt-4">
+                                <Switch>
+                                    <Route exact path='/' component={Dashboard}></Route>
+                                    <Route path='/system/:id' component={System}></Route>
+                                    {/*<Route path='/configuration' component={Configuration}></Route>*/}
+                                    {/*<Route path='/support' component={Support}></Route>*/}
+                                    {/*<Route path='/about' component={About}></Route>*/}
+                                </Switch>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
