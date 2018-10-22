@@ -29,7 +29,7 @@ const Sensor = (props) => {
                             </tr>
                         </TableBody>
                     </Table>
-                    <ModalGraph></ModalGraph>
+                    <ModalGraph title={props.sensorName} device={props.device}></ModalGraph>
                 </CardBody>
             </Card>
         </div>

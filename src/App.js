@@ -3,9 +3,38 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavbarFeatures from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import System from './components/system/System';
-//import SignedOut from './components/auth/SignedOut';
+import SignOut from './components/auth/SignOut';
+import SignedOut from './components/auth/SignedOut';
+import firebase from './fire';
 
 class App extends Component {
+
+    constructor(){
+        super();
+
+        this.state={
+            user: {}
+        }
+    }
+
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged((user) => {
+            this.setState({ user: user });
+        });
+    }
+
+    checkLogin = () => {
+        if(this.state.user){
+            return(
+                <Route exact path='/' component={Dashboard}></Route>
+            )
+        }
+        else{
+            return(
+                <Route exact path='/' component={SignedOut}></Route>
+            )
+        }
+    }
 
     /**
      * @memberOf App
@@ -21,13 +50,14 @@ class App extends Component {
                         <div className="row">
                             <div className="container mt-5">
                                 <div className="row mt-4">
-                                <Switch>
-                                    <Route exact path='/' component={Dashboard}></Route>
-                                    <Route path='/system/:id' component={System}></Route>
-                                    {/*<Route path='/configuration' component={Configuration}></Route>*/}
-                                    {/*<Route path='/support' component={Support}></Route>*/}
-                                    {/*<Route path='/about' component={About}></Route>*/}
-                                </Switch>
+                                    <Switch>
+                                        {this.checkLogin()}
+                                        <Route path='/system/:id' component={System}></Route>
+                                        <Route path='/signout' component={SignOut}></Route>
+                                        {/*<Route path='/configuration' component={Configuration}></Route>*/}
+                                        {/*<Route path='/support' component={Support}></Route>*/}
+                                        {/*<Route path='/about' component={About}></Route>*/}
+                                    </Switch>
                                 </div>
                             </div>
                         </div>

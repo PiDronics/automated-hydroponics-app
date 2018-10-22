@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink } from 'mdbreact';
+import firebase from '../../fire';
 
 class NavbarFeatures extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class NavbarFeatures extends Component {
         this.state = {
             collapse: false,
             isWideEnough: false,
+            isLoggedIn: false
         };
         this.onClick = this.onClick.bind(this);
     }
@@ -16,6 +18,57 @@ class NavbarFeatures extends Component {
             collapse: !this.state.collapse,
         });
     }
+
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ isLoggedIn: true });
+            }
+            else{
+                this.setState({ isLoggedIn: false });
+            }
+        });
+    }
+
+    checkLogin = () => {
+        if(this.state.isLoggedIn){
+            return(
+                <NavbarNav right>
+                    <NavItem>
+                        <NavLink to="/">Home</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/configuration">Configuration</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/support">Support</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/about">About</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/signout">Log Out</NavLink>
+                    </NavItem>
+                </NavbarNav>
+            )
+        }
+        else{
+            return(
+                <NavbarNav right>
+                    <NavItem>
+                        <NavLink to="/">Sign In/Sign Up</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/support">Support</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/about">About</NavLink>
+                    </NavItem>
+                </NavbarNav>
+            )
+        }
+    }
+
     render() {
         return (
             <Navbar color="indigo" dark expand="md" fixed="top" scrolling>
@@ -25,23 +78,7 @@ class NavbarFeatures extends Component {
                 </NavbarBrand>
                 { !this.state.isWideEnough && <NavbarToggler onClick = { this.onClick } />}
                 <Collapse isOpen = { this.state.collapse } navbar>
-                    <NavbarNav right>
-                        <NavItem>
-                            <NavLink to="/">Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/configuration">Configuration</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/support">Support</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/about">About</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/">Log Out</NavLink>
-                        </NavItem>
-                    </NavbarNav>
+                    {this.checkLogin()}
                 </Collapse>
             </Navbar>
         );
