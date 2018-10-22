@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SystemCard from '../system/SystemCard';
 import firebase from '../../fire';
-import ScrollToTopOnMount from '../layout/ScrollToTopOnMount';
 
 class Dashboard extends Component{
 
@@ -43,7 +42,6 @@ class Dashboard extends Component{
     render(){
         return (
             <div className="container-fluid">
-                <ScrollToTopOnMount/>
                 <div className="row">
                     <div className="container-fluid text-center">
                         <h2>PiDronics Monitoring System</h2>

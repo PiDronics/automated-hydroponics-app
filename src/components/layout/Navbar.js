@@ -3,13 +3,15 @@ import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLi
 import firebase from '../../fire';
 
 class NavbarFeatures extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
         this.state = {
             collapse: false,
             isWideEnough: false,
-            isLoggedIn: false
+            user: {}
         };
+
         this.onClick = this.onClick.bind(this);
     }
 
@@ -20,18 +22,13 @@ class NavbarFeatures extends Component {
     }
 
     componentDidMount(){
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({ isLoggedIn: true });
-            }
-            else{
-                this.setState({ isLoggedIn: false });
-            }
-        });
-    }
+        firebase.auth().onAuthStateChanged(user => user && this.setState({
+            user: user
+        }));
+    };
 
     checkLogin = () => {
-        if(this.state.isLoggedIn){
+        if(this.state.user){
             return(
                 <NavbarNav right>
                     <NavItem>

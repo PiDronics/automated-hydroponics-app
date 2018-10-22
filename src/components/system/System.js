@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Sensor from '../sensor/Sensor';
 import firebase from '../../fire';
-import ScrollToTopOnMount from '../layout/ScrollToTopOnMount';
 
 class System extends Component{
 
@@ -47,7 +46,6 @@ class System extends Component{
     render(){
         return (
             <div className="container-fluid">
-                <ScrollToTopOnMount/>
                 <div className="row">
                     <div className="container-fluid text-center">
                         <h1>{this.state.systemName}</h1>

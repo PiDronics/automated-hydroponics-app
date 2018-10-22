@@ -18,9 +18,9 @@ class App extends Component {
     }
 
     componentDidMount(){
-        firebase.auth().onAuthStateChanged((user) => {
-            this.setState({ user: user });
-        });
+        firebase.auth().onAuthStateChanged(user => user && this.setState({
+            user: user
+        }));
     }
 
     checkLogin = () => {
@@ -34,7 +34,7 @@ class App extends Component {
                 <Route exact path='/' component={SignedOut}></Route>
             )
         }
-    }
+    };
 
     /**
      * @memberOf App

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Card, CardHeader, CardBody, Fa } from 'mdbreact';
 import firebase from "../../fire";
-import ScrollToTopOnMount from "../layout/ScrollToTopOnMount";
 
 class SignedOut extends Component  {
 
@@ -16,7 +15,7 @@ class SignedOut extends Component  {
     handleChange = (e) =>{
         this.setState({
             [e.target.name]: e.target.value
-        })
+        });
     };
 
     handleSignIn = (e) =>{
@@ -46,15 +45,14 @@ class SignedOut extends Component  {
     render() {
         return(
             <div className="container-fluid">
-                <ScrollToTopOnMount/>
-                <div className="row">
+                <div className="row mb-5">
                     <div className="container-fluid text-center">
                         <h2>PiDronics Monitoring System</h2>
                         <p>Manage complicated hydroponic farms with ease!</p>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-6 mt-5">
+                    <div className="col-lg-6 mb-3">
                         <Card>
                             <CardHeader className="text-center" color="primary-color">Sign In</CardHeader>
                             <CardBody>
@@ -76,7 +74,7 @@ class SignedOut extends Component  {
                         </Card>
                     </div>
 
-                    <div className="col-lg-6 mt-5">
+                    <div className="col-lg-6 mb-3">
                         <Card>
                             <CardHeader className="text-center" color="secondary-color">Sign Up</CardHeader>
                             <CardBody>
