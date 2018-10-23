@@ -9,7 +9,7 @@ class NavbarFeatures extends Component {
         this.state = {
             collapse: false,
             isWideEnough: false,
-            user: {}
+            user: null
         };
 
         this.onClick = this.onClick.bind(this);
@@ -22,9 +22,11 @@ class NavbarFeatures extends Component {
     }
 
     componentDidMount(){
-        firebase.auth().onAuthStateChanged(user => user && this.setState({
-            user: user
-        }));
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({
+                user: user
+            })
+        });
     };
 
     checkLogin = () => {
@@ -32,7 +34,7 @@ class NavbarFeatures extends Component {
             return(
                 <NavbarNav right>
                     <NavItem>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/">Dashboard</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink to="/configuration">Configuration</NavLink>

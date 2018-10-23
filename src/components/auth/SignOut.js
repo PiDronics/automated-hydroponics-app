@@ -7,7 +7,6 @@ class SignOut extends Component {
     componentDidMount(){
         firebase.auth().signOut().then(function() {
         }).catch(function(error) {
-
         });
 
         this.props.history.push("/");

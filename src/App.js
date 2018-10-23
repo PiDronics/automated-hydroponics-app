@@ -12,26 +12,28 @@ class App extends Component {
     constructor(){
         super();
 
-        this.state={
-            user: {}
-        }
+        this.state= {
+            user: null
+        };
+
     }
 
     componentDidMount(){
-        firebase.auth().onAuthStateChanged(user => user && this.setState({
-            user: user
-        }));
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({user:user})
+        });
     }
 
     checkLogin = () => {
+
         if(this.state.user){
             return(
-                <Route exact path='/' component={Dashboard}></Route>
+                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={Dashboard}></Route>
             )
         }
         else{
             return(
-                <Route exact path='/' component={SignedOut}></Route>
+                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}></Route>
             )
         }
     };
@@ -42,6 +44,7 @@ class App extends Component {
      *
      * */
     render() {
+
         return (
             <BrowserRouter>
                 <div className="App">
@@ -52,8 +55,8 @@ class App extends Component {
                                 <div className="row mt-4">
                                     <Switch>
                                         {this.checkLogin()}
-                                        <Route path='/system/:id' component={System}></Route>
-                                        <Route path='/signout' component={SignOut}></Route>
+                                        <Route onUpdate={() => window.scrollTo(0, 0)} path='/system/:id' component={System}></Route>
+                                        <Route onUpdate={() => window.scrollTo(0, 0)} path='/signout' component={SignOut}></Route>
                                         {/*<Route path='/configuration' component={Configuration}></Route>*/}
                                         {/*<Route path='/support' component={Support}></Route>*/}
                                         {/*<Route path='/about' component={About}></Route>*/}
