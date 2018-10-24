@@ -22,7 +22,7 @@ class Dashboard extends Component{
         var device = "pi-2";
         this.setState({
             device: device,
-        })
+        });
 
         const dataRef = firebase.database().ref("users/user1/systemCard");
 

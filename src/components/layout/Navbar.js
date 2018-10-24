@@ -66,7 +66,7 @@ class NavbarFeatures extends Component {
                 </NavbarNav>
             )
         }
-    }
+    };
 
     render() {
         return (

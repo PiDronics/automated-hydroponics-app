@@ -62,6 +62,6 @@ class System extends Component{
             </div>
         );
     }
-};
+}
 
 export default System;
