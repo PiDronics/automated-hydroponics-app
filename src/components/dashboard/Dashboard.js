@@ -4,7 +4,7 @@ import firebase from '../../fire';
 
 class Dashboard extends Component{
 
-    constructor(){
+    constructor() {
         super();
 
         this.state = {

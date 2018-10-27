@@ -1,0 +1,57 @@
+{
+    "sensorList": {
+        "Humidity" : {},
+        "Nutrient Concentration" : {},
+        "Oxygen" : {},
+        "Temperature" : {},
+        "pH" : {}
+    },
+    "systems" : {
+      "pi-1" : {
+        "settings" : {},
+        "user" : "some string"
+      },
+    "users" : {
+      "user1" : {
+        "systemCard" : {
+          "pi-1" : {
+            "lastUpdated" : "September 20th 2018 [3:34 PM]",
+            "sensors" : {
+              "Humidity" : {
+                "current" : 10,
+                "enabled" : true,
+                "status" : 8
+              }
+            },
+            "systemName" : "Shed Farm"
+          }
+        },
+        "systemData" : {
+          "pi-1" : {
+            "lastUpdated" : "September 20th 2018 [3:34 PM]",
+            "sensorData" : {
+              "Humidity" : {
+                "allData" : {
+                  "some_uuid" : {
+                    "reading" : "1",
+                    "time" : 1539766236358
+                  }
+                }
+              }
+            },
+            "sensors" : {
+              "Humidity" : {
+                "avg" : 5.5,
+                "current" : 10,
+                "enabled" : true,
+                "max" : 10,
+                "min" : 1,
+                "status" : 8
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

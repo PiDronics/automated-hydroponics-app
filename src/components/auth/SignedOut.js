@@ -56,7 +56,7 @@ class SignedOut extends Component  {
                         <Card>
                             <CardHeader className="text-center" color="primary-color">Sign In</CardHeader>
                             <CardBody>
-                                <form onSubmit={this.handleSignIn}>
+                                <form onSubmit={this.handleSignIn} id = "form1">
                                     <div className="input-field mb-3 d-flex justify-content-around">
                                         <Fa className="grey-text mr-3" size="2x" icon="envelope"></Fa>
                                         <input className="form-control" type="email" id="email1" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
@@ -67,7 +67,7 @@ class SignedOut extends Component  {
                                     </div>
                                     <span className="red-text">{this.state.errorMessage1}</span>
                                     <div className="input-field d-flex justify-content-around">
-                                        <button className="btn primary-color lighten-1 z-depth-0">Login</button>
+                                        <button className="btn primary-color lighten-1 z-depth-0" id = "login_btn">Login</button>
                                     </div>
                                 </form>
                             </CardBody>
@@ -78,7 +78,7 @@ class SignedOut extends Component  {
                         <Card>
                             <CardHeader className="text-center" color="secondary-color">Sign Up</CardHeader>
                             <CardBody>
-                                <form onSubmit={this.handleSignUp}>
+                                <form onSubmit={this.handleSignUp} id = "form2">
                                     <div className="input-field mb-3 d-flex justify-content-around">
                                         <Fa className="grey-text mr-3" size="2x" icon="envelope"></Fa>
                                         <input className="form-control" type="email" id="email2" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
@@ -89,7 +89,7 @@ class SignedOut extends Component  {
                                     </div>
                                     <span className="red-text">{this.state.errorMessage2}</span>
                                     <div className="input-field d-flex justify-content-around">
-                                        <button className="btn secondary-color lighten-1 z-depth-0">Sign Up</button>
+                                        <button className="btn secondary-color lighten-1 z-depth-0" id = "signup_btn">Sign Up</button>
                                     </div>
                                 </form>
                             </CardBody>
