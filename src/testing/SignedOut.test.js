@@ -1,11 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import SignedOut from '../components/auth/SignedOut';
 
 /*
     CRITICAL
     - Must check valid email format (done)
-    - Must test button interaction to see if function was called
+    - Must test button interaction to see if function was called (done)
 
     NON-CRITICAL
     - Check if component rendered (done)
@@ -17,14 +18,14 @@ import SignedOut from '../components/auth/SignedOut';
 
 describe('SignedOut Page', () => {
     let shallow_render;
-    // let mount_render;
-    // beforeAll(() => {
-    //     mount_render = mount(<SignedOut/>);
-    //
-    // });
+    let historyMock;
+    beforeAll(() => {
+        historyMock = { push: jest.fn() };
+
+    });
 
     beforeEach(() => {
-        shallow_render = shallow(<SignedOut/>);
+        shallow_render = shallow(<SignedOut history={historyMock}/>);
     });
 
     it('-> should render without throwing an error', () => {
@@ -116,12 +117,27 @@ describe('SignedOut Page', () => {
 
     });
     //
-    // it('-> executes the handleSignUp function on submitting the sign up form', () => {
-    //     const instance = mount_render.instance();
-    //     const spy = sinon.spy(instance, 'handleSignIn');
-    //     shallow_render.find('#form1').simulate('submit', {preventDefault: jest.fn()});
-    //     expect(spy).toHaveBeenCalled();
-    // });
+    it('-> executes the handleSignIn function on submitting the Login form', () => {
+        const spy = sinon.spy(shallow_render.instance(), 'handleSignIn');
+        shallow_render.instance().forceUpdate();
+        shallow_render.find('#form1').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.calledOnce(spy);
+        shallow_render.find('#form1').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.callCount(spy, 2);
+        shallow_render.find('#form1').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.callCount(spy, 3);
+    });
+
+    it('-> executes the handleSignUp function on submitting the Sign up form', () => {
+        const spy = sinon.spy(shallow_render.instance(), 'handleSignUp');
+        shallow_render.instance().forceUpdate();
+        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.calledOnce(spy);
+        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.callCount(spy, 2);
+        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.callCount(spy, 3);
+    });
 
 
 
