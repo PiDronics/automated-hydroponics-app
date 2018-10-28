@@ -12,7 +12,6 @@ import SignedOut from '../components/auth/SignedOut';
     - Check if component rendered (done)
     - Check if Headers are correct (done)
     - Check for text inside button (done)
-
  */
 
 
@@ -21,7 +20,6 @@ describe('SignedOut Page', () => {
     let historyMock;
     beforeAll(() => {
         historyMock = { push: jest.fn() };
-
     });
 
     beforeEach(() => {
@@ -67,56 +65,32 @@ describe('SignedOut Page', () => {
     it('-> should check if the email1 accepts a valid format', () => {
         const email1 = shallow_render.find("#email1");
         const pattern =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        email1.simulate('change', {
-            target: {name: "email", value:"qarun80@gmail.com"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"qarun80@gmail.com"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(true);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"MoSeScHaRlEs123@gmail.com"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"MoSeScHaRlEs123@gmail.com"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(true);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"123@gmail.com"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"123@gmail.com"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(true);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"MoSeScHaRlEs123@gmail.com"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"MoSeScHaRlEs123@gmail.com"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(true);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"MoSeScHaRlEs123@gmail.com.co.tt"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"MoSeScHaRlEs123@gmail.com.co.tt"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(true);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"*&*@#@gmail.com"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"*&*@#@gmail.com"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(false);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"MoSeScHaRlEs123@gmail"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"MoSeScHaRlEs123@gmail"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(false);
 
-        email1.simulate('change', {
-            target: {name: "email", value:"@gmail.com"}
-        });
-
+        email1.simulate('change', { target: {name: "email", value:"@gmail.com"} });
         expect(pattern.test(shallow_render.state('email'))).toBe(false);
 
     });
-    //
+
     it('-> executes the handleSignIn function on submitting the Login form', () => {
         const spy = sinon.spy(shallow_render.instance(), 'handleSignIn');
         shallow_render.instance().forceUpdate();
@@ -138,7 +112,5 @@ describe('SignedOut Page', () => {
         shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
         sinon.assert.callCount(spy, 3);
     });
-
-
 
 });

@@ -29,6 +29,8 @@ class Dashboard extends Component{
         dataRef.on("value", snap => {
             var systems = [];
             snap.forEach(function(system){
+                // TODO: Have a check in place to ensure this is an object
+                // TODO: Check to ensure that, if "system" is an object, that it has all the necessary keys
                 var obj = system.val();
                 obj["systemId"] = system.key;
                 systems.push(obj);

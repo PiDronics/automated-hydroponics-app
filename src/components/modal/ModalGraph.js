@@ -57,7 +57,7 @@ class ModalGraph extends Component {
                 <Fa icon="circle-o-notch" spin size="3x"/>
             )
         }
-    }
+    };
 
     render() {
         var date = new Date().toLocaleDateString();
