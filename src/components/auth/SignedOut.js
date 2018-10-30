@@ -58,14 +58,14 @@ class SignedOut extends Component  {
                             <CardBody>
                                 <form onSubmit={this.handleSignIn} id = "form1">
                                     <div className="input-field mb-3 d-flex justify-content-around">
-                                        <Fa className="grey-text mr-3" size="2x" icon="envelope"></Fa>
+                                        <Fa className="grey-text mr-3" size="2x" icon="envelope"/>
                                         <input className="form-control" type="email" id="email1" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
                                     </div>
                                     <div className="input-field mb-3 d-flex justify-content-around">
-                                        <Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"></Fa>
+                                        <Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"/>
                                         <input className="form-control" type="password" id="password1" name="password" onChange={this.handleChange} placeholder="Password"/>
                                     </div>
-                                    <span className="red-text">{this.state.errorMessage1}</span>
+                                    <span className="red-text d-flex justify-content-center">{this.state.errorMessage1}</span>
                                     <div className="input-field d-flex justify-content-around">
                                         <button className="btn primary-color lighten-1 z-depth-0" id = "login_btn">Login</button>
                                     </div>
@@ -80,14 +80,14 @@ class SignedOut extends Component  {
                             <CardBody>
                                 <form onSubmit={this.handleSignUp} id = "form2">
                                     <div className="input-field mb-3 d-flex justify-content-around">
-                                        <Fa className="grey-text mr-3" size="2x" icon="envelope"></Fa>
+                                        <Fa className="grey-text mr-3" size="2x" icon="envelope"/>
                                         <input className="form-control" type="email" id="email2" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
                                     </div>
                                     <div className="input-field mb-3 d-flex justify-content-around">
-                                        <Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"></Fa>
+                                        <Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"/>
                                         <input className="form-control" type="password" id="password2" name="password" onChange={this.handleChange} placeholder="Password"/>
                                     </div>
-                                    <span className="red-text">{this.state.errorMessage2}</span>
+                                    <span className="red-text d-flex justify-content-center">{this.state.errorMessage2}</span>
                                     <div className="input-field d-flex justify-content-around">
                                         <button className="btn secondary-color lighten-1 z-depth-0" id = "signup_btn">Sign Up</button>
                                     </div>
