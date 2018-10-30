@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Modal, ModalBody, ModalHeader, ModalFooter, Fa } from 'mdbreact';
+import { Container, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact';
 import ReactChartkick, { LineChart } from 'react-chartkick'
 import Chart from 'chart.js'
 import firebase from "../../fire";
@@ -19,10 +19,6 @@ class ModalGraph extends Component {
     }
 
     toggle = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
-
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 var uid = user.uid;
@@ -32,7 +28,7 @@ class ModalGraph extends Component {
 
                 const dataRef = firebase.database().ref(ref).orderByChild("time").startAt(this.props.graphStart).endAt(this.props.graphEnd);
 
-                if (!this.state.modal) {
+                if(this.state.modal) {
                     dataRef.once("value", snap => {
                         const data = [];
                         snap.forEach(function (n) {
@@ -59,20 +55,33 @@ class ModalGraph extends Component {
 
                         this.setState({
                             graphData: data
-                        })
+                        });
                     });
-                }
-                else {
-                    return (
-                        <Fa icon="circle-o-notch" spin size="3x"/>
-                    )
                 }
             }
             else{
-                this.props.history.push("/");
+
             }
         });
+        this.setState({
+            modal: !this.state.modal
+        });
     };
+
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                this.setState({
+                    signedIn: true
+                });
+            }
+            else {
+                this.setState({
+                    signedIn: false
+                });
+            }
+        });
+    }
 
     render() {
         var date = new Date().toLocaleDateString();

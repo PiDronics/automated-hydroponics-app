@@ -47,14 +47,35 @@ class ModalGraphEdit extends Component {
             return (new Date(date));
         }
 
-        hr = hr.toString();
-        min = min.toString()
-        console.log(min);
-        var newHr = hr;
-        if(per==="pm"){
-            newHr=(parseInt(hr)+12).toString();
+        if(parseInt(min)>=60){
+            console.log("60 min");
+            min = 0;
+
+            if(parseInt(hr)===11 && per==="pm"){
+                hr=0;
+                per="am";
+            }
+            else{
+                hr=parseInt(hr)+1;
+            }
         }
-        else if(newHr.length<2){
+
+        if(per==="am"){
+            if(parseInt(hr)===12){
+                hr=0;
+            }
+        }
+        else if(per==="pm"){
+            if(hr<12){
+                hr=parseInt(hr)+12;
+            }
+        }
+
+        hr = hr.toString();
+        min = min.toString();
+        var newHr = hr;
+
+        if(newHr.length<2){
             newHr = "0"+newHr;
         }
 

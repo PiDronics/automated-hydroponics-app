@@ -15,6 +15,7 @@
         },
         ".read": "$uid === auth.uid"
       }
-    }
+    },
+    ".write" : true
   }
 }
