@@ -31,24 +31,24 @@ class Sensor extends Component{
             <div className="col-lg-6 mb-3">
                 <Card>
                     <CardBody>
-                        <CardTitle className="justify-content-center d-flex">{this.props.sensorName}</CardTitle>
+                        <CardTitle id = "sensorName" className="justify-content-center d-flex">{this.props.sensorName}</CardTitle>
                         <Table>
                             <TableBody>
                                 <tr>
                                     <th>Current</th>
-                                    <td>{this.props.current}</td>
+                                    <td id = "current">{this.props.current}</td>
                                 </tr>
                                 <tr>
                                     <th>Minimum</th>
-                                    <td>{this.props.min}</td>
+                                    <td id = "min">{this.props.min}</td>
                                 </tr>
                                 <tr>
                                     <th>Maximum</th>
-                                    <td>{this.props.max}</td>
+                                    <td id = "max">{this.props.max}</td>
                                 </tr>
                                 <tr>
                                     <th>Average</th>
-                                    <td>{this.props.avg}</td>
+                                    <td id = "avg">{this.props.avg}</td>
                                 </tr>
                             </TableBody>
                         </Table>

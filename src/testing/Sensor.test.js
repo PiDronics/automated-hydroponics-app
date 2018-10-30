@@ -2,10 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Sensor from '../components/sensor/Sensor';
 
-
-
-
-
 describe('Sensor Component', () => {
     let shallow_render;
 
@@ -15,7 +11,7 @@ describe('Sensor Component', () => {
 
     it('-> should render without throwing any errors', () => {
         console.log(shallow_render.debug());
-        expect(shallow_render.find('.sensorCard').exists()).toBe(true);
+        expect(shallow_render.find('.col-lg-6').exists()).toBe(true);
     });
 
     it('-> should render all other UI elements properly', () => {
