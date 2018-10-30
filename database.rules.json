@@ -1,6 +1,20 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "users":{
+      "$uid":{
+        "systemData":{
+          "$device":{
+            "sensorData":{
+              "$sensor":{
+                "allData":{
+                  ".indexOn": "time"
+                }
+              }
+            }
+          }
+        },
+        ".read": "$uid === auth.uid"
+      }
+    }
   }
 }

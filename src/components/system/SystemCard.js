@@ -5,7 +5,7 @@ import { NavLink } from 'mdbreact';
 const SystemCard = ({system}) => {
     var sensors = Object.keys(system.sensors);
     return (
-        <div className="col-lg-6 systemCard">
+        <div className="col-lg-6 mb-3">
             <Card>
                 <CardBody>
                     <CardTitle className="justify-content-center d-flex">{system.systemName}</CardTitle>

@@ -18,13 +18,13 @@ class Dashboard extends Component{
      *
      * */
     componentDidMount(){
-        //get some device here
-        var device = "pi-2";
-        this.setState({
-            device: device,
-        });
+        var user = firebase.auth().currentUser;
+        var uid = "";
+        if(user!=null){
+            uid = user.uid;
+        }
 
-        const dataRef = firebase.database().ref("users/user1/systemCard");
+        const dataRef = firebase.database().ref("users/"+uid+"/systemCard");
 
         dataRef.on("value", snap => {
             var systems = [];

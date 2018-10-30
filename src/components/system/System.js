@@ -16,30 +16,38 @@ class System extends Component{
     }
 
     componentDidMount(){
-        const dataRef = firebase.database().ref("users/user1");
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                var uid = user.uid;
 
-        dataRef.child("systemCard/"+this.state.id).on("value", snap => {
-            var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
-            var systemName = snap.child("systemName").val();
+                const dataRef = firebase.database().ref("users/"+uid);
 
-            this.setState({
-                lastUpdated, systemName
-            })
-        });
+                dataRef.child("systemCard/"+this.state.id).on("value", snap => {
+                    var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
+                    var systemName = snap.child("systemName").val();
 
-        dataRef.child("systemData/"+this.state.id+"/sensors").on("value", snap =>{
-            var sensors = [];
-            snap.forEach(function(sensor){
-                if(sensor.val().enabled){
-                    var obj = sensor.val();
-                    obj["sensorName"] = sensor.key;
-                    sensors.push(obj);
-                }
-            });
-            //this.calculateVals();
-            this.setState({
-                sensors:sensors
-            })
+                    this.setState({
+                        lastUpdated, systemName
+                    })
+                });
+
+                dataRef.child("systemData/"+this.state.id+"/sensors").on("value", snap =>{
+                    var sensors = [];
+                    snap.forEach(function(sensor){
+                        if(sensor.val().enabled){
+                            var obj = sensor.val();
+                            obj["sensorName"] = sensor.key;
+                            sensors.push(obj);
+                        }
+                    });
+
+                    this.setState({
+                        sensors:sensors
+                    })
+                });
+            } else {
+                this.props.history.push("/");
+            }
         });
     };
 

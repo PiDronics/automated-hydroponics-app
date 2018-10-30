@@ -7,17 +7,15 @@ import firebase from "../../fire";
 class ModalGraph extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
         this.state = {
             modal: false,
-            graphData: [],
             title: props.title,
             device: props.device,
             first: "",
             last: ""
         };
-
     }
 
     toggle = () => {
@@ -25,49 +23,66 @@ class ModalGraph extends Component {
             modal: !this.state.modal
         });
 
-        ReactChartkick.addAdapter(Chart);
-        var ref = "users/user1/systemData/"+this.state.device+"/sensorData/"+this.state.title+"/allData";
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                var uid = user.uid;
 
-        const dataRef = firebase.database().ref(ref).orderByChild("time");
+                ReactChartkick.addAdapter(Chart);
+                var ref = "users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allData";
 
-        if(!this.state.modal){
-            dataRef.once("value", snap => {
-                const data = [];
-                snap.forEach(function(n){
-                    var val = n.val();
-                    var date = new Date(val.time);
-                    var dateString = date.toLocaleDateString()+"["+date.getHours()+":"+("0" + date.getMinutes()).slice(-2)+"]";
-                    data.push([dateString,val.reading]);
-                });
+                const dataRef = firebase.database().ref(ref).orderByChild("time").startAt(this.props.graphStart).endAt(this.props.graphEnd);
 
-                if(data.length>0){
-                    this.setState({
-                        first: data[0][0],
-                        last: data[data.length-1][0]
-                    })
+                if (!this.state.modal) {
+                    dataRef.once("value", snap => {
+                        const data = [];
+                        snap.forEach(function (n) {
+                            var val = n.val();
+                            var date = new Date(val.time);
+                            var dateString = date.toLocaleDateString() + "[" + date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2) + "]";
+                            data.push([dateString, val.reading]);
+                        });
+
+                        if (data.length > 0) {
+                            this.setState({
+                                first: data[0][0],
+                                last: data[data.length - 1][0]
+                            })
+                        }
+                        else {
+                            var sDate = new Date(this.props.graphStart);
+                            var eDate = new Date(this.props.graphEnd);
+                            this.setState({
+                                first: sDate.toLocaleDateString() + "[" + sDate.getHours() + ":" + ("0" + sDate.getMinutes()).slice(-2) + "]",
+                                last: eDate.toLocaleDateString() + "[" + eDate.getHours() + ":" + ("0" + eDate.getMinutes()).slice(-2) + "]"
+                            })
+                        }
+
+                        this.setState({
+                            graphData: data
+                        })
+                    });
                 }
-
-                this.setState({
-                    graphData: data
-                })
-            });
-        }
-        else{
-            return(
-                <Fa icon="circle-o-notch" spin size="3x"/>
-            )
-        }
-    }
+                else {
+                    return (
+                        <Fa icon="circle-o-notch" spin size="3x"/>
+                    )
+                }
+            }
+            else{
+                this.props.history.push("/");
+            }
+        });
+    };
 
     render() {
         var date = new Date().toLocaleDateString();
         var gName = "Sensor"+date;
+
         return (
             <Container>
                 <div className="d-flex justify-content-around">
                     <Button color="info" onClick={this.toggle}>View Graph</Button>
                 </div>
-
                 <Modal isOpen={this.state.modal} toggle={this.toggle} size="lg">
                     <ModalHeader toggle={this.toggle}>{this.state.title} Data from {this.state.first} - {this.state.last}</ModalHeader>
                     <ModalBody>
