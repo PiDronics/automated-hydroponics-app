@@ -32,7 +32,7 @@ class NavbarFeatures extends Component {
     checkLogin = () => {
         if(this.state.user){
             return(
-                <NavbarNav right>
+                <NavbarNav right id = "userFound">
                     <NavItem>
                         <NavLink to="/">Dashboard</NavLink>
                     </NavItem>
@@ -53,7 +53,7 @@ class NavbarFeatures extends Component {
         }
         else{
             return(
-                <NavbarNav right>
+                <NavbarNav right id = "userNotFound">
                     <NavItem>
                         <NavLink to="/">Sign In/Sign Up</NavLink>
                     </NavItem>
@@ -75,7 +75,7 @@ class NavbarFeatures extends Component {
                     <img src="/img/bg.jpg" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>
                 </NavbarBrand>
-                { !this.state.isWideEnough && <NavbarToggler onClick = { this.onClick } />}
+                { !this.state.isWideEnough && <NavbarToggler id = "toggleBtn" onClick = { this.onClick } />}
                 <Collapse isOpen = { this.state.collapse } navbar>
                     {this.checkLogin()}
                 </Collapse>
