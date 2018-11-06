@@ -16,6 +16,7 @@ class System extends Component{
     }
 
     componentDidMount(){
+        // TODO - Break up this function into smaller functions for the ease of testing
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 var uid = user.uid;

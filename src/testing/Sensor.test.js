@@ -10,7 +10,6 @@ describe('Sensor Component', () => {
     });
 
     it('-> should render without throwing any errors', () => {
-        console.log(shallow_render.debug());
         expect(shallow_render.find('.col-lg-6').exists()).toBe(true);
     });
 
