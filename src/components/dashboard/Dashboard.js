@@ -10,6 +10,7 @@ class Dashboard extends Component{
         this.state = {
             systems: []
         }
+
     }
 
     /**
@@ -26,21 +27,45 @@ class Dashboard extends Component{
 
         const dataRef = firebase.database().ref("users/"+uid+"/systemCard");
 
-        dataRef.on("value", snap => {
-            var systems = [];
-            snap.forEach(function(system){
-                // TODO: Have a check in place to ensure this is an object
-                // TODO: Check to ensure that, if "system" is an object, that it has all the necessary keys
-                var obj = system.val();
-                obj["systemId"] = system.key;
-                systems.push(obj);
-            });
+        // dataRef.on("value", snap => {
+        //     var systems = [];
+        //     snap.forEach(function(system){
+        //         var obj = system.val();
+        //         obj["systemId"] = system.key;
+        //         systems.push(obj);
+        //     });
+        //
+        //     snap.forEach((system) => {
+        //         systems.push(this.extractData(system));
+        //     });
+        //
+        //     this.setState({
+        //         systems:systems
+        //     })
+        // });
 
-            this.setState({
-                systems:systems
-            })
+        dataRef.on("value", snap => {
+            this.processDBData(snap);
         });
     }
+
+    extractData(obj) {
+        let extracted = obj.val();
+        extracted["systemId"] = obj.key;
+        return extracted;
+    }
+
+    processDBData(fb_obj) {
+        const systems = [];
+        fb_obj.forEach((system) => {
+            systems.push(this.extractData(system));
+        });
+
+        this.setState({
+            systems: systems
+        });
+    }
+
     render(){
         return (
             <div className="container-fluid">
