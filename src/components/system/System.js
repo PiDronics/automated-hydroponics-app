@@ -23,7 +23,7 @@ class System extends Component{
 
                 const dataRef = firebase.database().ref("users/"+uid);
 
-                dataRef.child("systemCard/"+this.state.id).on("value", snap => {
+                dataRef.child("systemCard/"+this.state.id).on("value", snap => { // TODO - separate into function
                     var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
                     var systemName = snap.child("systemName").val();
 
@@ -32,7 +32,7 @@ class System extends Component{
                     })
                 });
 
-                dataRef.child("systemData/"+this.state.id+"/sensors").on("value", snap =>{
+                dataRef.child("systemData/"+this.state.id+"/sensors").on("value", snap =>{ // TODO - separate into function
                     var sensors = [];
                     snap.forEach(function(sensor){
                         if(sensor.val().enabled){

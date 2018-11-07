@@ -10,6 +10,8 @@ class ModalGraphEdit extends Component {
         var currDate = new Date();
         var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
         var period = "am";
+
+        // TODO - export date parsing into function
         var hr = currDate.getHours();
         if(hr>12){
             hr=(hr-12);
@@ -43,6 +45,7 @@ class ModalGraphEdit extends Component {
     }
 
     convertToDate(date, hr, min, per){
+        // TODO - Look through code to optimize
         if(hr==null || min==null || per==null){
             return (new Date(date));
         }
@@ -130,7 +133,7 @@ class ModalGraphEdit extends Component {
 
         var startFullDate = this.convertToDate(this.state.start, this.state.startHr, this.state.startMin, this.state.startPer);
         var endFullDate = this.convertToDate(this.state.end, this.state.endHr, this.state.endMin, this.state.endPer);
-
+        // TODO - Throw exceptions for developers, throw snackbar or side modal for users
         if(startFullDate > new Date()){
             this.setState({
                 errorMessage: "The start date cannot be in the future.",
@@ -291,6 +294,6 @@ class ModalGraphEdit extends Component {
 
 ModalGraphEdit.protoTypes = {
     callback : PropTypes.func,
-}
+};
 
 export default ModalGraphEdit;

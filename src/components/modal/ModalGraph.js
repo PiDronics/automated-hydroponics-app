@@ -31,6 +31,7 @@ class ModalGraph extends Component {
                 if(this.state.modal) {
                     dataRef.once("value", snap => {
                         const data = [];
+                        // TODO - Separate into function
                         snap.forEach(function (n) {
                             var val = n.val();
                             var date = new Date(val.time);
@@ -38,6 +39,7 @@ class ModalGraph extends Component {
                             data.push([dateString, val.reading]);
                         });
 
+                        // TODO - Separate into function
                         if (data.length > 0) {
                             this.setState({
                                 first: data[0][0],
@@ -45,6 +47,7 @@ class ModalGraph extends Component {
                             })
                         }
                         else {
+                            // TODO - Separate into function
                             var sDate = new Date(this.props.graphStart);
                             var eDate = new Date(this.props.graphEnd);
                             this.setState({
@@ -60,7 +63,7 @@ class ModalGraph extends Component {
                 }
             }
             else{
-
+                // TODO - Ask about this block
             }
         });
         this.setState({
