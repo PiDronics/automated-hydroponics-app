@@ -15,37 +15,48 @@ class System extends Component{
         }
     }
 
+    fetchData = (db_ref, location, callback_func) => {
+        db_ref.child(location).on("value", snap => {
+            callback_func(snap);
+        });
+    };
+
+    getSummary = (snap) => {
+        var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
+        var systemName = snap.child("systemName").val();
+
+        this.setState({
+            lastUpdated, systemName
+        })
+    };
+
+    getSensorData = (snap) => {
+        var sensors = [];
+        snap.forEach((sensor) => {
+            if(sensor.val().enabled){
+                var obj = sensor.val();
+                obj["sensorName"] = sensor.key;
+                sensors.push(obj);
+            }
+        });
+
+        this.setState({
+            sensors:sensors
+        })
+    };
+
+
     componentDidMount(){
-        // TODO - Break up this function into smaller functions for the ease of testing
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 var uid = user.uid;
 
                 const dataRef = firebase.database().ref("users/"+uid);
+                const path = "systemCard/"+this.state.id;
 
-                dataRef.child("systemCard/"+this.state.id).on("value", snap => { // TODO - separate into function
-                    var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
-                    var systemName = snap.child("systemName").val();
+                this.fetchData(dataRef, path, this.getSummary);
+                this.fetchData(dataRef, path + "/sensors", this.getSensorData)
 
-                    this.setState({
-                        lastUpdated, systemName
-                    })
-                });
-
-                dataRef.child("systemData/"+this.state.id+"/sensors").on("value", snap =>{ // TODO - separate into function
-                    var sensors = [];
-                    snap.forEach(function(sensor){
-                        if(sensor.val().enabled){
-                            var obj = sensor.val();
-                            obj["sensorName"] = sensor.key;
-                            sensors.push(obj);
-                        }
-                    });
-
-                    this.setState({
-                        sensors:sensors
-                    })
-                });
             } else {
                 this.props.history.push("/");
             }

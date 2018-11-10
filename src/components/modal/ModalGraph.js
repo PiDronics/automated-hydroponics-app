@@ -18,28 +18,41 @@ class ModalGraph extends Component {
         };
     }
 
+    createSinglePoint(data_item) {
+        let val = data_item.val();
+        let date = new Date(val.time);
+        let dateString = date.toLocaleDateString() + "[" + date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2) + "]";
+        return [dateString, val.reading];
+    }
+
+    getAllGraphPoints(fb_snapshot) {
+        try {
+            const all_points = [];
+            fb_snapshot.forEach((n) => {
+                let single_point = this.createSinglePoint(n);
+                all_points.push(single_point);
+            });
+            return all_points;
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     toggle = () => {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 var uid = user.uid;
 
                 ReactChartkick.addAdapter(Chart);
-                var ref = "users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allData";
 
+                var ref = "users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allData";
                 const dataRef = firebase.database().ref(ref).orderByChild("time").startAt(this.props.graphStart).endAt(this.props.graphEnd);
 
                 if(this.state.modal) {
                     dataRef.once("value", snap => {
-                        const data = [];
-                        // TODO - Separate into function
-                        snap.forEach(function (n) {
-                            var val = n.val();
-                            var date = new Date(val.time);
-                            var dateString = date.toLocaleDateString() + "[" + date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2) + "]";
-                            data.push([dateString, val.reading]);
-                        });
+                        const data = this.getAllGraphPoints(snap);
 
-                        // TODO - Separate into function
                         if (data.length > 0) {
                             this.setState({
                                 first: data[0][0],
@@ -47,7 +60,6 @@ class ModalGraph extends Component {
                             })
                         }
                         else {
-                            // TODO - Separate into function
                             var sDate = new Date(this.props.graphStart);
                             var eDate = new Date(this.props.graphEnd);
                             this.setState({

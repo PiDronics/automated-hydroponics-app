@@ -7,45 +7,71 @@ class ModalGraphEdit extends Component {
     constructor(props) {
         super(props);
 
-        var currDate = new Date();
-        var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
-        var period = "am";
+        // var currDate = new Date();
+        // var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
+        // var period = "am";
+        //
+        // var hr = currDate.getHours();
+        // if(hr>12){
+        //     hr=(hr-12);
+        //     period = "pm";
+        // }
+        // hr = hr.toString();
+        // if(hr.length<2) {
+        //     hr = "0" + hr;
+        // }
+        //
+        // var min = currDate.getMinutes();
+        // var min_rounded = (5 * Math.round(min/5)).toString();
+        //
+        // if(min_rounded.length<2){
+        //     min_rounded = "0"+min_rounded;
+        // }
 
-        // TODO - export date parsing into function
-        var hr = currDate.getHours();
-        if(hr>12){
-            hr=(hr-12);
-            period = "pm";
-        }
-        hr = hr.toString();
-        if(hr.length<2) {
-            hr = "0" + hr;
-        }
-
-        var min = currDate.getMinutes();
-        var min_rounded = (5 * Math.round(min/5)).toString();
-
-        if(min_rounded.length<2){
-            min_rounded = "0"+min_rounded;
-        }
+        // const parsed_date = this.parseDate(currDate);
 
         this.state = {
             modal: false,
-            start: last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate(),
-            end: currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate(),
-            startHr: hr,
-            startMin: min_rounded,
-            startPer: period,
-            endHr: hr,
-            endMin: min_rounded,
-            endPer: period,
+            // start: last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate(),
+            // end: currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate(),
+            // startHr: parsed_date.startHr,
+            // startMin: parsed_date.startMin,
+            // startPer: parsed_date.startPer,
+            // endHr: parsed_date.startHr,
+            // endMin: parsed_date.startMin,
+            // endPer: parsed_date.startPer,
             errorMessage: "",
             successMsg: ""
         };
     }
 
+    // parseDate(current_date) {
+    //     let period = "am";
+    //     var hr = current_date.getHours();
+    //     if(hr > 12){
+    //         hr = (hr - 12);
+    //         period = "pm";
+    //     }
+    //     hr = hr.toString();
+    //     if(hr.length<2) {
+    //         hr = "0" + hr;
+    //     }
+    //
+    //     var min = current_date.getMinutes();
+    //     var min_rounded = (5 * Math.round(min/5)).toString();
+    //
+    //     if(min_rounded.length<2){
+    //         min_rounded = "0"+min_rounded;
+    //     }
+    //
+    //     return {
+    //         startHr: hr,
+    //         startMin: min_rounded,
+    //         startPer: period
+    //     }
+    // }
+
     convertToDate(date, hr, min, per){
-        // TODO - Look through code to optimize
         if(hr==null || min==null || per==null){
             return (new Date(date));
         }
