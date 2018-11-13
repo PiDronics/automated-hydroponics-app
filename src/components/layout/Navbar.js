@@ -8,16 +8,22 @@ class NavbarFeatures extends Component {
 
         this.state = {
             collapse: false,
-            isWideEnough: false,
             user: null
         };
 
         this.onClick = this.onClick.bind(this);
+        this.closeNav = this.closeNav.bind(this);
     }
 
-    onClick(){
+    onClick() {
         this.setState({
             collapse: !this.state.collapse,
+        });
+    }
+
+    closeNav() {
+        this.setState({
+            collapse: false
         });
     }
 
@@ -75,8 +81,8 @@ class NavbarFeatures extends Component {
                     <img src="/img/bg.jpg" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>
                 </NavbarBrand>
-                { !this.state.isWideEnough && <NavbarToggler id = "toggleBtn" onClick = { this.onClick } />}
-                <Collapse isOpen = { this.state.collapse } navbar>
+                <NavbarToggler onClick={this.onClick}/>
+                <Collapse isOpen = { this.state.collapse } onClick={this.closeNav} navbar>
                     {this.checkLogin()}
                 </Collapse>
             </Navbar>
