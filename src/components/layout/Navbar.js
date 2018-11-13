@@ -81,7 +81,7 @@ class NavbarFeatures extends Component {
                     <img src="/img/bg.jpg" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>
                 </NavbarBrand>
-                <NavbarToggler onClick={this.onClick}/>
+                <NavbarToggler onClick={this.onClick} id="toggleBtn"/>
                 <Collapse isOpen = { this.state.collapse } onClick={this.closeNav} navbar>
                     {this.checkLogin()}
                 </Collapse>
