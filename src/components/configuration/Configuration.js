@@ -38,6 +38,7 @@ class Configuration extends Component {
     }
 
     render() {
+        console.log(this.state.userSystems);
         if(this.state.userSystems.length>0){
             return (
                 <div className="container-fluid">
@@ -84,7 +85,7 @@ class Configuration extends Component {
                         <div className="container-fluid">
                             <div className="row">
                                 <div className="container-fluid d-flex justify-content-center">
-                                    <p className="text-danger">You have no systems under this account.</p>
+                                    <p className="text-danger text-center">You have no systems under this account.</p>
                                 </div>
                             </div>
                         </div>

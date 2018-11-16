@@ -13,25 +13,24 @@
             },
             ".read":"$device === auth.uid",
             ".write":"$device === auth.uid"
-          }
+          },
+          ".read":"$uid === auth.uid",
+          ".write":"$uid === auth.uid"
         },
         "systemCard":{
           "$device":{
             ".read":"$device === auth.uid",
             ".write":"$device === auth.uid"
-          }
+          },
+          ".read":"$uid === auth.uid",
+          ".write":"$uid === auth.uid"
         },
         ".read": "$uid === auth.uid"
       }
     },
     "systems":{
-      "$device":{
-        "$uid":{
-          ".read": "$uid === auth.uid",
-          ".write": "$uid === auth.uid"
-        },
-        ".read": "$device === auth.uid"
-      }
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }

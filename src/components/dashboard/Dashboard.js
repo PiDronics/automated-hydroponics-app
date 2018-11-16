@@ -82,7 +82,7 @@ class Dashboard extends Component{
                     </div>
                     <div className="row">
                         <div className="container-fluid d-flex justify-content-center">
-                            <p className="text-danger">You have no systems under this account.</p>
+                            <p className="text-danger text-center">You have no systems under this account.</p>
                         </div>
                     </div>
                 </div>

@@ -38,13 +38,13 @@ class ModalConfigAdd extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        if(this.state.serial.length===0){
+        if(this.state.serial.length<1 || this.state.serial.indexOf(" ") > -1){
             this.setState({
                 successMsg: "",
-                errorMessage: "Please enter the system's serial number."
+                errorMessage: "The serial number cannot have spaces or be empty."
             })
         }
-        if(this.state.name.length > 30 || this.state.name.length < 1){
+        else if(this.state.name.length > 30 || this.state.name.length < 1){
             this.setState({
                 successMsg: "",
                 errorMessage: "The system name must be between 1 and 30 characters long."
