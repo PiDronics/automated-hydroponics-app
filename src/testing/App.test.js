@@ -18,7 +18,7 @@ describe("App Component", () => {
 
     it('-> should render without any errors', () => {
         expect(shallow_render.find('.App').exists()).toBe(true);
-        expect(shallow_render.find('Route').length).toEqual(3);
+        expect(shallow_render.find('Route').length).toEqual(4);
     });
 
     it('-> should have an initial user state of null', () => {
