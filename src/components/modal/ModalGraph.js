@@ -90,9 +90,9 @@ class ModalGraph extends Component {
         return (
             <Container>
                 <div className="d-flex justify-content-around">
-                    <Button color="info" onClick={this.toggle}>View Graph</Button>
+                    <Button id = "toggleBtn" color="info" onClick={this.toggle}>View Graph</Button>
                 </div>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} size="lg">
+                <Modal id = "graphModal" isOpen={this.state.modal} toggle={this.toggle} size="lg">
                     <ModalHeader toggle={this.toggle}>{this.state.title} Data from {this.state.first} - {this.state.last}</ModalHeader>
                     <ModalBody>
                         <LineChart data={this.state.graphData}
@@ -124,7 +124,7 @@ class ModalGraph extends Component {
                     </ModalBody>
                     <div className="d-flex justify-content-around">
                         <ModalFooter>
-                            <Button color="secondary" onClick={this.toggle}>Close</Button>
+                            <Button id = "toggleBtn2" color="secondary" onClick={this.toggle}>Close</Button>
                         </ModalFooter>
                     </div>
                 </Modal>

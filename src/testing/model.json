@@ -20,7 +20,8 @@
               "Humidity" : {
                 "current" : 10,
                 "enabled" : true,
-                "status" : 8
+                "status" : 8,
+                "sensorName": ""
               }
             },
             "systemName" : "Shed Farm"
