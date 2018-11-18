@@ -223,7 +223,6 @@ class ModalGraphEdit extends Component {
                                         <Fa icon="clock-o" size="2x"/>
                                         <div className="input-field mb-3">
                                             <label htmlFor="sTime">Start Time</label>
-                                            {/*<input type="time" name="time" className="form-control" onChange={this.handleChange} value={this.state.sTime}/>*/}
                                             <div className="d-flex justify-content-start">
                                                 <select className="form-control" name="startHr" onChange={this.handleChange.bind(this)} defaultValue={this.state.startHr}>
                                                     <option value="1">1</option>

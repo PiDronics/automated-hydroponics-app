@@ -10,12 +10,27 @@
                   ".indexOn": "time"
                 }
               }
-            }
-          }
+            },
+            ".read":"$device === auth.uid",
+            ".write":"$device === auth.uid"
+          },
+          ".read":"$uid === auth.uid",
+          ".write":"$uid === auth.uid"
+        },
+        "systemCard":{
+          "$device":{
+            ".read":"$device === auth.uid",
+            ".write":"$device === auth.uid"
+          },
+          ".read":"$uid === auth.uid",
+          ".write":"$uid === auth.uid"
         },
         ".read": "$uid === auth.uid"
       }
     },
-    ".write" : true
+    "systems":{
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
   }
 }

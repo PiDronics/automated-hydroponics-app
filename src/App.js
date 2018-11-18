@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavbarFeatures from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
+import Configuration from './components/configuration/Configuration';
 import System from './components/system/System';
 import SignOut from './components/auth/SignOut';
 import SignedOut from './components/auth/SignedOut';
@@ -55,9 +56,9 @@ class App extends Component {
                                 <div className="row mt-4">
                                     <Switch>
                                         {this.checkLogin()}
-                                        <Route onUpdate={() => window.scrollTo(0, 0)} path='/system/:id' component={System}></Route>
-                                        <Route onUpdate={() => window.scrollTo(0, 0)} path='/signout' component={SignOut}></Route>
-                                        {/*<Route path='/configuration' component={Configuration}></Route>*/}
+                                        <Route path='/system/:id' component={System}></Route>
+                                        <Route path='/signout' component={SignOut}></Route>
+                                        <Route path='/configuration' component={Configuration}></Route>
                                         {/*<Route path='/support' component={Support}></Route>*/}
                                         {/*<Route path='/about' component={About}></Route>*/}
                                     </Switch>

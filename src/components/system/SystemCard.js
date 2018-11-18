@@ -3,7 +3,22 @@ import { Card, CardBody, CardTitle, CardText, Fa, Button, Badge } from 'mdbreact
 import { NavLink } from 'mdbreact';
 
 const SystemCard = ({system}) => {
-    var sensors = Object.keys(system.sensors);
+    if(system.sensors){
+        var sensors = Object.keys(system.sensors);
+    }
+    else{
+        return (
+            <div className="col-lg-6 mb-3">
+                <Card>
+                    <CardBody>
+                        <CardTitle className="justify-content-center d-flex">{system.systemName}</CardTitle>
+                        <CardText className="text-danger">This system has no data.</CardText>
+                        <CardText>Last Updated:<br/><em>{system.lastUpdated}</em></CardText>
+                    </CardBody>
+                </Card>
+            </div>
+        );
+    }
     return (
         <div className="col-lg-6 mb-3">
             <Card>
