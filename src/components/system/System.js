@@ -27,6 +27,7 @@ class System extends Component{
 
     getSensorData = (snap) => {
         var sensors = [];
+        console.log(snap.val());
         snap.forEach((sensor) => {
             if(sensor.val().enabled){
                 var obj = sensor.val();
@@ -47,13 +48,12 @@ class System extends Component{
                 var uid = user.uid;
 
                 const dataRef = firebase.database().ref("users/"+uid);
-                const path = "systemCard/"+this.state.id;
 
-                dataRef.child(path).on("value", snap => {
+                dataRef.child("systemCard/"+this.state.id).on("value", snap => {
                     this.getSummary(snap);
                 });
 
-                dataRef.child(path + "/sensors").on("value", snap => {
+                dataRef.child("systemData/"+this.state.id + "/sensors").on("value", snap => {
                     this.getSensorData(snap);
                 });
 
