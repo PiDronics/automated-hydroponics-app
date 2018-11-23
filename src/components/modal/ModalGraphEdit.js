@@ -7,69 +7,50 @@ class ModalGraphEdit extends Component {
     constructor(props) {
         super(props);
 
-        // var currDate = new Date();
-        // var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
-        // var period = "am";
-        //
-        // var hr = currDate.getHours();
-        // if(hr>12){
-        //     hr=(hr-12);
-        //     period = "pm";
-        // }
-        // hr = hr.toString();
-        // if(hr.length<2) {
-        //     hr = "0" + hr;
-        // }
-        //
-        // var min = currDate.getMinutes();
-        // var min_rounded = (5 * Math.round(min/5)).toString();
-        //
-        // if(min_rounded.length<2){
-        //     min_rounded = "0"+min_rounded;
-        // }
+        var currDate = new Date();
+        var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
 
-        // const parsed_date = this.parseDate(currDate);
+        const parsed_date = this.parseDate(currDate);
 
         this.state = {
             modal: false,
-            // start: last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate(),
-            // end: currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate(),
-            // startHr: parsed_date.startHr,
-            // startMin: parsed_date.startMin,
-            // startPer: parsed_date.startPer,
-            // endHr: parsed_date.startHr,
-            // endMin: parsed_date.startMin,
-            // endPer: parsed_date.startPer,
+            start: last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate(),
+            end: currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate(),
+            startHr: parsed_date.hr,
+            startMin: parsed_date.min,
+            startPer: parsed_date.per,
+            endHr: parsed_date.hr,
+            endMin: parsed_date.min,
+            endPer: parsed_date.per,
             errorMessage: "",
             successMsg: ""
         };
     }
 
-    // parseDate(current_date) {
-    //     let period = "am";
-    //     var hr = current_date.getHours();
-    //     if(hr > 12){
-    //         hr = (hr - 12);
-    //         period = "pm";
-    //     }
-    //     hr = hr.toString();
-    //     if(hr.length<2) {
-    //         hr = "0" + hr;
-    //     }
-    //
-    //     var min = current_date.getMinutes();
-    //     var min_rounded = (5 * Math.round(min/5)).toString();
-    //
-    //     if(min_rounded.length<2){
-    //         min_rounded = "0"+min_rounded;
-    //     }
-    //
-    //     return {
-    //         startHr: hr,
-    //         startMin: min_rounded,
-    //         startPer: period
-    //     }
-    // }
+    parseDate(current_date) {
+        let period = "am";
+        var hr = current_date.getHours();
+        if(hr > 12){
+            hr = (hr - 12);
+            period = "pm";
+        }
+        hr = hr.toString();
+        if(hr.length<2) {
+            hr = "0" + hr;
+        }
+
+        var min = current_date.getMinutes();
+        var min_rounded = (5 * Math.round(min/5)).toString();
+
+        if(min_rounded.length<2){
+            min_rounded = "0"+min_rounded;
+        }
+        return {
+            hr: hr,
+            min: min_rounded,
+            per: period
+        }
+    }
 
     convertToDate(date, hr, min, per){
         if(hr==null || min==null || per==null){
@@ -77,7 +58,6 @@ class ModalGraphEdit extends Component {
         }
 
         if(parseInt(min)>=60){
-            console.log("60 min");
             min = 0;
 
             if(parseInt(hr)===11 && per==="pm"){
@@ -156,7 +136,6 @@ class ModalGraphEdit extends Component {
     };
 
     checkValues = () =>{
-
         var startFullDate = this.convertToDate(this.state.start, this.state.startHr, this.state.startMin, this.state.startPer);
         var endFullDate = this.convertToDate(this.state.end, this.state.endHr, this.state.endMin, this.state.endPer);
         // TODO - Throw exceptions for developers, throw snackbar or side modal for users
@@ -225,15 +204,15 @@ class ModalGraphEdit extends Component {
                                             <label htmlFor="sTime">Start Time</label>
                                             <div className="d-flex justify-content-start">
                                                 <select className="form-control" name="startHr" onChange={this.handleChange.bind(this)} defaultValue={this.state.startHr}>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
+                                                    <option value="01">1</option>
+                                                    <option value="02">2</option>
+                                                    <option value="03">3</option>
+                                                    <option value="04">4</option>
+                                                    <option value="05">5</option>
+                                                    <option value="06">6</option>
+                                                    <option value="07">7</option>
+                                                    <option value="08">8</option>
+                                                    <option value="09">9</option>
                                                     <option value="10">10</option>
                                                     <option value="11">11</option>
                                                     <option value="12">12</option>
@@ -260,18 +239,17 @@ class ModalGraphEdit extends Component {
                                         </div>
                                         <div className="input-field mb-3">
                                             <label htmlFor="eTime">End Time</label>
-                                            {/*<input type="time" name="time" className="form-control" onChange={this.handleChange} value={this.state.eTime}/>*/}
                                             <div className="d-flex justify-content-start">
                                                 <select className="form-control" name="endHr" onChange={this.handleChange.bind(this)} defaultValue={this.state.endHr}>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
+                                                    <option value="01">1</option>
+                                                    <option value="02">2</option>
+                                                    <option value="03">3</option>
+                                                    <option value="04">4</option>
+                                                    <option value="05">5</option>
+                                                    <option value="06">6</option>
+                                                    <option value="07">7</option>
+                                                    <option value="08">8</option>
+                                                    <option value="09">9</option>
                                                     <option value="10">10</option>
                                                     <option value="11">11</option>
                                                     <option value="12">12</option>

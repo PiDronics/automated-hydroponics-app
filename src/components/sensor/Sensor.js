@@ -26,7 +26,6 @@ class Sensor extends Component{
     }
 
     render(){
-
         return(
             <div className="col-lg-6 mb-3">
                 <Card>

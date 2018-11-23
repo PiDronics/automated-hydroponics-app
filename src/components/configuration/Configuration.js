@@ -38,7 +38,6 @@ class Configuration extends Component {
     }
 
     render() {
-        console.log(this.state.userSystems);
         if(this.state.userSystems.length>0){
             return (
                 <div className="container-fluid">

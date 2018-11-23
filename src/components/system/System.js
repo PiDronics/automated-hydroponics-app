@@ -27,7 +27,6 @@ class System extends Component{
 
     getSensorData = (snap) => {
         var sensors = [];
-        console.log(snap.val());
         snap.forEach((sensor) => {
             if(sensor.val().enabled){
                 var obj = sensor.val();
@@ -40,7 +39,6 @@ class System extends Component{
             sensors:sensors
         })
     };
-
 
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user => {
