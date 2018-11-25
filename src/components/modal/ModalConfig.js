@@ -99,6 +99,15 @@ class ModalConfig extends Component {
         console.log('submitted');
         e.preventDefault();
 
+        var obj = {};
+
+        obj.name = e.target.name.value;
+        obj.time = e.target.time.value;
+
+        this.setState({
+            ...obj
+        });
+
         if(this.state.name.length > 30 || this.state.name.length < 1){
             this.setState({
                 successMsg: "",
@@ -125,11 +134,19 @@ class ModalConfig extends Component {
                     updates["/systems/" + system + '/' + uid + "/systemName"] = this.state.name;
                     updates["/systems/" + system + '/' + uid + "/interval"] = this.state.time;
 
-                    dataRef.update(updates);
-
-                    this.setState({
-                        successMsg: "Updated successfully!",
-                        errorMessage: ""
+                    dataRef.update(updates, error => {
+                        if(error){
+                            this.setState({
+                                successMsg: "",
+                                errorMessage: error.message
+                            })
+                        }
+                        else{
+                            this.setState({
+                                successMsg: "Updated successfully!",
+                                errorMessage: ""
+                            });
+                        }
                     });
                 }
                 else{
@@ -188,11 +205,19 @@ class ModalConfig extends Component {
                     remove["/users/" + uid + "/systemData/" + system] = null;
                     remove["/systems/" + system] = null;
 
-                    dataRef.update(remove);
-
-                    this.setState({
-                        successMsg: "",
-                        errorMessage: ""
+                    dataRef.update(remove, error => {
+                        if(error){
+                            this.setState({
+                                successMsg: "",
+                                errorMessage: error.message
+                            })
+                        }
+                        else{
+                            this.setState({
+                                successMsg: "Deleted successfully!",
+                                errorMessage: ""
+                            });
+                        }
                     });
                 }
             });
@@ -261,8 +286,8 @@ class ModalConfig extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <span className="red-text d-flex justify-content-center">{this.state.errorMessage}</span>
-                            <span className="green-text d-flex justify-content-center">{this.state.successMsg}</span>
+                            <span className="red-text d-flex justify-content-center text-center">{this.state.errorMessage}</span>
+                            <span className="green-text d-flex justify-content-center text-center">{this.state.successMsg}</span>
                             <div className="input-field d-flex justify-content-around">
                                 <button className="btn success-color lighten-1 z-depth-0" id ="save_btn">Save</button>
                                 <button className="btn danger-color lighten-1 z-depth-0" id ="delete_btn" onClick={this.deleteSystem}>Delete System</button>

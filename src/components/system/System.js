@@ -11,7 +11,8 @@ class System extends Component{
             id: props.match.params.id,
             lastUpdated: "",
             sensors: [],
-            systemName: ""
+            systemName: "",
+            error_message: ""
         }
     }
 
@@ -35,6 +36,17 @@ class System extends Component{
             }
         });
 
+        if(sensors.length>0){
+            this.setState({
+                error_message: ""
+            });
+        }
+        else{
+            this.setState({
+                error_message: "There are no enabled sensors in this system"
+            });
+        }
+
         this.setState({
             sensors:sensors
         })
@@ -49,10 +61,18 @@ class System extends Component{
 
                 dataRef.child("systemCard/"+this.state.id).on("value", snap => {
                     this.getSummary(snap);
+                },error => {
+                    this.setState({
+                        error_message: error.message
+                    });
                 });
 
                 dataRef.child("systemData/"+this.state.id + "/sensors").on("value", snap => {
                     this.getSensorData(snap);
+                },error => {
+                    this.setState({
+                        error_message: error.message
+                    });
                 });
 
             } else {
@@ -68,6 +88,15 @@ class System extends Component{
                     <div className="container-fluid text-center">
                         <h1 id = "systemName">{this.state.systemName}</h1>
                         <h6 id = "lastUpdated" className="font-italic text-muted">{this.state.lastUpdated}</h6>
+                    </div>
+                </div>
+                <div className="row mt-2">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="container-fluid d-flex justify-content-center">
+                                <p className="text-danger text-center">{this.state.error_message}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="row" id = "sensorList">

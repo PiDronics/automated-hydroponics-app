@@ -69,7 +69,11 @@ const SystemCard = ({system}) => {
                     </div>
                     <br/>
                     <CardText>Last Updated:<br/><em>{system.lastUpdated}</em></CardText>
-                    <NavLink to={"/system/"+system.systemId} className="lighten-3 mdb-color text-white"><div className="d-flex align-items-center text-white"><span className="flex-grow-1">View System Information</span><Fa icon="chevron-right"></Fa></div></NavLink>
+                    <NavLink to={"/system/"+system.systemId} className="lighten-3 mdb-color text-white">
+                        <div className="d-flex align-items-center text-white">
+                            <span className="flex-grow-1">View System Information</span><Fa icon="chevron-right"></Fa>
+                        </div>
+                    </NavLink>
                 </CardBody>
             </Card>
         </div>

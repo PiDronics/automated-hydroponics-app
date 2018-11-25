@@ -277,8 +277,8 @@ class ModalGraphEdit extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <span className="red-text d-flex justify-content-center">{this.state.errorMessage}</span>
-                            <span className="green-text d-flex justify-content-center">{this.state.successMsg}</span>
+                            <span className="red-text d-flex justify-content-center text-center">{this.state.errorMessage}</span>
+                            <span className="green-text d-flex justify-content-center text-center">{this.state.successMsg}</span>
                             <div className="input-field d-flex justify-content-around">
                                 <button className="btn success-color lighten-1 z-depth-0" id ="signup_btn">Save</button>
                             </div>

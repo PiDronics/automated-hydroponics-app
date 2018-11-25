@@ -38,6 +38,16 @@ class ModalConfigAdd extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        var obj = {};
+
+        obj.serial = e.target.serial.value;
+        obj.name = e.target.name.value;
+        obj.time = e.target.time.value;
+
+        this.setState({
+            ...obj
+        });
+
         if(this.state.serial.length<1 || this.state.serial.indexOf(" ") > -1){
             this.setState({
                 successMsg: "",
@@ -69,7 +79,8 @@ class ModalConfigAdd extends Component {
                         if(snap.exists()){
                             this.setState({
                                 successMsg: "",
-                                errorMessage: "This system serial already exists under this account. If you wish to edit the system, please use the Edit System button."
+                                errorMessage: "This system serial already in use. If you own this system, please use the Edit System button to configure." +
+                                    "If you do not own this system, please check to make sure your serial is correct. Contact Support for more help if needed."
                             });
                         }
                         else{
@@ -80,11 +91,19 @@ class ModalConfigAdd extends Component {
                             newSystem["/systems/" + this.state.serial + '/' + uid + "/interval"] = this.state.time;
                             newSystem["/systems/" + this.state.serial + "/user"] = uid;
 
-                            dataRef.update(newSystem);
-
-                            this.setState({
-                                successMsg: "Added successfully!",
-                                errorMessage: ""
+                            dataRef.update(newSystem, error => {
+                                if(error){
+                                    this.setState({
+                                        successMsg: "",
+                                        errorMessage: error.message
+                                    })
+                                }
+                                else{
+                                    this.setState({
+                                        successMsg: "Added successfully!",
+                                        errorMessage: ""
+                                    });
+                                }
                             });
                         }
                     });
@@ -155,8 +174,8 @@ class ModalConfigAdd extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <span className="red-text d-flex justify-content-center">{this.state.errorMessage}</span>
-                            <span className="green-text d-flex justify-content-center">{this.state.successMsg}</span>
+                            <span className="red-text d-flex justify-content-center text-center">{this.state.errorMessage}</span>
+                            <span className="green-text d-flex justify-content-center text-center">{this.state.successMsg}</span>
                             <div className="input-field d-flex justify-content-around">
                                 <button className="btn success-color lighten-1 z-depth-0" id ="save_btn">Save</button>
                             </div>

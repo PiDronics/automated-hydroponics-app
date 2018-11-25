@@ -8,7 +8,9 @@ class SignedOut extends Component  {
         super();
         this.state = {
             email:"",
-            password:""
+            password:"",
+            errorMessage1: "",
+            errorMessage2: ""
         }
     }
 
@@ -22,7 +24,6 @@ class SignedOut extends Component  {
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
             this.setState({
-                errorCode1:error.code,
                 errorMessage1:error.message
             });
         });
@@ -34,7 +35,6 @@ class SignedOut extends Component  {
         e.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
             this.setState({
-                errorCode2:error.code,
                 errorMessage2:error.message
             });
         });
