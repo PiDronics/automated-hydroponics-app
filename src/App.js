@@ -29,12 +29,12 @@ class App extends Component {
 
         if(this.state.user){
             return(
-                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={Dashboard}></Route>
+                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={Dashboard}/>
             )
         }
         else{
             return(
-                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}></Route>
+                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}/>
             )
         }
     };
@@ -56,9 +56,9 @@ class App extends Component {
                                 <div className="row mt-4">
                                     <Switch>
                                         {this.checkLogin()}
-                                        <Route path='/system/:id' component={System}></Route>
-                                        <Route path='/signout' component={SignOut}></Route>
-                                        <Route path='/configuration' component={Configuration}></Route>
+                                        <Route path='/system/:id' component={System}/>
+                                        <Route path='/signout' component={SignOut}/>
+                                        <Route path='/configuration' component={Configuration}/>
                                         {/*<Route path='/support' component={Support}></Route>*/}
                                         {/*<Route path='/about' component={About}></Route>*/}
                                     </Switch>

@@ -8,7 +8,8 @@ class Dashboard extends Component{
         super();
 
         this.state = {
-            systems: []
+            systems: [],
+            error_message: ""
         }
 
     }
@@ -19,33 +20,25 @@ class Dashboard extends Component{
      *
      * */
     componentDidMount(){
-        var user = firebase.auth().currentUser;
-        var uid = "";
-        if(user!=null){
-            uid = user.uid;
-        }
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                var uid = user.uid;
 
-        const dataRef = firebase.database().ref("users/"+uid+"/systemCard");
+                const dataRef = firebase.database().ref("users/"+uid+"/systemCard");
 
-        // dataRef.on("value", snap => {
-        //     var systems = [];
-        //     snap.forEach(function(system){
-        //         var obj = system.val();
-        //         obj["systemId"] = system.key;
-        //         systems.push(obj);
-        //     });
-        //
-        //     snap.forEach((system) => {
-        //         systems.push(this.extractData(system));
-        //     });
-        //
-        //     this.setState({
-        //         systems:systems
-        //     })
-        // });
-
-        dataRef.on("value", snap => {
-            this.processDBData(snap);
+                dataRef.on("value", snap => {
+                    this.processDBData(snap);
+                }, error => {
+                    this.setState({
+                        error_message: error.message
+                    })
+                });
+            }
+            else{
+                this.setState({
+                    error_message: "User is not signed in."
+                })
+            }
         });
     }
 
@@ -61,58 +54,51 @@ class Dashboard extends Component{
             systems.push(this.extractData(system));
         });
 
-        this.setState({
-            systems: systems
-        });
+        if(systems.length>0){
+            this.setState({
+                systems: systems,
+                error_message: ""
+            });
+        }
+        else{
+            this.setState({
+                error_message: "You have no systems under this account."
+            });
+        }
     }
 
     render(){
-        if(this.state.systems.length>0){
-            return (
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="container-fluid text-center">
-                            <h2>PiDronics Monitoring System</h2>
-                            <p>Manage complicated hydroponic farms with ease!</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="container-fluid">
-                            <h2 className="text-center">Systems</h2>
-                        </div>
-                    </div>
-                    <div className="row">
-                        {this.state.systems && this.state.systems.map(system => {
-                            return(
-                                <SystemCard system={system} key={system.systemId}/>
-                            )
-                        })}
+        return (
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="container-fluid text-center">
+                        <h2>PiDronics Monitoring System</h2>
+                        <p>Manage complicated hydroponic farms with ease!</p>
                     </div>
                 </div>
-            );
-        }
-        else{
-            return (
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="container-fluid text-center">
-                            <h2>PiDronics Monitoring System</h2>
-                            <p>Manage complicated hydroponic farms with ease!</p>
-                        </div>
+                <div className="row">
+                    <div className="container-fluid">
+                        <h2 className="text-center">Systems</h2>
                     </div>
-                    <div className="row">
-                        <div className="container-fluid">
-                            <h2 className="text-center">Systems</h2>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="container-fluid d-flex justify-content-center">
-                            <p className="text-danger text-center">You have no systems under this account.</p>
+                </div>
+                <div className="row mt-2">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="container-fluid d-flex justify-content-center">
+                                <p className="text-danger text-center">{this.state.error_message}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            );
-        }
+                <div className="row">
+                    {this.state.systems && this.state.systems.map(system => {
+                        return(
+                            <SystemCard system={system} key={system.systemId}/>
+                        )
+                    })}
+                </div>
+            </div>
+        );
     }
 }
 
