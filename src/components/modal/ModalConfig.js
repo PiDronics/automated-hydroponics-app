@@ -16,23 +16,87 @@ class ModalConfig extends Component {
         };
     }
 
-    toggle = () => {
+    // toggle = () => {
+    //     this.setState({
+    //         modal: !this.state.modal
+    //     });
+    // };
+
+    toggle() {
         this.setState({
             modal: !this.state.modal
         });
-    };
+    }
+    toggle = this.toggle.bind(this);
 
-    handleChange = (e) => {
-        e.preventDefault();
+
+    // handleChange = (e) => {
+    //     e.preventDefault();
+    //
+    //     this.setState({
+    //         [e.target.name]: e.target.value,
+    //         successMsg: "",
+    //         errorMessage: ""
+    //     })
+    // };
+
+    handleChange(event) {
+        event.preventDefault();
 
         this.setState({
-            [e.target.name]: e.target.value,
+            [event.target.name]: event.target.value,
             successMsg: "",
             errorMessage: ""
         })
-    };
+    }
+    handleChange = this.handleChange.bind(this);
 
-    handleSubmit = (e) => {
+
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //
+    //     if(this.state.name.length > 30 || this.state.name.length < 1){
+    //         this.setState({
+    //             successMsg: "",
+    //             errorMessage: "The system name must be between 1 and 30 characters long."
+    //         })
+    //     }
+    //     else if(this.state.time < 5 || this.state.time > 30){
+    //         this.setState({
+    //             successMsg: "",
+    //             errorMessage: "Interval time is out of range (5mins-30mins)"
+    //         })
+    //     }
+    //     else{
+    //         firebase.auth().onAuthStateChanged(user => {
+    //             if(user){
+    //                 var uid = user.uid;
+    //                 var system = this.props.system;
+    //
+    //                 const dataRef = firebase.database().ref();
+    //
+    //                 var updates = {};
+    //
+    //                 updates["/users/" + uid + "/systemCard/" + system + "/systemName"] = this.state.name;
+    //                 updates["/systems/" + system + '/' + uid + "/systemName"] = this.state.name;
+    //                 updates["/systems/" + system + '/' + uid + "/interval"] = this.state.time;
+    //
+    //                 dataRef.update(updates);
+    //
+    //                 this.setState({
+    //                     successMsg: "Updated successfully!",
+    //                     errorMessage: ""
+    //                 });
+    //             }
+    //             else{
+    //                 this.props.history.push("/");
+    //             }
+    //         });
+    //     }
+    // };
+
+    handleSubmit(e) {
+        console.log('submitted');
         e.preventDefault();
 
         if(this.state.name.length > 30 || this.state.name.length < 1){
@@ -73,9 +137,41 @@ class ModalConfig extends Component {
                 }
             });
         }
-    };
+    }
+    handleSubmit = this.handleSubmit.bind(this);
 
-    deleteSystem = (e) => {
+    // deleteSystem = (e) => {
+    //     e.preventDefault();
+    //
+    //     if(window.confirm("You you sure you wish to delete this system?\n You cannot undo these changes!")){
+    //         firebase.auth().onAuthStateChanged(user => {
+    //             if(user){
+    //                 var uid = user.uid;
+    //                 var system = this.props.system;
+    //
+    //                 const dataRef = firebase.database().ref();
+    //
+    //                 var remove = {};
+    //
+    //                 remove["/users/" + uid + "/systemCard/" + system] = null;
+    //                 remove["/users/" + uid + "/systemData/" + system] = null;
+    //                 remove["/systems/" + system] = null;
+    //
+    //                 dataRef.update(remove);
+    //
+    //                 this.setState({
+    //                     successMsg: "",
+    //                     errorMessage: ""
+    //                 });
+    //             }
+    //         });
+    //     }
+    //     else{
+    //         this.toggle();
+    //     }
+    // };
+
+    deleteSystem(e) {
         e.preventDefault();
 
         if(window.confirm("You you sure you wish to delete this system?\n You cannot undo these changes!")){
@@ -104,7 +200,8 @@ class ModalConfig extends Component {
         else{
             this.toggle();
         }
-    };
+    }
+    deleteSystem = this.deleteSystem.bind(this);
 
     componentDidMount(){
 
@@ -114,7 +211,7 @@ class ModalConfig extends Component {
         return (
             <Container>
                 <div className="d-flex justify-content-around">
-                    <Button color="blue" onClick={this.toggle}>Edit System</Button>
+                    <Button id = "toggleModal" color="blue" onClick={this.toggle}>Edit System</Button>
                 </div>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -126,12 +223,12 @@ class ModalConfig extends Component {
                                     <div className="col-lg-12">
                                         <div className="input-field mb-3">
                                             <label htmlFor="name">System Name</label>
-                                            <input className="form-control" type="text" name="name" id="name" onChange={this.handleChange.bind(this)} defaultValue={this.state.name}/>
+                                            <input className="form-control" type="text" name="name" id="name" onChange={this.handleChange} defaultValue={this.state.name}/>
                                         </div>
                                         <div className="input-field mb-3">
                                             <label htmlFor="time">Update Interval</label>
                                             <div className="d-flex justify-content-start">
-                                                <select className="form-control" name="time" id="time" onChange={this.handleChange.bind(this)} defaultValue={this.state.time}>
+                                                <select className="form-control" name="time" id="time" onChange={this.handleChange} defaultValue={this.state.time}>
                                                     <option value="5">5</option>
                                                     <option value="6">6</option>
                                                     <option value="7">7</option>
