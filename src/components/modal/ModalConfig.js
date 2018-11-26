@@ -14,31 +14,19 @@ class ModalConfig extends Component {
             successMsg: "",
             errorMessage: ""
         };
-    }
 
-    // toggle = () => {
-    //     this.setState({
-    //         modal: !this.state.modal
-    //     });
-    // };
+        this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteSystem = this.deleteSystem.bind(this);
+    }
 
     toggle() {
         this.setState({
             modal: !this.state.modal
         });
     }
-    toggle = this.toggle.bind(this);
 
-
-    // handleChange = (e) => {
-    //     e.preventDefault();
-    //
-    //     this.setState({
-    //         [e.target.name]: e.target.value,
-    //         successMsg: "",
-    //         errorMessage: ""
-    //     })
-    // };
 
     handleChange(event) {
         event.preventDefault();
@@ -49,51 +37,6 @@ class ModalConfig extends Component {
             errorMessage: ""
         })
     }
-    handleChange = this.handleChange.bind(this);
-
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //
-    //     if(this.state.name.length > 30 || this.state.name.length < 1){
-    //         this.setState({
-    //             successMsg: "",
-    //             errorMessage: "The system name must be between 1 and 30 characters long."
-    //         })
-    //     }
-    //     else if(this.state.time < 5 || this.state.time > 30){
-    //         this.setState({
-    //             successMsg: "",
-    //             errorMessage: "Interval time is out of range (5mins-30mins)"
-    //         })
-    //     }
-    //     else{
-    //         firebase.auth().onAuthStateChanged(user => {
-    //             if(user){
-    //                 var uid = user.uid;
-    //                 var system = this.props.system;
-    //
-    //                 const dataRef = firebase.database().ref();
-    //
-    //                 var updates = {};
-    //
-    //                 updates["/users/" + uid + "/systemCard/" + system + "/systemName"] = this.state.name;
-    //                 updates["/systems/" + system + '/' + uid + "/systemName"] = this.state.name;
-    //                 updates["/systems/" + system + '/' + uid + "/interval"] = this.state.time;
-    //
-    //                 dataRef.update(updates);
-    //
-    //                 this.setState({
-    //                     successMsg: "Updated successfully!",
-    //                     errorMessage: ""
-    //                 });
-    //             }
-    //             else{
-    //                 this.props.history.push("/");
-    //             }
-    //         });
-    //     }
-    // };
 
     handleSubmit(e) {
         console.log('submitted');
@@ -134,19 +77,17 @@ class ModalConfig extends Component {
                     updates["/systems/" + system + '/' + uid + "/systemName"] = this.state.name;
                     updates["/systems/" + system + '/' + uid + "/interval"] = this.state.time;
 
-                    dataRef.update(updates, error => {
-                        if(error){
-                            this.setState({
-                                successMsg: "",
-                                errorMessage: error.message
-                            })
-                        }
-                        else{
-                            this.setState({
-                                successMsg: "Updated successfully!",
-                                errorMessage: ""
-                            });
-                        }
+                    dataRef.update(updates).then(() => {
+                        this.setState({
+                            successMsg: "Updated successfully!",
+                            errorMessage: ""
+                        });
+                    }
+                    ,(error) => {
+                        this.setState({
+                            successMsg: "",
+                            errorMessage: error.message
+                        });
                     });
                 }
                 else{
@@ -155,38 +96,6 @@ class ModalConfig extends Component {
             });
         }
     }
-    handleSubmit = this.handleSubmit.bind(this);
-
-    // deleteSystem = (e) => {
-    //     e.preventDefault();
-    //
-    //     if(window.confirm("You you sure you wish to delete this system?\n You cannot undo these changes!")){
-    //         firebase.auth().onAuthStateChanged(user => {
-    //             if(user){
-    //                 var uid = user.uid;
-    //                 var system = this.props.system;
-    //
-    //                 const dataRef = firebase.database().ref();
-    //
-    //                 var remove = {};
-    //
-    //                 remove["/users/" + uid + "/systemCard/" + system] = null;
-    //                 remove["/users/" + uid + "/systemData/" + system] = null;
-    //                 remove["/systems/" + system] = null;
-    //
-    //                 dataRef.update(remove);
-    //
-    //                 this.setState({
-    //                     successMsg: "",
-    //                     errorMessage: ""
-    //                 });
-    //             }
-    //         });
-    //     }
-    //     else{
-    //         this.toggle();
-    //     }
-    // };
 
     deleteSystem(e) {
         e.preventDefault();
@@ -205,19 +114,17 @@ class ModalConfig extends Component {
                     remove["/users/" + uid + "/systemData/" + system] = null;
                     remove["/systems/" + system] = null;
 
-                    dataRef.update(remove, error => {
-                        if(error){
-                            this.setState({
-                                successMsg: "",
-                                errorMessage: error.message
-                            })
-                        }
-                        else{
-                            this.setState({
-                                successMsg: "Deleted successfully!",
-                                errorMessage: ""
-                            });
-                        }
+                    dataRef.update(remove).then(() => {
+                        this.setState({
+                            successMsg: "Deleted successfully!",
+                            errorMessage: ""
+                        });
+                    }
+                    ,(error) => {
+                        this.setState({
+                            successMsg: "",
+                            errorMessage: error.message
+                        });
                     });
                 }
             });
@@ -226,7 +133,6 @@ class ModalConfig extends Component {
             this.toggle();
         }
     }
-    deleteSystem = this.deleteSystem.bind(this);
 
     componentDidMount(){
 
