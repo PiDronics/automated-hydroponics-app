@@ -5,7 +5,7 @@ class About extends Component{
 
     render(){
         return (
-            <div className="container-fluid">I NEED SOMETHING TO SHOW UP
+            <div className="container-fluid">
             
                 <section className="banner-area relative" id="home">
                     <div className="overlay overlay-bg"></div>	
@@ -101,7 +101,7 @@ class About extends Component{
                                     </div>
                                     <div className="desc">
                                         <p>
-                                            Designer and backend software engineer, software tester.
+                                            Designer, frontend/backend software engineer, hardware engineer.
                                         </p>
                                         <h4 mt-30> <a target="_blank" href="https://github.com/irontarkus95">Michael Ali</a></h4>
                                         <h5 mt-30> 814005475 </h5>
@@ -113,7 +113,7 @@ class About extends Component{
                                     </div>
                                     <div className="desc">
                                         <p>
-                                            Designer and backend software engineer, software tester.
+                                            Designer, frontend/backend software engineer, hardware engineer.
                                         </p>
                                         <h4 mt-30><a target="_blank" href="https://github.com/princesszelda94">Gabriela Sewdhan</a></h4>
                                         <h5 mt-30> 813001696 </h5>
@@ -125,10 +125,10 @@ class About extends Component{
                                     </div>
                                     <div className="desc">
                                         <p>
-                                            Designer, frontend software engineer, business analyst/project manager.
+                                            Designer, frontend/backend software engineer.
                                         </p>
-                                        <h4 mt-30><a target="_blank" href="https://github.com/UserIsh">Ishmael Mohammed</a></h4>
-                                        <h5 mt-30> 816002470 </h5>
+                                        <h4 mt-30><a target="_blank" href="https://github.com/KCB4Rockstar">Kristan Birbalsingh</a></h4>
+                                        <h5 mt-30> 81600 </h5>
                                     </div>
                                 </div>
                                 <div className="single-testimonial item d-flex flex-row">
@@ -138,10 +138,10 @@ class About extends Component{
                                     </div>
                                     <div className="desc">
                                         <p>
-                                            Designer, frontend software engineer, business analyst/project manager.
+                                            Designer, frontend/backend software engineer, business analyst/project manager, Software Testor.
                                         </p>
-                                        <h4 mt-30><h4 mt-30><a target="_blank" href="https://github.com/kadyseecharan">Kady Seecharan</a></h4></h4>
-                                        <h5 mt-30> 816002036 </h5>
+                                        <h4 mt-30><h4 mt-30><a target="_blank" href="https://github.com/Qarun-Qadir-Bissoondial">Qarun Bissoondial</a></h4></h4>
+                                        <h5 mt-30> 816002009 </h5>
                                     </div>
                                 </div>															
                             </div>					
