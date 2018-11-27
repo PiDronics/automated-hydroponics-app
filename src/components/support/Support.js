@@ -81,6 +81,13 @@ class Support extends Component{
 					<p>Packages include basic, mid-tier and deluxe. The basic package assumes you already have your own sensors and simply require the Raspberry Pi server to connect to, and begin remote monitoring. The mid-tier package includes the Raspberry Pi server, two sensors and includes on-site installation. The deluxe package includes everything found in the mid-tier package, in addition to every relevant sensors to fully monitor and analyse your farm. Every package allows access to our mobile and web app as well as onsite installation.</p>
 				</div> 
 			</li>
+
+            <li>
+				<a class="cd-faq-trigger" href="#0">I don't know how to use my system or how to install it.</a>
+				<div class="cd-faq-content">
+					<p>No need to worry, on-site installation and training is available for free with the mid-tier and above packages. The basic package will be subject to additional fees for these services.</p>
+				</div> 
+			</li>
 		</ul>
 
 		<ul id="account" class="cd-faq-group">

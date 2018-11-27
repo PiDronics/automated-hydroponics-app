@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Card, CardHeader, CardBody, Fa } from 'mdbreact';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import firebase from "../../fire";
 
 class SignUp extends Component  {
@@ -9,7 +10,7 @@ class SignUp extends Component  {
         this.state = {
             email:"",
             password:"",
-            errorMessage1: "",
+            // errorMessage3: "",
             errorMessage2: ""
         }
     }
@@ -57,6 +58,8 @@ class SignUp extends Component  {
                                     <span className="red-text d-flex justify-content-center">{this.state.errorMessage2}</span>
                                     <div className="input-field d-flex justify-content-around">
                                         <button className="btn secondary-color lighten-1 z-depth-0" id = "signup_btn">Sign Up</button>
+
+                                        <Route path='/signup' component={SignUp}/>
                                     </div>
                                 </form>
                             </CardBody>

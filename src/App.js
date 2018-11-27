@@ -38,8 +38,8 @@ class App extends Component {
         }
         else{
             return(
-                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignIn}/>
-                // <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}/>
+                // <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignIn}/>
+                <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}/>
             )
         }
     };
@@ -63,7 +63,6 @@ class App extends Component {
                                         {this.checkLogin()}
                                         <Route path='/system/:id' component={System}/>
                                         <Route path='/signout' component={SignOut}/>
-                                        <Route path='/signup' component={SignUp}/>
                                         <Route path='/configuration' component={Configuration}/>
                                         <Route path='/support' component={Support}></Route>
                                         <Route path='/about' component={About}></Route>
