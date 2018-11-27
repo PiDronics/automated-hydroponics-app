@@ -78,7 +78,7 @@ class NavbarFeatures extends Component {
         return (
             <Navbar color="indigo" dark expand="md" fixed="top" scrolling>
                 <NavbarBrand href="#">
-                    <img src="/img/bg.jpg" height="30" className="nav-logo" alt="Logo"/>
+                    <img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>
                 </NavbarBrand>
                 <NavbarToggler onClick={this.onClick} id="toggleBtn"/>
