@@ -92,16 +92,16 @@ describe('SignedOut Page', () => {
         sinon.assert.callCount(spy, 3);
     });
 
-    it('-> executes the handleSignUp function on submitting the Sign up form', () => {
-        const spy = sinon.spy(shallow_render.instance(), 'handleSignUp');
-        shallow_render.instance().forceUpdate();
-        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
-        sinon.assert.calledOnce(spy);
-        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
-        sinon.assert.callCount(spy, 2);
-        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
-        sinon.assert.callCount(spy, 3);
-    });
+    // it('-> executes the handleSignUp function on submitting the Sign up form', () => {
+    //     const spy = sinon.spy(shallow_render.instance(), 'handleSignUp');
+    //     shallow_render.instance().forceUpdate();
+    //     shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+    //     sinon.assert.calledOnce(spy);
+    //     shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+    //     sinon.assert.callCount(spy, 2);
+    //     shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+    //     sinon.assert.callCount(spy, 3);
+    // });
 
 
 
