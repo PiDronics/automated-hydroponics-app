@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, Table, TableBody } from 'mdbreact';
 
 class About extends Component{
 
     render(){
         return (
             <div className="container-fluid">
-            
                 <section className="banner-area relative" id="home">
-                    <div className="overlay overlay-bg"></div>	
+                    <div className="overlay overlay-bg"/>
                     <div className="container">
                         <div className="row fullscreen d-flex align-items-center justify-content-center">
                             <div className="banner-content col-lg-8">
                                 <h1 className="text-white">
-                                    Monitor your farm's health with PiDronics.				
+                                    Monitor your farm's health with PiDronics.
                                 </h1>
                                 <p className="pt-20 pb-20 text-white">
                                    tagline....
                                 </p>
-                            </div>											
+                            </div>
                         </div>
-                    </div>					
+                    </div>
                 </section>
-            
+
                 <section className="feature-area pb-100" id="service">
                     <div className="container">
                         <div className="row mockup-container">
@@ -39,7 +37,7 @@ class About extends Component{
                         <div className="row">
                             <div className="col-lg-4">
                                 <div className="single-feature">
-                                    <span className="lnr lnr-smile"></span>
+                                    <span className="lnr lnr-smile"/>
                                     <h4>
                                         Our Stakeholders. Who Benefits?
                                     </h4>
@@ -51,7 +49,7 @@ class About extends Component{
                             </div>
                             <div className="col-lg-4">
                                 <div className="single-feature">
-                                    <span className="lnr lnr-code"></span>
+                                    <span className="lnr lnr-code"/>
                                     <h4>
                                         Solution. 
                                         What can we do?
@@ -64,7 +62,7 @@ class About extends Component{
                             </div>
                             <div className="col-lg-4">
                                 <div className="single-feature">
-                                    <span className="lnr lnr-smartphone"></span>
+                                    <span className="lnr lnr-smartphone"/>
                                     <h4>
                                         Usage. 
                                         How does it work?
@@ -103,8 +101,8 @@ class About extends Component{
                                         <p>
                                             Designer, frontend/backend software engineer, hardware engineer.
                                         </p>
-                                        <h4 mt-30> <a target="_blank" href="https://github.com/irontarkus95">Michael Ali</a></h4>
-                                        <h5 mt-30> 814005475 </h5>
+                                        <h4> <a target="_blank" href="https://github.com/irontarkus95" rel="noopener noreferrer">Michael Ali</a></h4>
+                                        <h5> 814005475 </h5>
                                     </div>
                                 </div>
                                 <div className="single-testimonial item d-flex flex-row">
@@ -115,8 +113,8 @@ class About extends Component{
                                         <p>
                                             Designer, frontend/backend software engineer, hardware engineer.
                                         </p>
-                                        <h4 mt-30><a target="_blank" href="https://github.com/princesszelda94">Gabriela Sewdhan</a></h4>
-                                        <h5 mt-30> 813001696 </h5>
+                                        <h4><a target="_blank" href="https://github.com/princesszelda94" rel="noopener noreferrer">Gabriela Sewdhan</a></h4>
+                                        <h5> 813001696 </h5>
                                     </div>
                                 </div>	
                                 <div className="single-testimonial item d-flex flex-row">
@@ -127,8 +125,8 @@ class About extends Component{
                                         <p>
                                             Designer, frontend/backend software engineer.
                                         </p>
-                                        <h4 mt-30><a target="_blank" href="https://github.com/KCB4Rockstar">Kristan Birbalsingh</a></h4>
-                                        <h5 mt-30> 81600 </h5>
+                                        <h4><a target="_blank" href="https://github.com/KCB4Rockstar" rel="noopener noreferrer">Kristan Birbalsingh</a></h4>
+                                        <h5> 816003409 </h5>
                                     </div>
                                 </div>
                                 <div className="single-testimonial item d-flex flex-row">
@@ -140,8 +138,8 @@ class About extends Component{
                                         <p>
                                             Designer, frontend/backend software engineer, business analyst/project manager, Software Testor.
                                         </p>
-                                        <h4 mt-30><h4 mt-30><a target="_blank" href="https://github.com/Qarun-Qadir-Bissoondial">Qarun Bissoondial</a></h4></h4>
-                                        <h5 mt-30> 816002009 </h5>
+                                        <h4><a target="_blank" href="https://github.com/Qarun-Qadir-Bissoondial" rel="noopener noreferrer">Qarun Bissoondial</a></h4>
+                                        <h5> 816002009 </h5>
                                     </div>
                                 </div>															
                             </div>					

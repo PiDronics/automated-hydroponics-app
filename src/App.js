@@ -5,8 +5,6 @@ import Dashboard from './components/dashboard/Dashboard';
 import Configuration from './components/configuration/Configuration';
 import System from './components/system/System';
 import SignOut from './components/auth/SignOut';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
 import SignedOut from './components/auth/SignedOut';
 import About from './components/support/About';
 import Support from './components/support/Support';
@@ -38,7 +36,6 @@ class App extends Component {
         }
         else{
             return(
-                // <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignIn}/>
                 <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}/>
             )
         }
@@ -64,8 +61,8 @@ class App extends Component {
                                         <Route path='/system/:id' component={System}/>
                                         <Route path='/signout' component={SignOut}/>
                                         <Route path='/configuration' component={Configuration}/>
-                                        <Route path='/support' component={Support}></Route>
-                                        <Route path='/about' component={About}></Route>
+                                        <Route path='/support' component={Support}/>
+                                        <Route path='/about' component={About}/>
                                     </Switch>
                                 </div>
                             </div>

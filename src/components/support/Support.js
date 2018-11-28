@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, Table, TableBody } from 'mdbreact';
 
 class Support extends Component{
 
@@ -23,9 +22,9 @@ class Support extends Component{
                             <h2>Basics</h2>
 
                             <li>
-                                <a href="#0">How do I sign up?</a>
+                                <span className="blue-text">How do I sign up?</span>
                                 <div>
-                                    <p>The sign up button the appears after the welcome screen will take you to the sign up page where you enter the required information.</p>
+                                    <span>The sign up button the appears after the welcome screen will take you to the sign up page where you enter the required information.</span>
                                 </div> 
                             </li>
                         </ul> 
@@ -33,58 +32,58 @@ class Support extends Component{
                         <ul id="mobile" >
                             <h2>Product - PiDronics</h2>
                             <li>
-                                <a href="#0">Do I require an internet connection for PiDronics?</a>
+                                <span className="blue-text">Do I require an internet connection for PiDronics?</span>
                                 <div >
-                                    <p>Yes, to enable remote cloud monitoring from your smartphone or web browser. Data and roaming charges may apply.</p>
+                                    <span>Yes, to enable remote cloud monitoring from your smartphone or web browser. Data and roaming charges may apply.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">Can I upgrade my my setup with additional sensors?</a>
+                                <span className="blue-text">Can I upgrade my my setup with additional sensors?</span>
                                 <div>
-                                    <p>Yes, our modular design allows sensors to be added and removed with ease.</p>
+                                    <span>Yes, our modular design allows sensors to be added and removed with ease.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">Can I give other members of my farm access to my remote monitor? </a>
+                                <span className="blue-text">Can I give other members of my farm access to my remote monitor? </span>
                                 <div>
-                                    <p>Yes, they may create accounts using our service and you may authenticate their accounts to your farm.</p>
+                                    <span>Yes, they may create accounts using our service and you may authenticate their accounts to your farm.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">Will I receive updates and improvements that are released? Will my Raspberry Pi also receive updates? </a>
+                                <span className="blue-text">Will I receive updates and improvements that are released? Will my Raspberry Pi also receive updates? </span>
                                 <div>
-                                    <p>Yes, improvements to our database will be received live and great care has been taken to ensure updates can be made to the Raspberry Pi server without disrupting service.</p>
+                                    <span>Yes, improvements to our database will be received live and great care has been taken to ensure updates can be made to the Raspberry Pi server without disrupting service.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">My area is prone to power outages. How will this affect the performance of my monitoring system?</a>
+                                <span className="blue-text">My area is prone to power outages. How will this affect the performance of my monitoring system?</span>
                                 <div>
-                                    <p>Our system is designed to restart autonomously and resume data capture and pushing once power has been restores. However, keep in mind that a consistent internet connection is required and disruptions to internet connectivity will affect remote monitoring. Data is still captured and logged during this time.</p>
+                                    <span>Our system is designed to restart autonomously and resume data capture and pushing once power has been restores. However, keep in mind that a consistent internet connection is required and disruptions to internet connectivity will affect remote monitoring. Data is still captured and logged during this time.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">Am I liable for any damages to the system?  </a>
+                                <span className="blue-text">Am I liable for any damages to the system?  </span>
                                 <div>
-                                    <p>As per the contract signed before installation, the equipment (Raspberry Pi, sensors and any relevant housing and connections) are the sole property of PiSynthesis, and are on loan as such. Any damages caused by incorrect handling, storage or negligence will incur costs for replacement and/or repairs.</p>
+                                    <span>As per the contract signed before installation, the equipment (Raspberry Pi, sensors and any relevant housing and connections) are the sole property of PiSynthesis, and are on loan as such. Any damages caused by incorrect handling, storage or negligence will incur costs for replacement and/or repairs.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">What is included in my PiDronics package?  </a>
+                                <span className="blue-text">What is included in my PiDronics package?  </span>
                                 <div>
-                                    <p>Packages include basic, mid-tier and deluxe. The basic package assumes you already have your own sensors and simply require the Raspberry Pi server to connect to, and begin remote monitoring. The mid-tier package includes the Raspberry Pi server, two sensors and includes on-site installation. The deluxe package includes everything found in the mid-tier package, in addition to every relevant sensors to fully monitor and analyse your farm. Every package allows access to our mobile and web app as well as onsite installation.</p>
+                                    <span>Packages include basic, mid-tier and deluxe. The basic package assumes you already have your own sensors and simply require the Raspberry Pi server to connect to, and begin remote monitoring. The mid-tier package includes the Raspberry Pi server, two sensors and includes on-site installation. The deluxe package includes everything found in the mid-tier package, in addition to every relevant sensors to fully monitor and analyse your farm. Every package allows access to our mobile and web app as well as onsite installation.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">I don't know how to use my system or how to install it.</a>
+                                <span className="blue-text">I don't know how to use my system or how to install it.</span>
                                 <div>
-                                    <p>No need to worry, on-site installation and training is available for free with the mid-tier and above packages. The basic package will be subject to additional fees for these services.</p>
+                                    <span>No need to worry, on-site installation and training is available for free with the mid-tier and above packages. The basic package will be subject to additional fees for these services.</span>
                                 </div> 
                             </li>
                         </ul>
@@ -92,30 +91,30 @@ class Support extends Component{
                         <ul id="account">
                             <h2>Account</h2>
                             <li>
-                                <a href="#0">How do I change my password?</a>
+                                <span className="blue-text">How do I change my password?</span>
                                 <div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis earum autem consectetur labore eius tenetur esse, in temporibus sequi cum voluptatem vitae repellat nostrum odio perspiciatis dolores recusandae necessitatibus, unde, deserunt voluptas possimus veniam magni soluta deleniti! Architecto, quidem, totam. Fugit minus odit unde ea cupiditate ab aperiam sed dolore facere nihil laboriosam dolorum repellat deleniti aliquam fugiat laudantium delectus sint iure odio, necessitatibus rem quisquam! Ipsum praesentium quam nisi sint, impedit sapiente facilis laudantium mollitia quae fugiat similique. Dolor maiores aliquid incidunt commodi doloremque rem! Quaerat, debitis voluptatem vero qui enim, sunt reiciendis tempore inventore maxime quasi fugiat accusamus beatae modi voluptates iste officia esse soluta tempora labore quisquam fuga, cum. Sint nemo iste nulla accusamus quam qui quos, vero, minus id. Eius mollitia consequatur fugit nam consequuntur nesciunt illo id quis reprehenderit obcaecati voluptates corrupti, minus! Possimus, perspiciatis!</p>
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis earum autem consectetur labore eius tenetur esse, in temporibus sequi cum voluptatem vitae repellat nostrum odio perspiciatis dolores recusandae necessitatibus, unde, deserunt voluptas possimus veniam magni soluta deleniti! Architecto, quidem, totam. Fugit minus odit unde ea cupiditate ab aperiam sed dolore facere nihil laboriosam dolorum repellat deleniti aliquam fugiat laudantium delectus sint iure odio, necessitatibus rem quisquam! Ipsum praesentium quam nisi sint, impedit sapiente facilis laudantium mollitia quae fugiat similique. Dolor maiores aliquid incidunt commodi doloremque rem! Quaerat, debitis voluptatem vero qui enim, sunt reiciendis tempore inventore maxime quasi fugiat accusamus beatae modi voluptates iste officia esse soluta tempora labore quisquam fuga, cum. Sint nemo iste nulla accusamus quam qui quos, vero, minus id. Eius mollitia consequatur fugit nam consequuntur nesciunt illo id quis reprehenderit obcaecati voluptates corrupti, minus! Possimus, perspiciatis!</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">How do I delete my account?</a>
+                                <span className="blue-text">How do I delete my account?</span>
                                 <div>
-                                    <p>If you would like to delete your account, you would need to de-register all systems. After you've de-registered you systems, send an email to <a href = "mailto:support@pisynthesis.com?Subject=Delete%20Account" target = "_top">  support@pisynthesis.com </a> for begin the deregistration process. It will necessate an onsite visit to retrieve loan equipment and to correct arrears. </p>
+                                    <span>If you would like to delete your account, you would need to de-register all systems. After you've de-registered you systems, send an email to <a href = "mailto:support@pisynthesis.com?Subject=Delete%20Account" target = "_top">  support@pisynthesis.com </a> for begin the deregistration process. It will necessate an onsite visit to retrieve loan equipment and to correct arrears. </span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">How do I change my account settings?</a>
+                                <span className="blue-text">How do I change my account settings?</span>
                                 <div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</p>
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">I forgot my password. How do I reset it?</a>
+                                <span className="blue-text">I forgot my password. How do I reset it?</span>
                                 <div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum at aspernatur iure facere ab a corporis mollitia molestiae quod omnis minima, est labore quidem nobis accusantium ad totam sunt doloremque laudantium impedit similique iste quasi cum! Libero fugit at praesentium vero. Maiores non consequuntur rerum, nemo a qui repellat quibusdam architecto voluptatem? Sequi, possimus, cupiditate autem soluta ipsa rerum officiis cum libero delectus explicabo facilis, odit ullam aperiam reprehenderit! Vero ad non harum veritatis tempore beatae possimus, ex odio quo.</p>
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum at aspernatur iure facere ab a corporis mollitia molestiae quod omnis minima, est labore quidem nobis accusantium ad totam sunt doloremque laudantium impedit similique iste quasi cum! Libero fugit at praesentium vero. Maiores non consequuntur rerum, nemo a qui repellat quibusdam architecto voluptatem? Sequi, possimus, cupiditate autem soluta ipsa rerum officiis cum libero delectus explicabo facilis, odit ullam aperiam reprehenderit! Vero ad non harum veritatis tempore beatae possimus, ex odio quo.</span>
                                 </div> 
                             </li>
                         </ul> 
@@ -128,21 +127,21 @@ class Support extends Component{
                         <ul id="privacy">
                             <h2>Privacy and Security</h2>
                             <li>
-                                <a href="#0">Can anyone access my information?</a>
+                                <span className="blue-text">Can anyone access my information?</span>
                                 <div>
-                                    <p>No, your information is accessible only to you using your login credentials, unless authorised by you.</p>
+                                    <span>No, your information is accessible only to you using your login credentials, unless authorised by you.</span>
                                 </div> 
                             </li>
 
                             <li>
-                                <a href="#0">If I lose or have my smartphone stolen, how is my data protected?</a>
+                                <span className="blue-text">If I lose or have my smartphone stolen, how is my data protected?</span>
                                 <div>
-                                    <p>Our app is capable of using biometric authentication, in addition to email and password, it can also require fingerprint authentication.</p>
+                                    <span>Our app is capable of using biometric authentication, in addition to email and password, it can also require fingerprint authentication.</span>
                                 </div> 
                             </li>
                         </ul> 
                     </div> 
-                    <a href="#0">Close</a>
+                    <span className="blue-text">Close</span>
                 </section> 
                 {/* <script src="js/jquery-2.1.1.js"></script>
                 <script src="js/jquery.mobile.custom.min.js"></script>
