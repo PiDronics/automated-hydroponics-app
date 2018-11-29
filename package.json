@@ -17,6 +17,7 @@
     "react-scripts": "2.0.5",
     "react-slick": "^0.23.2",
     "react-vertical-timeline-component": "^2.3.1",
+    "react-visibility-sensor": "^5.0.2",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
