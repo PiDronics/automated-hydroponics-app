@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Carousel, CarouselInner, CarouselItem, Container, Row, Col, Card, CardImage, CardBody, CardTitle, CardText,
+import { MDBContainer, MDBRow, View, Carousel, CarouselInner, CarouselItem, Container, Row, Col, Card, CardImage, CardBody, CardTitle, CardText,
 Button } from "mdbreact";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
@@ -11,16 +11,17 @@ const containerStyle = {
   paddingLeft: "0 !important", 
   marginRight: "auto !important", 
   marginLeft: "auto !important",
-  maxWidth:"300% !important"
+  maxWidth:"300% !important",
+  width: "1200%"
 };
 
 class timeline extends Component{
   render(){
     return (
   
-      <div style = {containerStyle}>
-
-        <div className = "test unique-color">
+      <div className = "container-fluid p-0">
+      <div className = "bg"></div>
+        <div className = "unique-color">
           <Carousel activeItem={1} length={2} slide={true} showControls={true} showIndicators={true} multiItem>
             <CarouselInner>
             
@@ -83,10 +84,13 @@ class timeline extends Component{
             
             </CarouselInner>
           </Carousel>
+
         </div>
 
-        <div style = {containerStyle}>
-        {/* <style>{'div { background-color: #D3D3D3; }'}</style> */}
+
+
+        <div className = "test container-fluid p-0 aqua-gradient">
+        <style>{'div.container mt-5, div.row mt-4 { background-color: #D3D3D3; padding-right: 0px !important; padding-left: 0 !important; margin-right: auto !important; margin-left: auto !important; width: 1200px; display: block !important; '}</style>
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -97,14 +101,14 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">What we have now</h3>
             <h4 className="vertical-timeline-element-subtitle">Present</h4>
-            <p>
-              <li>Fully authenticated front-end Web App</li>
-              <li>Multiple sensors can connect to a resilient Raspberry Pi server</li>
-              <li>Data can be pushed to Firebase in realtime</li>
-              <li>Sensor data visualization</li>
-              <li>End of the day summary report of sensor data</li>
-              <li>Notifies user if sensor values are too low/high</li>
-            </p>
+            <ul class="list-unstyled">
+              <p>Fully authenticated front-end Web App</p>
+              <p>Multiple sensors can connect to a resilient Raspberry Pi server</p>
+              <p>Data can be pushed to Firebase in realtime</p>
+              <p>Sensor data visualization</p>
+              <p>End of the day summary report of sensor data</p>
+              <p>Notifies user if sensor values are too low/high</p>
+            </ul>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -116,12 +120,12 @@ class timeline extends Component{
             <h3 className="vertical-timeline-element-title">EC and Dissolved Oxygen Probes Testing</h3>
             <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
             <p>
-              <li>Obtain EC and Dissolved Oxygen Probes</li>
-              <li>Ensure New probes work with our app</li>
-              <li>Test Monitoring system fully</li>
-              <li>Develop go-to-market strategy</li>
-              <li>Find promoters/affiliates</li>
-              <li>Launch initial mobile app as a monitoring system</li>
+              <h6>Obtain EC and Dissolved Oxygen Probes</h6>
+              <h6>Ensure New probes work with our app</h6>
+              <h6>Test Monitoring system fully</h6>
+              <h6>Develop go-to-market strategy</h6>
+              <h6>Find promoters/affiliates</h6>
+              <h6>Launch initial mobile app as a monitoring system</h6>
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
@@ -133,11 +137,13 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">Plant Disease Diagnoser</h3>
             <h4 className="vertical-timeline-element-subtitle">2 Month</h4>
-            <p>
-              <li>Plant Disease Detecter and Diagnoser Developed</li>
-              <li>Upload Plant Disease Diagnoser to the cloud</li>
-              <li>Live camera feed viewable in app</li>
-            </p>
+           
+            <ul class="list-unstyled">
+            <p>Plant Disease Detecter and Diagnoser Developed</p>
+            <p>Upload Plant Disease Diagnoser to the cloud</p>
+            <p>Live camera feed viewable in app</p>
+            </ul>
+          
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -149,8 +155,8 @@ class timeline extends Component{
             <h3 className="vertical-timeline-element-title">Hydroponics Automation System</h3>
             <h4 className="vertical-timeline-element-subtitle">3 Month</h4>
             <p>
-              <li>Hydroponics system will be automated to maintain a homeostatic environment</li>
-              <li>This involves the use of sun lamps, misting, ventilation fans, arduino to release a controlled amount of the nutrient chemical for controlled EC and alkaline solution for pH.</li>
+              <h5 class="h5-responsive">Hydroponics system will be automated to maintain a homeostatic environment</h5>
+              <h5 class="h5-responsive">This involves the use of sun lamps, misting, ventilation fans, arduino to release a controlled amount of the nutrient chemical for controlled EC and alkaline solution for pH.</h5>
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
@@ -163,10 +169,10 @@ class timeline extends Component{
             <h3 className="vertical-timeline-element-title">Beta Test and Final Product</h3>
             <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
             <p>
-              <li>Beta test</li>
-              <li>Start building anticipation</li>
-              <li>Finalize launch content</li>
-              <li>Gather reviews from beta testers</li>
+              <h6>Beta test</h6>
+              <h6>Start building anticipation</h6>
+              <h6>Finalize launch content</h6>
+              <h6>Gather reviews from beta testers</h6>
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
@@ -179,9 +185,9 @@ class timeline extends Component{
             <h3 className="vertical-timeline-element-title">Launch</h3>
             <h4 className="vertical-timeline-element-subtitle">LAUNCH WEEK</h4>
             <p>
-              <li>Make launch a special event</li>
-              <li>Keep sharing on social media and email list</li>
-              <li>Continue contact with stakeholders</li>
+              <h6>Make launch a special event</h6>
+              <h6>Keep sharing on social media and email list</h6>
+              <h6>Continue contact with stakeholders</h6>
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
@@ -194,9 +200,9 @@ class timeline extends Component{
             <h3 className="vertical-timeline-element-title">Improving PiDronics</h3>
             <h4 className="vertical-timeline-element-subtitle">AFTER LAUNCH</h4>
             <p>
-            <li>Celebrate :D</li>
-              <li>Follow up testimonials</li>
-              <li>Take feedback and make your product even better</li>
+            <h6>Celebrate :D</h6>
+              <h6>Follow up testimonials</h6>
+              <h6>Take feedback and make your product even better</h6>
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement

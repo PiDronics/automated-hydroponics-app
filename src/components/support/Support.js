@@ -143,9 +143,6 @@ class Support extends Component{
                     </div> 
                     <span className="blue-text">Close</span>
                 </section> 
-                {/* <script src="js/jquery-2.1.1.js"></script>
-                <script src="js/jquery.mobile.custom.min.js"></script>
-                <script src="js/main.js"></script>  */}
             </div> 
 
         );
@@ -153,7 +150,3 @@ class Support extends Component{
 }
 
 export default Support;
-// ReactDOM.render(
-//     <Support/>,
-//     mountNode
-//   );
