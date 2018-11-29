@@ -6,7 +6,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: orange;
 }
 
 code {
@@ -14,6 +13,9 @@ code {
     monospace;
 }
 
-.vertical-timeline-context {
-  padding: -10px;
+.container-fluid{ max-width: 200% !important;
+  padding-right: 0 !important; 
+  padding-left: 0 !important;
+  margin-right: auto !important; 
+  margin-left: auto !important;
 }
