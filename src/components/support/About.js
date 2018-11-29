@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { FaReact, FaMobileAlt, FaMagic, FaThermometer } from 'react-icons/fa';
+import { FaReact, FaThermometer, FaRobot } from 'react-icons/fa';
+import { GoTasklist, GoRocket, GoAlert, GoTools } from "react-icons/go";
  
 class timeline extends Component{
   render(){
@@ -50,12 +51,12 @@ class timeline extends Component{
           date="28/02/2019"
           style={{ paddingLeft: '78px' }}
           iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-          icon={<FaReact />}
+          icon={<GoAlert />}
         >
           <h3 className="vertical-timeline-element-title">Plant Disease Diagnoser</h3>
           <h4 className="vertical-timeline-element-subtitle">2 Month</h4>
           <p>
-            <li>Plant Disease Detected and Diagnosis Developed</li>
+            <li>Plant Disease Detecter and Diagnoser Developed</li>
             <li>Upload Plant Disease Diagnoser to the cloud</li>
             <li>Live camera feed viewable in app</li>
           </p>
@@ -65,7 +66,7 @@ class timeline extends Component{
           date="NOW 31/05/2019"
           style={{ paddingRight: '78px' }}
           iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-          icon={<FaReact />}
+          icon={<FaRobot />}
         >
           <h3 className="vertical-timeline-element-title">Hydroponics Automation System</h3>
           <h4 className="vertical-timeline-element-subtitle">3 Month</h4>
@@ -79,7 +80,7 @@ class timeline extends Component{
           date="April 2013"
           style={{ paddingLeft: '78px' }}
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-          // icon={<SchoolIcon />}
+          icon={<GoTasklist />}
         >
           <h3 className="vertical-timeline-element-title">Beta Test and Final Product</h3>
           <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
@@ -95,7 +96,7 @@ class timeline extends Component{
           date="November 2012"
           style={{ paddingRight: '78px' }}
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-          // icon={<SchoolIcon />}
+          icon={<GoRocket />}
         >
           <h3 className="vertical-timeline-element-title">Launch</h3>
           <h4 className="vertical-timeline-element-subtitle">LAUNCH WEEK</h4>
@@ -110,11 +111,11 @@ class timeline extends Component{
           date="2002 - 2006"
           style={{ paddingLeft: '78px' }}
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-          // icon={<SchoolIcon />}
+          icon={<GoTools />}
         >
         <div className="vertical-timeline-context">
         {/* <style>{'.vertical-timeline-context { marginLeft: -630px; }'}</style> */}
-          <h3 className="vertical-timeline-element-title">Perfecting PiDronics</h3>
+          <h3 className="vertical-timeline-element-title">Improving PiDronics</h3>
           <h4 className="vertical-timeline-element-subtitle">AFTER LAUNCH</h4>
           <p>
           <li>Celebrate :D</li>
