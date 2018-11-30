@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import SystemCard from '../system/SystemCard';
 import firebase from '../../fire';
 
+/**
+ * @class Dashboard
+ * @desc Shows a collection of all Raspberry Pi systems that monitor data. Allows the user to navigate into each pi
+ * system and view data
+ */
 class Dashboard extends Component{
 
     constructor() {
@@ -15,8 +20,9 @@ class Dashboard extends Component{
     }
 
     /**
-     * @memberOf App
-     * @method componentDidMount - Standard React.js method
+     * @memberOf Dashboard
+     * @desc Reads all raspberry pi systems from the Firebase Database and adds it to the list of systems to be
+     * displayed.
      *
      * */
     componentDidMount(){
@@ -42,12 +48,24 @@ class Dashboard extends Component{
         });
     }
 
+    /**
+     * @memberOf Dashboard
+     * @desc - Adds the UID a that identifies this object inside of the object itself
+     * @param {DataSnapshot} obj - A reference to a specific pi system
+     * @return {Object} extracted - The object will al previous data plus the UID
+     */
     extractData(obj) {
         let extracted = obj.val();
         extracted["systemId"] = obj.key;
         return extracted;
     }
 
+    /**
+     * @memberOf Dashboard
+     * @desc All general information for each pi owned by a user is added to a list of systems to be displayed
+     * @param {DataSnapshot} fb_obj - A reference to all pi systems Objects containing general information about
+     * those systems
+     */
     processDBData(fb_obj) {
         const systems = [];
         fb_obj.forEach((system) => {
