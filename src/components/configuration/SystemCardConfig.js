@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import { Card, CardBody, CardTitle, Badge } from 'mdbreact';
 import ModalConfig from "../modal/ModalConfig";
 
+/**
+ * @class SystemCardConfig
+ * @desc Renders a single card containing basic Configuration info about a Pi.
+ */
 class SystemCardConfig extends Component {
     constructor(props){
         super(props);

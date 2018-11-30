@@ -5,6 +5,7 @@ import ModalConfigAdd from "../modal/ModalConfigAdd";
 
 /**
  *@class Configuration
+ * @desc Displays Configuration info for all Pi systems owned by a user
  */
 class Configuration extends Component {
     constructor(props){

@@ -3,12 +3,13 @@ import firebase from '../../fire';
 
 /**
  * @class SignOut
+ * @ desc Responsible for signing a user out of the system. The rest of the application is also notified
  */
 class SignOut extends Component {
 
     /**
      * @memberOf SignOut
-     * @desc Responsible for signing a user out of the system. The rest of the application is also notified
+     * @desc Runs as soon as the component is called, no HTML is rendered.
      */
     componentDidMount(){
         firebase.auth().signOut().then(() => {
