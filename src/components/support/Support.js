@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Collapse, Card, CardBody, Container } from 'mdbreact';
 
-class Example extends Component {
+class Support extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -256,4 +256,4 @@ class Example extends Component {
     );
   }
 }
-export default Example;
+export default Support;
