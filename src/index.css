@@ -34,3 +34,7 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.black {
+  color: black;
+}

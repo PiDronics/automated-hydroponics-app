@@ -62,8 +62,7 @@ class App extends Component {
                                         <Route path='/signout' component={SignOut}/>
                                         <Route path='/configuration' component={Configuration}/>
                                         <Route path='/support' component={Support}/>
-                                        <div class = "container-fluid p-0">
-                                        <Route path='/about' component={About}/></div>
+                                        <Route path='/about' component={About}/>
                                     </Switch>
                                 </div>
                             </div>

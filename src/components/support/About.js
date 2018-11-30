@@ -20,7 +20,7 @@ class timeline extends Component{
     return (
   
       <div className = "container-fluid p-0">
-      <div className = "bg"></div>
+      {/* <div className = "bg"></div> */}
         <div className = "unique-color">
           <Carousel activeItem={1} length={2} slide={true} showControls={true} showIndicators={true} multiItem>
             <CarouselInner>
@@ -89,7 +89,7 @@ class timeline extends Component{
 
 
 
-        <div className = "test container-fluid p-0 aqua-gradient">
+        <div className = "w-100 p-3 test container-fluid p-0 aqua-gradient">
         <style>{'div.container mt-5, div.row mt-4 { background-color: #D3D3D3; padding-right: 0px !important; padding-left: 0 !important; margin-right: auto !important; margin-left: auto !important; width: 1200px; display: block !important; '}</style>
         <VerticalTimeline>
           <VerticalTimelineElement
