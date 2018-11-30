@@ -12,3 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* .test{
+  padding-left: -15px !important;
+  padding-right: -15px !important;
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+  /* width: 168% !important;
+  margin-left: -380px !important; */
+/* } */
+
+.bg {
+  /* The image used */
+  background-image: url("/img/bg.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.black {
+  color: black;
+}

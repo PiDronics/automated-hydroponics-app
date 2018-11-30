@@ -50,7 +50,7 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <div className="App">
+                <div className="App" > 
                     <NavbarFeatures/>
                     <div className="container-fluid">
                         <div className="row">

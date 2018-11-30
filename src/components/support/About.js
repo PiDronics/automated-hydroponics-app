@@ -1,160 +1,219 @@
 import React, { Component } from 'react';
+import { MDBContainer, MDBRow, View, Carousel, CarouselInner, CarouselItem, Container, Row, Col, Card, CardImage, CardBody, CardTitle, CardText,
+Button } from "mdbreact";
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
+import { FaReact, FaThermometer, FaRobot, FaStar } from 'react-icons/fa';
+import { GoTasklist, GoRocket, GoAlert, GoTools } from "react-icons/go";
 
-class About extends Component{
+const containerStyle = {
+  paddingRight: "0 !important", 
+  paddingLeft: "0 !important", 
+  marginRight: "auto !important", 
+  marginLeft: "auto !important",
+  maxWidth:"300% !important",
+  width: "1200%"
+};
 
-    render(){
-        return (
-            <div className="container-fluid">
-                <section className="banner-area relative" id="home">
-                    <div className="overlay overlay-bg"/>
-                    <div className="container">
-                        <div className="row fullscreen d-flex align-items-center justify-content-center">
-                            <div className="banner-content col-lg-8">
-                                <h1 className="text-white">
-                                    Monitor your farm's health with PiDronics.
-                                </h1>
-                                <p className="pt-20 pb-20 text-white">
-                                   tagline....
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="feature-area pb-100" id="service">
-                    <div className="container">
-                        <div className="row mockup-container">
-                            <img className="mx-auto d-block img-fluid" src="img/laptop.png" alt=""/>
-                        </div>
-                        <div className="row d-flex justify-content-center">
-                            <div className="menu-content pt-100 pb-60 col-lg-10">
-                                <div className="title text-center">
-                                    <h1 className="mb-10">The Problem</h1>
-                                    <p>Agriculture is paramount to a society’s economic and social growth. In fact, most countries choose to dedicate the majority of their resources to their agriculture sector. However, in many countries, such as Burundi, civil strife, poor education and reliance on subsistence farming results in poor crop yields. This leads to wastage of precious land and biomass resources, since the land is inefficiently used, and soil is drained of resources. Hydroponics, therefore, is the most capable method since it promotes effective land uses and, since it is its own self-contained ecosystem, is not vulnerable to nutrient-poor soil or adverse weather conditions. Despite these overwhelming benefits, hydroponics requires much experience and knowledge. Automation tools exist on the market, but at exorbitant cost that the average farmer cannot afford, thereby increasing the financial and experience barrier for entry into the field.</p>
-                                </div>
-                            </div>
-                        </div>						
-                        <div className="row">
-                            <div className="col-lg-4">
-                                <div className="single-feature">
-                                    <span className="lnr lnr-smile"/>
-                                    <h4>
-                                        Our Stakeholders. Who Benefits?
-                                    </h4>
-                                    <p>
-                                    Our aim is to market our system to farmers who are looking to get into the booming hydroponics industry, but lack the knowledge and experience to make it effective, and with a low cost for entry. It can replace much of the labour and time requirements, so that farmers can spend more time on marketing their crops, in addition to increasing the potential profit margin. PiDronics can be very impactful in a humanitarian setting, due to its low cost, easy scalability and portability, allowing hydroponics farms to be developed in affected countries, thus reducing transportation costs, and provide a high-yield food solution to those in need.
-
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="single-feature">
-                                    <span className="lnr lnr-code"/>
-                                    <h4>
-                                        Solution. 
-                                        What can we do?
-                                    </h4>
-                                    <p>
-                                    The PiDronics system, benefits people wishing to break into hydroponics with little to no prior knowledge and with a low cost of entry. It’s self-monitoring and sustaining further reduces the labour costs, compensating for a farmer’s poor education in the field while allowing them to divert their time on other tasks, such as marketing. In addition, we believe the PiDronics system is an important educational tool to introduce young people into the world of agriculture in an engaging environment, since it encapsulates the fields of robotics, programming and the ever-popular Raspberry Pi. The PiDronics system integrates seamlessly with a hydroponics farm, where pressure and pH sensors are monitored to ensure a constant water and nutrient flow (for continuous-flow solution culture), temperature and light sensors are monitored to ensure the crops are in an optimal environment, nd dissolved oxygen sensors to ensure the plant roots are properly oxygenated.
-
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="single-feature">
-                                    <span className="lnr lnr-smartphone"/>
-                                    <h4>
-                                        Usage. 
-                                        How does it work?
-                                    </h4>
-                                    <p>
-                                        dcfrtgyhuytgf
-
-                                    </p>
-                                </div>
-                            </div>												
-                        </div>
-                    </div>	
-                </section>
-                
-                <section className="testimonial-area relative section-gap" id="testimonial">
-                    <div className="container">
-                        <div className="row d-flex justify-content-center">
-                            <div className="menu-content pb-60 col-lg-8">
-                                <div className="title text-center">
-                                    <h1 className="mb-10">Meet the Team!</h1>
-                                    <p>
-                                        Careful, Committed, Charming <sub>(Coffee-Fueled)</sub>. 
-                                        <i>Roles are dynamic, since we all possess the relevant experience 
-                                        in designing and developing the application.</i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>						
-                        <div className="row">
-                            <div className="active-testimonial">
-                                <div className="single-testimonial item d-flex flex-row">
-                                    <div className="thumb">
-                                        <img src="../img/t1.jpeg" alt=""/>
-                                    </div>
-                                    <div className="desc">
-                                        <p>
-                                            Designer, frontend/backend software engineer, hardware engineer.
-                                        </p>
-                                        <h4> <a target="_blank" href="https://github.com/irontarkus95" rel="noopener noreferrer">Michael Ali</a></h4>
-                                        <h5> 814005475 </h5>
-                                    </div>
-                                </div>
-                                <div className="single-testimonial item d-flex flex-row">
-                                    <div className="thumb">
-                                        <img src="./img/t2.jpeg" alt=""/>
-                                    </div>
-                                    <div className="desc">
-                                        <p>
-                                            Designer, frontend/backend software engineer, hardware engineer.
-                                        </p>
-                                        <h4><a target="_blank" href="https://github.com/princesszelda94" rel="noopener noreferrer">Gabriela Sewdhan</a></h4>
-                                        <h5> 813001696 </h5>
-                                    </div>
-                                </div>	
-                                <div className="single-testimonial item d-flex flex-row">
-                                    <div className="thumb">
-                                        <img src="img/t3.jpeg" alt=""/>
-                                    </div>
-                                    <div className="desc">
-                                        <p>
-                                            Designer, frontend/backend software engineer.
-                                        </p>
-                                        <h4><a target="_blank" href="https://github.com/KCB4Rockstar" rel="noopener noreferrer">Kristan Birbalsingh</a></h4>
-                                        <h5> 816003409 </h5>
-                                    </div>
-                                </div>
-                                <div className="single-testimonial item d-flex flex-row">
-                                    <div className="thumb">
-                                            
-                                        <img src="img/t4.jpeg" alt=""/>
-                                    </div>
-                                    <div className="desc">
-                                        <p>
-                                            Designer, frontend/backend software engineer, business analyst/project manager, Software Testor.
-                                        </p>
-                                        <h4><a target="_blank" href="https://github.com/Qarun-Qadir-Bissoondial" rel="noopener noreferrer">Qarun Bissoondial</a></h4>
-                                        <h5> 816002009 </h5>
-                                    </div>
-                                </div>															
-                            </div>					
-                        </div>
-                    </div>	
-                </section>
+class timeline extends Component{
+  render(){
+    return (
+  
+      <div className = "container-fluid p-0">
+      {/* <div className = "bg"></div> */}
+        <div className = "unique-color">
+          <Carousel activeItem={1} length={2} slide={true} showControls={true} showIndicators={true} multiItem>
+            <CarouselInner>
             
-            </div>
-        );
-    }
+                <CarouselItem itemId="1">
+                <Row>
+                  <Col md="6">
+                  <Card className="mb-2">
+                    <CardImage className="img-fluid" src="/img/t1.jpeg" />
+                    <CardBody>
+                      <CardTitle>Michael Ali - 814005475</CardTitle>
+                      <CardText>
+                          Designer, frontend/backend software engineer, hardware engineer.
+                      </CardText>
+                      <Button href="https://github.com/irontarkus95" target="_blank" rel="noopener noreferrer" color="primary">Button</Button>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  <Col md="6" className="clearfix ">
+                  <Card className="mb-2">
+                    <CardImage className="img-fluid" src="/img/t2.jpeg" />
+                    <CardBody>
+                      <CardTitle>Gabriela Sewdhan - 813001696</CardTitle>
+                      <CardText>
+                          Designer, frontend/backend software engineer, hardware engineer.
+                      </CardText>
+                      <Button target="_blank" href="https://github.com/princesszelda94" rel="noopener noreferrer" color="primary">Button</Button>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+                </CarouselItem>
+                <CarouselItem itemId="2">
+                <Row>
+                  <Col md="6">
+                  <Card className="mb-2">
+                    <CardImage className="img-fluid" src="/img/kristan.jpg" />
+                    <CardBody>
+                      <CardTitle>Kristan Birbalsingh - 816003409</CardTitle>
+                      <CardText>
+                          Designer, frontend/backend software engineer.
+                      </CardText>
+                      <Button target="_blank" href="https://github.com/KCB4Rockstar" rel="noopener noreferrer" color="primary">Button</Button>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  <Col md="6" className="clearfix d-none d-md-block">
+                  <Card className="mb-2">
+                    <CardImage className="img-fluid" src="/img/qarun.jpg" />
+                    <CardBody>
+                      <CardTitle>Qarun Bissoondial - 816002009</CardTitle>
+                      <CardText>
+                          Designer, frontend/backend software engineer, business analyst/project manager, Software Testor.
+                      </CardText>
+                      <Button target="_blank" href="https://github.com/Qarun-Qadir-Bissoondial" rel="noopener noreferrer" color="primary">Button</Button>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+                </CarouselItem>
+            
+            </CarouselInner>
+          </Carousel>
+
+        </div>
+
+
+
+        <Container className = "w-100 p-0 m-0 mw-100 mt-0 px-0 mx-0 test container-fluid p-0 aqua-gradient" style={{paddingLeft: "-340px !important", paddingRight: "-430px !important", marginLeft: "32px !important", marginRight: "43px !important", width: "100%", backgroundColor: "blue"}}>
+        {/* <style>{'div.container mt-5, div.row mt-4 { background-color: #D3D3D3; padding-right: 0px !important; padding-left: 0 !important; margin-right: auto !important; margin-left: auto !important; width: 1200px; display: block !important; '}</style> */}
+        <VerticalTimeline>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            date ="NOW 30/11/2018"
+            style={{ paddingLeft: '78px' }}
+            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff'}}
+            icon={<FaReact />}
+          >
+            <h3 className="vertical-timeline-element-title">What we have now</h3>
+            <h4 className="vertical-timeline-element-subtitle">Present</h4>
+            <ul class="list-unstyled">
+              <p>Fully authenticated front-end Web App</p>
+              <p>Multiple sensors can connect to a resilient Raspberry Pi server</p>
+              <p>Data can be pushed to Firebase in realtime</p>
+              <p>Sensor data visualization</p>
+              <p>End of the day summary report of sensor data</p>
+              <p>Notifies user if sensor values are too low/high</p>
+            </ul>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            date="30/12/2018"
+            style={{ paddingRight: '78px' }}
+            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+            icon={ <FaThermometer />}
+          >
+            <h3 className="vertical-timeline-element-title">EC and Dissolved Oxygen Probes Testing</h3>
+            <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
+            <p>
+              <h6>Obtain EC and Dissolved Oxygen Probes</h6>
+              <h6>Ensure New probes work with our app</h6>
+              <h6>Test Monitoring system fully</h6>
+              <h6>Develop go-to-market strategy</h6>
+              <h6>Find promoters/affiliates</h6>
+              <h6>Launch initial mobile app as a monitoring system</h6>
+            </p>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            date="28/02/2019"
+            style={{ paddingLeft: '78px' }}
+            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+            icon={<GoAlert />}
+          >
+            <h3 className="vertical-timeline-element-title">Plant Disease Diagnoser</h3>
+            <h4 className="vertical-timeline-element-subtitle">2 Month</h4>
+           
+            <ul class="list-unstyled">
+            <p>Plant Disease Detecter and Diagnoser Developed</p>
+            <p>Upload Plant Disease Diagnoser to the cloud</p>
+            <p>Live camera feed viewable in app</p>
+            </ul>
+          
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            date="NOW 31/05/2019"
+            style={{ paddingRight: '78px' }}
+            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+            icon={<FaRobot />}
+          >
+            <h3 className="vertical-timeline-element-title">Hydroponics Automation System</h3>
+            <h4 className="vertical-timeline-element-subtitle">3 Month</h4>
+            <p>
+              <h5 class="h5-responsive">Hydroponics system will be automated to maintain a homeostatic environment</h5>
+              <h5 class="h5-responsive">This involves the use of sun lamps, misting, ventilation fans, arduino to release a controlled amount of the nutrient chemical for controlled EC and alkaline solution for pH.</h5>
+            </p>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--education"
+            date="April 2013"
+            style={{ paddingLeft: '78px' }}
+            iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+            icon={<GoTasklist />}
+          >
+            <h3 className="vertical-timeline-element-title">Beta Test and Final Product</h3>
+            <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
+            <p>
+              <h6>Beta test</h6>
+              <h6>Start building anticipation</h6>
+              <h6>Finalize launch content</h6>
+              <h6>Gather reviews from beta testers</h6>
+            </p>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--education"
+            date="November 2012"
+            style={{ paddingRight: '78px' }}
+            iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+            icon={<GoRocket />}
+          >
+            <h3 className="vertical-timeline-element-title">Launch</h3>
+            <h4 className="vertical-timeline-element-subtitle">LAUNCH WEEK</h4>
+            <p>
+              <h6>Make launch a special event</h6>
+              <h6>Keep sharing on social media and email list</h6>
+              <h6>Continue contact with stakeholders</h6>
+            </p>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--education"
+            date="2002 - 2006"
+            style={{ paddingLeft: '78px' }}
+            iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+            icon={<GoTools />}
+          >
+            <h3 className="vertical-timeline-element-title">Improving PiDronics</h3>
+            <h4 className="vertical-timeline-element-subtitle">AFTER LAUNCH</h4>
+            <p>
+            <h6>Celebrate :D</h6>
+              <h6>Follow up testimonials</h6>
+              <h6>Take feedback and make your product even better</h6>
+            </p>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
+            icon={<FaStar />}
+          />
+        </VerticalTimeline>
+        </Container>
+      </div>
+    );
+  }
 }
 
-export default About;
-
-// render(
-//     <About/>,
-//     mountNode
-//   );
+export default timeline;
