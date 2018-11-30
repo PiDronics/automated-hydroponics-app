@@ -89,8 +89,8 @@ class timeline extends Component{
 
 
 
-        <div className = "w-100 p-3 test container-fluid p-0 aqua-gradient">
-        <style>{'div.container mt-5, div.row mt-4 { background-color: #D3D3D3; padding-right: 0px !important; padding-left: 0 !important; margin-right: auto !important; margin-left: auto !important; width: 1200px; display: block !important; '}</style>
+        <Container className = "w-100 p-0 m-0 mw-100 mt-0 px-0 mx-0 test container-fluid p-0 aqua-gradient" style={{paddingLeft: "-340px !important", paddingRight: "-430px !important", marginLeft: "32px !important", marginRight: "43px !important", width: "100%", backgroundColor: "blue"}}>
+        {/* <style>{'div.container mt-5, div.row mt-4 { background-color: #D3D3D3; padding-right: 0px !important; padding-left: 0 !important; margin-right: auto !important; margin-left: auto !important; width: 1200px; display: block !important; '}</style> */}
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -210,7 +210,7 @@ class timeline extends Component{
             icon={<FaStar />}
           />
         </VerticalTimeline>
-        </div>
+        </Container>
       </div>
     );
   }

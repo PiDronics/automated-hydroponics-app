@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Collapse, Card, CardBody, Container } from 'mdbreact';
+import {Collapse, Card, CardBody, Container, Row, Fa } from 'mdbreact';
 
 class Support extends Component {
   constructor(props) {
@@ -24,22 +24,42 @@ class Support extends Component {
     return (
     <div className = "container-fluid">
     <Container>
-    <header>
-        <h1>FAQ</h1>
-    </header>
+        <Row className="align-items-center mt-5">
+            <h2 className="grey-text" style={{margin: "0px"}}>
+                FAQ
+            </h2>
+            <a className="border grey-text px-1 border-light rounded ml-2" target="_blank"  href="#"><Fa icon="question-circle" className="mr-2"/>Frequently Asked Questions</a>
+        </Row>
+        <hr className="mb-5" />
 
-    <ul >
-        <li><a href="#basics">Basics</a></li>
-        <li><a href="#product">Product</a></li>
-        <li><a href="#account">Account</a></li>
-        <li><a href="#payments">Payments</a></li>
-        <li><a href="#privacy">Privacy and Security</a></li>
-    </ul> 
-    </Container>
+    <Container>
+        <h5 className="grey-text" style={{margin: "0px"}}>
+        <a href="#basics">
+            Basics</a>
+        </h5>
+        <h5 className="grey-text" style={{margin: "0px"}}>
+        <a href="#product">
+            Product</a>
+        </h5>
+        <h5 className="grey-text" style={{margin: "0px"}}>
+        <a href="#account">
+            Account</a>
+        </h5>
+        <h5 className="grey-text" style={{margin: "0px"}}>
+        <a href="#payments">
+            Payments</a>
+        </h5>
+        <h5 className="grey-text" style={{margin: "0px"}}>
+        <a href="#privacy">
+            Privacy and Security</a>
+        </h5>
+
     <Container className="md-accordion mt-5">
     <style>{'Badge.h4 { color: #000000 !important;'}</style>
         <div id = "basics">
-        <h2>Basics</h2>
+            <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
+                Basics
+            </h2>
             <Card >
             <a onClick={this.toggleCollapse('collapse1')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light "><h5>How do I sign up? </h5><i className={collapseID === 'collapse2' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> </a>
 
@@ -58,7 +78,9 @@ class Support extends Component {
         </div>
 
         <div id = "product">
-        <h2>Product - PiDronics</h2>
+            <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
+                Product - PiDronics
+            </h2>
             <Card>
                 <a onClick={this.toggleCollapse('collapse2')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Do I require an internet connection for PiDronics?</h5>
                     <i className={collapseID === 'collapse2' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
@@ -158,7 +180,9 @@ class Support extends Component {
         </div>
 
         <div id = "account">
-        <h2>Account</h2>
+            <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
+                Account
+            </h2>
             <Card>
                 <a onClick={this.toggleCollapse('collapse10')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>How do I change my password?</h5>
                 <i className={collapseID === 'collapse10' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
@@ -209,7 +233,9 @@ class Support extends Component {
         </div>
 
         <div id = "payments">
-        <h2>Payments</h2>
+            <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
+                Payments
+            </h2>
             <Card>
                 <a onClick={this.toggleCollapse('collapse14')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"> <h5>Coming Soon</h5>
                 <i className={collapseID === 'collapse14' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
@@ -224,7 +250,9 @@ class Support extends Component {
         </div>
 
         <div id = "privacy">
-        <h2>Privacy and Security</h2>
+            <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
+                Privacy and Security
+            </h2>
             <Card>
                 <a onClick={this.toggleCollapse('collapse15')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Can anyone access my information?</h5>
                 <i className={collapseID === 'collapse15' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
@@ -249,6 +277,8 @@ class Support extends Component {
                 </Collapse>
             </Card>
         </div>
+        </Container>
+        </Container>
         </Container>
 
 
