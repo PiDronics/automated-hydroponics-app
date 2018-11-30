@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/modal/ModalConfig.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/modal/ModalConfig.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import { Container, Button, Modal, ModalBody, ModalHeader } from 'mdbreact';
+import firebase from '../../fire';
+
+/**
+ * @class ModalConfig
+ * @desc Responsible for editing configuration data for a raspberry pi system. Options are displayed in a Modal
+ */
+class ModalConfig extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modal: false,
+            name: props.name,
+            time: props.time,
+            successMsg: "",
+            errorMessage: ""
+        };
+
+        this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteSystem = this.deleteSystem.bind(this);
+    }
+
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for opening and closing the modal
+     */
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for updating the state based on the user input. Reads the event object to automatically
+     * determine whether "name" or "time" input fields were changed.
+     * @param {Event} event - A keypress event or an update in the dropdown menu
+     */
+    handleChange(event) {
+        event.preventDefault();
+
+        this.setState({
+            [event.target.name]: event.target.value,
+            successMsg: "",
+            errorMessage: ""
+        })
+    }
+
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for uploading form data to Firebase and display any errors
+     * @param {Event} e - A submit event
+     */
+    handleSubmit(e) {
+        e.preventDefault();
+
+        var obj = {};
+
+        obj.name = e.target.name.value;
+        obj.time = e.target.time.value;
+
+        this.setState({
+            ...obj
+        });
+
+        if(this.state.name.length > 30 || this.state.name.length &lt; 1){
+            this.setState({
+                successMsg: "",
+                errorMessage: "The system name must be between 1 and 30 characters long."
+            })
+        }
+        else if(this.state.time &lt; 5 || this.state.time > 30){
+            this.setState({
+                successMsg: "",
+                errorMessage: "Interval time is out of range (5mins-30mins)"
+            })
+        }
+        else{
+            firebase.auth().onAuthStateChanged(user => {
+                if(user){
+                    var uid = user.uid;
+                    var system = this.props.system;
+
+                    const dataRef = firebase.database().ref();
+
+                    var updates = {};
+
+                    updates["/users/" + uid + "/systemCard/" + system + "/systemName"] = this.state.name;
+                    updates["/systems/" + system + '/' + uid + "/systemName"] = this.state.name;
+                    updates["/systems/" + system + '/' + uid + "/interval"] = this.state.time;
+
+                    dataRef.update(updates).then(() => {
+                        this.setState({
+                            successMsg: "Updated successfully!",
+                            errorMessage: ""
+                        });
+                    }
+                    ,(error) => {
+                        this.setState({
+                            successMsg: "",
+                            errorMessage: error.message
+                        });
+                    });
+                }
+                else{
+                    this.props.history.push("/");
+                }
+            });
+        }
+    }
+
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for removing a system from Firebase and display appropriate errors
+     * @param {Event} e - A button click event
+     */
+    deleteSystem(e) {
+        e.preventDefault();
+
+        if(window.confirm("You you sure you wish to delete this system?\n You cannot undo these changes!")){
+            firebase.auth().onAuthStateChanged(user => {
+                if(user){
+                    var uid = user.uid;
+                    var system = this.props.system;
+
+                    const dataRef = firebase.database().ref();
+
+                    var remove = {};
+
+                    remove["/users/" + uid + "/systemCard/" + system] = null;
+                    remove["/users/" + uid + "/systemData/" + system] = null;
+                    remove["/systems/" + system] = null;
+
+                    dataRef.update(remove).then(() => {
+                        this.setState({
+                            successMsg: "Deleted successfully!",
+                            errorMessage: ""
+                        });
+                    }
+                    ,(error) => {
+                        this.setState({
+                            successMsg: "",
+                            errorMessage: error.message
+                        });
+                    });
+                }
+            });
+        }
+        else{
+            this.toggle();
+        }
+    }
+
+    componentDidMount(){
+
+    }
+
+    render() {
+        return (
+            &lt;Container>
+                &lt;div className="d-flex justify-content-around">
+                    &lt;Button id = "toggleModal" color="blue" onClick={this.toggle}>Edit System&lt;/Button>
+                &lt;/div>
+
+                &lt;Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    &lt;ModalHeader toggle={this.toggle}>Edit System&lt;/ModalHeader>
+                    &lt;ModalBody>
+                        &lt;form onSubmit={this.handleSubmit}>
+                            &lt;div className="container-fluid text-center">
+                                &lt;div className="row">
+                                    &lt;div className="col-lg-12">
+                                        &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="name">System Name&lt;/label>
+                                            &lt;input className="form-control" type="text" name="name" id="name" onChange={this.handleChange} defaultValue={this.state.name}/>
+                                        &lt;/div>
+                                        &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="time">Update Interval&lt;/label>
+                                            &lt;div className="d-flex justify-content-start">
+                                                &lt;select className="form-control" name="time" id="time" onChange={this.handleChange} defaultValue={this.state.time}>
+                                                    &lt;option value="5">5&lt;/option>
+                                                    &lt;option value="6">6&lt;/option>
+                                                    &lt;option value="7">7&lt;/option>
+                                                    &lt;option value="8">8&lt;/option>
+                                                    &lt;option value="9">9&lt;/option>
+                                                    &lt;option value="10">10&lt;/option>
+                                                    &lt;option value="11">11&lt;/option>
+                                                    &lt;option value="12">12&lt;/option>
+                                                    &lt;option value="13">13&lt;/option>
+                                                    &lt;option value="14">14&lt;/option>
+                                                    &lt;option value="15">15&lt;/option>
+                                                    &lt;option value="16">16&lt;/option>
+                                                    &lt;option value="17">17&lt;/option>
+                                                    &lt;option value="18">18&lt;/option>
+                                                    &lt;option value="19">19&lt;/option>
+                                                    &lt;option value="20">20&lt;/option>
+                                                    &lt;option value="21">21&lt;/option>
+                                                    &lt;option value="22">22&lt;/option>
+                                                    &lt;option value="23">23&lt;/option>
+                                                    &lt;option value="24">24&lt;/option>
+                                                    &lt;option value="25">25&lt;/option>
+                                                    &lt;option value="26">26&lt;/option>
+                                                    &lt;option value="27">27&lt;/option>
+                                                    &lt;option value="28">28&lt;/option>
+                                                    &lt;option value="29">29&lt;/option>
+                                                    &lt;option value="30">30&lt;/option>
+                                                &lt;/select>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/div>
+                            &lt;span className="red-text d-flex justify-content-center text-center">{this.state.errorMessage}&lt;/span>
+                            &lt;span className="green-text d-flex justify-content-center text-center">{this.state.successMsg}&lt;/span>
+                            &lt;div className="input-field d-flex justify-content-around">
+                                &lt;button className="btn success-color lighten-1 z-depth-0" id ="save_btn">Save&lt;/button>
+                                &lt;button className="btn danger-color lighten-1 z-depth-0" id ="delete_btn" onClick={this.deleteSystem}>Delete System&lt;/button>
+                            &lt;/div>
+                        &lt;/form>
+                    &lt;/ModalBody>
+                &lt;/Modal>
+            &lt;/Container>
+        );
+    }
+}
+
+export default ModalConfig;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Configuration.html">Configuration</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="ModalConfig.html">ModalConfig</a></li><li><a href="NavbarFeatures.html">NavbarFeatures</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li><li><a href="SystemCardConfig.html">SystemCardConfig</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 30 2018 15:42:58 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

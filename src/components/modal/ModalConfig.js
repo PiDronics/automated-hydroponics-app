@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Container, Button, Modal, ModalBody, ModalHeader } from 'mdbreact';
 import firebase from '../../fire';
 
+/**
+ * @class ModalConfig
+ * @desc Responsible for editing configuration data for a raspberry pi system. Options are displayed in a Modal
+ */
 class ModalConfig extends Component {
 
     constructor(props) {
@@ -21,6 +25,10 @@ class ModalConfig extends Component {
         this.deleteSystem = this.deleteSystem.bind(this);
     }
 
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for opening and closing the modal
+     */
     toggle() {
         this.setState({
             modal: !this.state.modal
@@ -28,6 +36,12 @@ class ModalConfig extends Component {
     }
 
 
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for updating the state based on the user input. Reads the event object to automatically
+     * determine whether "name" or "time" input fields were changed.
+     * @param {Event} event - A keypress event or an update in the dropdown menu
+     */
     handleChange(event) {
         event.preventDefault();
 
@@ -38,8 +52,12 @@ class ModalConfig extends Component {
         })
     }
 
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for uploading form data to Firebase and display any errors
+     * @param {Event} e - A submit event
+     */
     handleSubmit(e) {
-        console.log('submitted');
         e.preventDefault();
 
         var obj = {};
@@ -97,6 +115,11 @@ class ModalConfig extends Component {
         }
     }
 
+    /**
+     * @memberOf ModalConfig
+     * @desc Responsible for removing a system from Firebase and display appropriate errors
+     * @param {Event} e - A button click event
+     */
     deleteSystem(e) {
         e.preventDefault();
 
