@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import { Card, CardHeader, CardBody, Fa } from 'mdbreact';
 import firebase from "../../fire";
 
+
 class SignedOut extends Component  {
 
+    /**
+     * @methodOf SignedOut
+     * @desc Initializes the component, ready to accept input from the user
+     */
     constructor() {
         super();
         this.state = {
@@ -12,16 +17,31 @@ class SignedOut extends Component  {
             errorMessage1: "",
             errorMessage2: "",
             auth: "signinbtn"
-        }
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSignIn = this.handleSignIn.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
     }
 
-    handleChange = (e) =>{
+    /**
+     * @methodOf SignedOut
+     * @desc Updates the state with the input. Due to [e.target.name] being used, this function will
+     * work for both the e-mail and password input fields
+     * @param {Event} e - captures a keypress
+     */
+    handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
     };
 
-    handleSignIn = (e) =>{
+    /**
+     * @methodOf SignedOut
+     * @desc Signs a user into the system through a Firebase Auth backend.
+     * @param {Event} e - captures a submit event
+     */
+    handleSignIn(e) {
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
             this.setState({
@@ -32,7 +52,12 @@ class SignedOut extends Component  {
         this.props.history.push("/");
     };
 
-    handleSignUp = (e) =>{
+    /**
+     * @methodOf SignedOut
+     * @desc Adds a user to the Firebase Auth backend using their e-mail and password
+     * @param {Event} e - captures a submit event
+     */
+    handleSignUp(e) {
         e.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
             this.setState({
@@ -43,6 +68,10 @@ class SignedOut extends Component  {
         this.props.history.push("/");
     };
 
+    /**
+     * @methodOf SignedOut
+     * @desc Switches between the Sign-In form and the Sign-up form on the login page
+     */
     toggleScreen(){
         if(this.state.auth==="signinbtn"){
             return(

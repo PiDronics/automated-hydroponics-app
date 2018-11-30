@@ -27,150 +27,47 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
-import './App.css';
-import ToolbarTop from "./ToolbarTop/ToolbarTop";
-import SensorCard from "./SensorCard/SensorCard";
-import firebase from 'firebase';
-import fire from './fire';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import NavbarFeatures from './components/layout/Navbar';
+import Dashboard from './components/dashboard/Dashboard';
+import Configuration from './components/configuration/Configuration';
+import System from './components/system/System';
+import SignOut from './components/auth/SignOut';
+import SignedOut from './components/auth/SignedOut';
+import About from './components/support/About';
+import Support from './components/support/Support';
+import firebase from './fire';
 
-/**
- * @class App
- * Main Application Component
- * */
 class App extends Component {
 
-    /**
-     * Initializes the React Application and sets state for usage
-     * */
     constructor(){
         super();
 
-
-        this.state = {
-            sensors: [],
-            device: ""
+        this.state= {
+            user: null
         };
+
     }
 
-    /**
-     * @memberOf App
-     * @method updateData - updates a value in firebase
-     * @param {Event} e - Default event
-     * @return none
-     * */
-    updateData(e){
-        e.preventDefault();
-        var device = this.state.device;
-        const dataRef = fire.database().ref("systems").child(device);
-        dataRef.child('conc').child("avg").set( parseFloat(this.inputEl.value));
-        this.inputEl.value = '';
-    }
-
-    /**
-     * @memberOf App
-     * @method addData - Adds a new record to firebase
-     * @param {Event} e - Default event
-     * @return none
-     * */
-    addData(e){
-        e.preventDefault();
-        var device = this.state.device;
-        const dataRef = fire.database().ref("systems").child(device);
-        dataRef.child('temp').child("allData").push({
-            reading: this.inputEl2.value,
-            time: firebase.database.ServerValue.TIMESTAMP
-        });
-        this.calculateVals();
-        this.inputEl2.value = '';
-    }
-
-    /**
-     * @memberOf App
-     * @method calculateVals - Pulls data from firebase and re-calculates the minimum, maximum and average values
-     * @return none
-     *
-     * */
-
-    calculateVals = function(){
-        var device = this.state.device;
-        var last24hr = new Date().getTime()-(24 * 3600 * 1000);
-        const dataRef = fire.database().ref("systems").child(device);
-        dataRef.child("temp/allData").orderByChild('time').startAt(last24hr).on('value' , function(snap){
-            var readingsArr = [];
-            snap.forEach(function(n){
-                readingsArr.push(parseFloat(n.val()["reading"]));
-            });
-            if(readingsArr.length>0){
-                var min = Math.min.apply(null,readingsArr);
-                var max = Math.max.apply(null,readingsArr);
-                var avg=0;
-                for(var x in readingsArr){
-                    avg += readingsArr[x];
-                }
-                avg = (avg/readingsArr.length).toFixed(2);
-                dataRef.child('temp').child("current").set(readingsArr[readingsArr.length-1]);
-                dataRef.child('temp').child("min").set(parseFloat(min));
-                dataRef.child('temp').child("max").set(parseFloat(max));
-                dataRef.child('temp').child("avg").set(parseFloat(avg));
-            }
-            else{
-                dataRef.child('temp').child("current").set(0);
-                dataRef.child('temp').child("min").set(0);
-                dataRef.child('temp').child("max").set(0);
-                dataRef.child('temp').child("avg").set(0);
-            }
-        });
-    };
-
-
-    /**
-     * @memberOf App
-     * @method componentDidMount - Standard React.js method
-     *
-     * */
     componentDidMount(){
-        //get some device here
-        var device = "pi-1";
-        this.setState({
-            device: device,
-        });
-
-        /**
-         * @memberOf App
-         * @method getSensorName - Maps a firebase name to a sensor name
-         * @param {string} key - The abbreviation to be converted
-         * @return {string} result
-         * */
-
-        function getSensorName(key){
-            return key==="conc" ? "Nutrient Concentration (g/l)"
-                : key==="temp" ? "Water Temperature (C)"
-                    : key==="oxygen" ? "Dissolved Oxygen (cm3/l)"
-                        : key==="humidity" ? "Humidity (%)"
-                            : "Unavailable";
-        }
-
-        const dataRef = fire.database().ref("systems").child(device);
-
-        dataRef.on("value", snap => {
-            var sensorData = [];
-            var count = 0;
-            snap.forEach(function(sensor){
-                if(sensor.child("status").val()){
-                    sensorData[count] = {
-                        id: getSensorName(sensor.key)
-                    };
-                    sensor.forEach(function(val){
-                        sensorData[count][val.key] = val.val();
-                    });
-                    count++;
-                }
-            });
-            this.setState({
-                sensors: sensorData
-            })
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({user:user})
         });
     }
+
+    checkLogin = () => {
+
+        if(this.state.user){
+            return(
+                &lt;Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={Dashboard}/>
+            )
+        }
+        else{
+            return(
+                &lt;Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}/>
+            )
+        }
+    };
 
     /**
      * @memberOf App
@@ -178,23 +75,29 @@ class App extends Component {
      *
      * */
     render() {
+
         return (
-            &lt;div className="App">
-                &lt;ToolbarTop />
-                &lt;SensorCard sensors={this.state.sensors} device={this.state.device}/>
-                &lt;div>
-                    &lt;form onSubmit={this.updateData.bind(this)}>
-                        &lt;label>Update conc avg value&lt;/label>
-                        &lt;input type="text" ref={ el => this.inputEl = el }/>
-                        &lt;input type="submit"/>
-                    &lt;/form>
-                    &lt;form onSubmit={this.addData.bind(this)}>
-                        &lt;label>Add data readings to temp for calculations&lt;/label>
-                        &lt;input type="text" ref={ el => this.inputEl2 = el }/>
-                        &lt;input type="submit"/>
-                    &lt;/form>
+            &lt;BrowserRouter>
+                &lt;div className="App">
+                    &lt;NavbarFeatures/>
+                    &lt;div className="container-fluid">
+                        &lt;div className="row">
+                            &lt;div className="container mt-5">
+                                &lt;div className="row mt-4">
+                                    &lt;Switch>
+                                        {this.checkLogin()}
+                                        &lt;Route path='/system/:id' component={System}/>
+                                        &lt;Route path='/signout' component={SignOut}/>
+                                        &lt;Route path='/configuration' component={Configuration}/>
+                                        &lt;Route path='/support' component={Support}/>
+                                        &lt;Route path='/about' component={About}/>
+                                    &lt;/Switch>
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
                 &lt;/div>
-            &lt;/div>
+            &lt;/BrowserRouter>
         );
     }
 }
@@ -210,15 +113,13 @@ export default App;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="ToolbarTop.html">ToolbarTop</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dataTable-Reactfunctioncomponent.RendersaMaterialDesigntablecontainingsensorvalues.Tablewasabstractedasaseparatecomponenttobeimplementedelsewhereaswell.">dataTable - React function component. Renders a Material Design table containing sensor values. Table was
-abstracted as a separate component to be implemented elsewhere as well.</a></li><li><a href="global.html#sensorCard-Reactfunctioncomponent.RendersaMaterialDesigncardcontainingcontrollerinformationandatable">sensorCard - React function component. Renders a Material Design card containing controller information
-and a table</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="SignedOut.html">SignedOut</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Oct 16 2018 23:10:27 GMT-0400 (AST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Nov 29 2018 23:22:32 GMT-0400 (AST)
 </footer>
 
 <script> prettyPrint(); </script>

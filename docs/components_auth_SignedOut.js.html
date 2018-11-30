@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/auth/SignedOut.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/auth/SignedOut.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
+import { Card, CardHeader, CardBody, Fa } from 'mdbreact';
+import firebase from "../../fire";
+
+
+class SignedOut extends Component  {
+
+    /**
+     * @methodOf SignedOut
+     * @desc Initializes the component, ready to accept input from the user
+     */
+    constructor() {
+        super();
+        this.state = {
+            email:"",
+            password:"",
+            errorMessage1: "",
+            errorMessage2: "",
+            auth: "signinbtn"
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSignIn = this.handleSignIn.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
+    }
+
+    /**
+     * @methodOf SignedOut
+     * @desc Updates the state with the input. Due to [e.target.name] being used, this function will
+     * work for both the e-mail and password input fields
+     * @param {Event} e - captures a keypress
+     */
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    };
+
+    /**
+     * @methodOf SignedOut
+     * @desc Signs a user into the system through a Firebase Auth backend.
+     * @param {Event} e - captures a submit event
+     */
+    handleSignIn(e) {
+        e.preventDefault();
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
+            this.setState({
+                errorMessage1:error.message
+            });
+        });
+
+        this.props.history.push("/");
+    };
+
+    /**
+     * @methodOf SignedOut
+     * @desc Adds a user to the Firebase Auth backend using their e-mail and password
+     * @param {Event} e - captures a submit event
+     */
+    handleSignUp(e) {
+        e.preventDefault();
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
+            this.setState({
+                errorMessage2:error.message
+            });
+        });
+
+        this.props.history.push("/");
+    };
+
+    /**
+     * @methodOf SignedOut
+     * @desc Switches between the Sign-In form and the Sign-up form on the login page
+     */
+    toggleScreen(){
+        if(this.state.auth==="signinbtn"){
+            return(
+                &lt;Card>
+                    &lt;CardHeader className="text-center" color="primary-color">Sign In&lt;/CardHeader>
+                    &lt;CardBody>
+                        &lt;form onSubmit={this.handleSignIn} id = "form1">
+                            &lt;div className="input-field mb-3 d-flex justify-content-around">
+                                &lt;Fa className="grey-text mr-3" size="2x" icon="envelope"/>
+                                &lt;input className="form-control" type="email" id="email1" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
+                            &lt;/div>
+                            &lt;div className="input-field mb-3 d-flex justify-content-around">
+                                &lt;Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"/>
+                                &lt;input className="form-control" type="password" id="password1" name="password" onChange={this.handleChange} placeholder="Password"/>
+                            &lt;/div>
+                            &lt;span className="red-text d-flex justify-content-center">{this.state.errorMessage1}&lt;/span>
+                            &lt;div className="input-field d-flex justify-content-around">
+                                &lt;button className="btn primary-color lighten-1 z-depth-0" id = "login_btn">Login&lt;/button>
+                            &lt;/div>
+                        &lt;/form>
+                    &lt;/CardBody>
+                &lt;/Card>
+            )
+        }
+        else{
+            return(
+                &lt;Card>
+                    &lt;CardHeader className="text-center" color="secondary-color">Sign Up&lt;/CardHeader>
+                    &lt;CardBody>
+                        &lt;form onSubmit={this.handleSignUp} id = "form2">
+                            &lt;div className="input-field mb-3 d-flex justify-content-around">
+                                &lt;Fa className="grey-text mr-3" size="2x" icon="envelope"/>
+                                &lt;input className="form-control" type="email" id="email2" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
+                            &lt;/div>
+                            &lt;div className="input-field mb-3 d-flex justify-content-around">
+                                &lt;Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"/>
+                                &lt;input className="form-control" type="password" id="password2" name="password" onChange={this.handleChange} placeholder="Password"/>
+                            &lt;/div>
+                            &lt;span className="red-text d-flex justify-content-center">{this.state.errorMessage2}&lt;/span>
+                            &lt;div className="input-field d-flex justify-content-around">
+                                &lt;button className="btn secondary-color lighten-1 z-depth-0" id = "signup_btn">Sign Up&lt;/button>
+                            &lt;/div>
+                        &lt;/form>
+                    &lt;/CardBody>
+                &lt;/Card>
+            )
+        }
+    }
+
+    render() {
+        return(
+            &lt;div className="container-fluid">
+                &lt;div className="row mb-3">
+                    &lt;div className="container-fluid text-center">
+                        &lt;h2>PiDronics Monitoring System&lt;/h2>
+                        &lt;p>Manage complicated hydroponic farms with ease!&lt;/p>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="row mb-3 d-flex justify-content-center">
+                    &lt;button className="btn primary-color" id="signinbtn" name="auth" value="signinbtn" onClick={this.handleChange}>Sign In&lt;/button>
+                    &lt;button className="btn secondary-color" id="signupbtn" name="auth" value="signupbtn" onClick={this.handleChange}>Sign Up&lt;/button>
+                &lt;/div>
+                &lt;div className="row d-flex justify-content-center">
+                    &lt;div className="col-lg-6 mb-3">
+                        {this.toggleScreen()}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+}
+
+export default SignedOut;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="SignedOut.html">SignedOut</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Nov 29 2018 23:22:32 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
