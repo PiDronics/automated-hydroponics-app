@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/modal/ModalConfig.js</title>
+    <title>JSDoc: Source: components/modal/ModalConfigAdd.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/modal/ModalConfig.js</h1>
+    <h1 class="page-title">Source: components/modal/ModalConfigAdd.js</h1>
 
     
 
@@ -27,69 +27,71 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
-import { Container, Button, Modal, ModalBody, ModalHeader } from 'mdbreact';
+import { Container, Button, Modal, ModalBody, ModalHeader, Fa } from 'mdbreact';
 import firebase from '../../fire';
 
 /**
- * @class ModalConfig
- * @desc Responsible for editing configuration data for a raspberry pi system. Options are displayed in a Modal
+ * @class ModalConfigAdd
+ * @desc Responsible for adding a new raspberry pi system to the UI. A modal with a form is displayed and asks the
+ * user for information
  */
-class ModalConfig extends Component {
+class ModalConfigAdd extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            modal: false,
-            name: props.name,
-            time: props.time,
-            successMsg: "",
-            errorMessage: ""
-        };
-
         this.toggle = this.toggle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.deleteSystem = this.deleteSystem.bind(this);
+
+        this.state = {
+            name: "",
+            time: "5",
+            serial: ""
+        };
     }
 
     /**
-     * @memberOf ModalConfig
-     * @desc Responsible for opening and closing the modal
+     * @memberOf ModalConfigAdd
+     * @desc Responsible for opening and closing the modal. Also resets the modal form to its default values.
      */
     toggle() {
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
+            name: "",
+            time: "5",
+            serial: "",
+            successMsg: "",
+            errorMessage: ""
         });
-    }
-
+    };
 
     /**
-     * @memberOf ModalConfig
-     * @desc Responsible for updating the state based on the user input. Reads the event object to automatically
-     * determine whether "name" or "time" input fields were changed.
-     * @param {Event} event - A keypress event or an update in the dropdown menu
+     * @memberOf ModalConfigAdd
+     * @desc Updates the component state when the user inputs data
+     * @param {Event} e - A keypress event or when the dropdown form is updated
      */
-    handleChange(event) {
-        event.preventDefault();
+    handleChange(e) {
+        e.preventDefault();
 
         this.setState({
-            [event.target.name]: event.target.value,
+            [e.target.name]: e.target.value,
             successMsg: "",
             errorMessage: ""
         })
-    }
+    };
 
     /**
-     * @memberOf ModalConfig
-     * @desc Responsible for uploading form data to Firebase and display any errors
-     * @param {Event} e - A submit event
+     * @memberOf ModalConfigAdd
+     * @desc Takes the form data and submits information to Firebase. Also displays the appropriate error message
+     * @param {Event} e - The submit event
      */
     handleSubmit(e) {
         e.preventDefault();
 
         var obj = {};
 
+        obj.serial = e.target.serial.value;
         obj.name = e.target.name.value;
         obj.time = e.target.time.value;
 
@@ -97,7 +99,13 @@ class ModalConfig extends Component {
             ...obj
         });
 
-        if(this.state.name.length > 30 || this.state.name.length &lt; 1){
+        if(this.state.serial.length&lt;1 || this.state.serial.indexOf(" ") > -1){
+            this.setState({
+                successMsg: "",
+                errorMessage: "The serial number cannot have spaces or be empty."
+            })
+        }
+        else if(this.state.name.length > 30 || this.state.name.length &lt; 1){
             this.setState({
                 successMsg: "",
                 errorMessage: "The system name must be between 1 and 30 characters long."
@@ -113,77 +121,47 @@ class ModalConfig extends Component {
             firebase.auth().onAuthStateChanged(user => {
                 if(user){
                     var uid = user.uid;
-                    var system = this.props.system;
 
                     const dataRef = firebase.database().ref();
 
-                    var updates = {};
+                    var newSystem = {};
 
-                    updates["/users/" + uid + "/systemCard/" + system + "/systemName"] = this.state.name;
-                    updates["/systems/" + system + '/' + uid + "/systemName"] = this.state.name;
-                    updates["/systems/" + system + '/' + uid + "/interval"] = this.state.time;
+                    dataRef.child("/systems/"+this.state.serial).once("value",snap => {
+                        if(snap.exists()){
+                            this.setState({
+                                successMsg: "",
+                                errorMessage: "This system serial already in use. If you own this system, please use the Edit System button to configure." +
+                                    "If you do not own this system, please check to make sure your serial is correct. Contact Support for more help if needed."
+                            });
+                        }
+                        else{
+                            newSystem["/users/" + uid + "/systemCard/" + this.state.serial + "/systemName"] = this.state.name;
+                            newSystem["/users/" + uid + "/systemCard/" + this.state.serial + "/lastUpdated"] = "[Not updated]";
+                            newSystem["/users/" + uid + "/systemData/" + this.state.serial + "/lastUpdated"] = "[Not updated]";
+                            newSystem["/systems/" + this.state.serial + '/' + uid + "/systemName"] = this.state.name;
+                            newSystem["/systems/" + this.state.serial + '/' + uid + "/interval"] = this.state.time;
+                            newSystem["/systems/" + this.state.serial + "/user"] = uid;
 
-                    dataRef.update(updates).then(() => {
-                        this.setState({
-                            successMsg: "Updated successfully!",
-                            errorMessage: ""
-                        });
-                    }
-                    ,(error) => {
-                        this.setState({
-                            successMsg: "",
-                            errorMessage: error.message
-                        });
-                    });
-                }
-                else{
-                    this.props.history.push("/");
-                }
-            });
-        }
-    }
-
-    /**
-     * @memberOf ModalConfig
-     * @desc Responsible for removing a system from Firebase and display appropriate errors
-     * @param {Event} e - A button click event
-     */
-    deleteSystem(e) {
-        e.preventDefault();
-
-        if(window.confirm("You you sure you wish to delete this system?\n You cannot undo these changes!")){
-            firebase.auth().onAuthStateChanged(user => {
-                if(user){
-                    var uid = user.uid;
-                    var system = this.props.system;
-
-                    const dataRef = firebase.database().ref();
-
-                    var remove = {};
-
-                    remove["/users/" + uid + "/systemCard/" + system] = null;
-                    remove["/users/" + uid + "/systemData/" + system] = null;
-                    remove["/systems/" + system] = null;
-
-                    dataRef.update(remove).then(() => {
-                        this.setState({
-                            successMsg: "Deleted successfully!",
-                            errorMessage: ""
-                        });
-                    }
-                    ,(error) => {
-                        this.setState({
-                            successMsg: "",
-                            errorMessage: error.message
-                        });
+                            dataRef.update(newSystem, error => {
+                                if(error){
+                                    this.setState({
+                                        successMsg: "",
+                                        errorMessage: error.message
+                                    })
+                                }
+                                else{
+                                    this.setState({
+                                        successMsg: "Added successfully!",
+                                        errorMessage: ""
+                                    });
+                                }
+                            });
+                        }
                     });
                 }
             });
         }
-        else{
-            this.toggle();
-        }
-    }
+    };
 
     componentDidMount(){
 
@@ -192,25 +170,29 @@ class ModalConfig extends Component {
     render() {
         return (
             &lt;Container>
-                &lt;div className="d-flex justify-content-around">
-                    &lt;Button id = "toggleModal" color="blue" onClick={this.toggle}>Edit System&lt;/Button>
+                &lt;div className="d-flex justify-content-end">
+                    &lt;Button onClick={this.toggle} color="blue" size="sm">&lt;Fa icon="plus"/> Add New System&lt;/Button>
                 &lt;/div>
 
                 &lt;Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    &lt;ModalHeader toggle={this.toggle}>Edit System&lt;/ModalHeader>
+                    &lt;ModalHeader toggle={this.toggle}>Add System&lt;/ModalHeader>
                     &lt;ModalBody>
                         &lt;form onSubmit={this.handleSubmit}>
                             &lt;div className="container-fluid text-center">
                                 &lt;div className="row">
                                     &lt;div className="col-lg-12">
                                         &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="serial">System Serial&lt;/label>
+                                            &lt;input className="form-control" type="text" name="serial" id="serial" onChange={this.handleChange.bind(this)} defaultValue={this.state.serial}/>
+                                        &lt;/div>
+                                        &lt;div className="input-field mb-3">
                                             &lt;label htmlFor="name">System Name&lt;/label>
-                                            &lt;input className="form-control" type="text" name="name" id="name" onChange={this.handleChange} defaultValue={this.state.name}/>
+                                            &lt;input className="form-control" type="text" name="name" id="name" onChange={this.handleChange.bind(this)} defaultValue={this.state.name}/>
                                         &lt;/div>
                                         &lt;div className="input-field mb-3">
                                             &lt;label htmlFor="time">Update Interval&lt;/label>
                                             &lt;div className="d-flex justify-content-start">
-                                                &lt;select className="form-control" name="time" id="time" onChange={this.handleChange} defaultValue={this.state.time}>
+                                                &lt;select className="form-control" name="time" id="time" onChange={this.handleChange.bind(this)} defaultValue={this.state.time}>
                                                     &lt;option value="5">5&lt;/option>
                                                     &lt;option value="6">6&lt;/option>
                                                     &lt;option value="7">7&lt;/option>
@@ -247,7 +229,6 @@ class ModalConfig extends Component {
                             &lt;span className="green-text d-flex justify-content-center text-center">{this.state.successMsg}&lt;/span>
                             &lt;div className="input-field d-flex justify-content-around">
                                 &lt;button className="btn success-color lighten-1 z-depth-0" id ="save_btn">Save&lt;/button>
-                                &lt;button className="btn danger-color lighten-1 z-depth-0" id ="delete_btn" onClick={this.deleteSystem}>Delete System&lt;/button>
                             &lt;/div>
                         &lt;/form>
                     &lt;/ModalBody>
@@ -257,7 +238,7 @@ class ModalConfig extends Component {
     }
 }
 
-export default ModalConfig;
+export default ModalConfigAdd;
 </code></pre>
         </article>
     </section>

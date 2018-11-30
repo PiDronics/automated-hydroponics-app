@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 import { Container, Button, Modal, ModalBody, ModalHeader, Fa } from 'mdbreact';
 import firebase from '../../fire';
 
+/**
+ * @class ModalConfigAdd
+ * @desc Responsible for adding a new raspberry pi system to the UI. A modal with a form is displayed and asks the
+ * user for information
+ */
 class ModalConfigAdd extends Component {
 
     constructor(props) {
         super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
             name: "",
@@ -14,7 +23,11 @@ class ModalConfigAdd extends Component {
         };
     }
 
-    toggle = () => {
+    /**
+     * @memberOf ModalConfigAdd
+     * @desc Responsible for opening and closing the modal. Also resets the modal form to its default values.
+     */
+    toggle() {
         this.setState({
             modal: !this.state.modal,
             name: "",
@@ -25,7 +38,12 @@ class ModalConfigAdd extends Component {
         });
     };
 
-    handleChange = (e) => {
+    /**
+     * @memberOf ModalConfigAdd
+     * @desc Updates the component state when the user inputs data
+     * @param {Event} e - A keypress event or when the dropdown form is updated
+     */
+    handleChange(e) {
         e.preventDefault();
 
         this.setState({
@@ -35,7 +53,12 @@ class ModalConfigAdd extends Component {
         })
     };
 
-    handleSubmit = (e) => {
+    /**
+     * @memberOf ModalConfigAdd
+     * @desc Takes the form data and submits information to Firebase. Also displays the appropriate error message
+     * @param {Event} e - The submit event
+     */
+    handleSubmit(e) {
         e.preventDefault();
 
         var obj = {};
