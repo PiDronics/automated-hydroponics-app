@@ -35,6 +35,4 @@ code {
   background-size: cover;
 }
 
-.black {
-  color: black;
-}
+.click { cursor: pointer; }
