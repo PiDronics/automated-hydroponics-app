@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/configuration/Configuration.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/configuration/Configuration.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
+import firebase from "../../fire";
+import SystemCardConfig from "./SystemCardConfig";
+import ModalConfigAdd from "../modal/ModalConfigAdd";
+
+/**
+ *@class Configuration
+ */
+class Configuration extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            userSystems: [],
+            error_message: ""
+        }
+    }
+
+
+    /**
+     * @desc Simply adds the UID as an additional field inside the sensor Firebase object
+     * @param {DataSnapshot} userData - References a sensor under the "systems" key in the Firebase Database
+     * @param {DataSnapshot} userName - References a particular UID in the Firebase Database
+     * @return {any} - Returns an object with information for that system
+     */
+    extractData(userData, userName) {
+        var extracted = userData.child(userName).val();
+        extracted["system"] = userData.key;
+        return extracted;
+    }
+
+    /**
+     * @desc Grabs configuration data for each sensor and adds it to the state
+     * @param {DataSnapshot} snap - References all sensors in the Firebase Database
+     * @param {String} uid - References to the UID of the user currently logged in
+     */
+    processDBData(snap, uid) {
+        var userSystems = [];
+        snap.forEach((userData) =>{
+            var userName = userData.child("user").val();
+            if(userName === uid){
+                var obj = userData.child(userName).val();
+                obj["system"] = userData.key;
+                userSystems.push(this.extractData(userData, userName));
+            }
+        });
+        if(userSystems.length>0){
+            this.setState({
+                error_message: "",
+                userSystems: userSystems
+            });
+        }
+        else{
+            this.setState({
+                error_message: "You have no systems under this account."
+            });
+        }
+    }
+
+    /**
+     * @desc If the user is logged in, then grab the configuration data for all the sensors
+     * Else, display an error
+     */
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                var uid = user.uid;
+
+                const dataRef = firebase.database().ref();
+
+                dataRef.child("systems").on("value", snap => {
+                    this.processDBData(snap, uid);
+                },error => {
+                    this.setState({
+                        error_message: error.message
+                    });
+                });
+            }
+        });
+    }
+
+    render() {
+        return (
+            &lt;div className="container-fluid">
+                &lt;div className="row">
+                    &lt;div className="container-fluid text-center">
+                        &lt;h1>Configuration&lt;/h1>
+                        &lt;h6>Modify your system settings here. Select any of you systems you wish to edit or add a new system!&lt;/h6>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="row mt-2">
+                    &lt;div className="container-fluid d-flex justify-content-end">
+                        &lt;ModalConfigAdd/>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="row mt-2">
+                    &lt;div className="container-fluid">
+                        &lt;div className="row">
+                            &lt;div className="container-fluid d-flex justify-content-center">
+                                &lt;p className="text-danger text-center">{this.state.error_message}&lt;/p>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="row mt-2">
+                    &lt;div className="container-fluid">
+                        &lt;div className="row">
+                            {this.state.userSystems &amp;&amp; this.state.userSystems.map(system => {
+                                return (
+                                    &lt;SystemCardConfig name={system.systemName} time={system.interval} key={system.system} system={system.system}/>
+                                );
+                            })}
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+}
+
+export default Configuration;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Configuration.html">Configuration</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 30 2018 00:07:20 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
