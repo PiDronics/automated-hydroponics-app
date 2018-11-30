@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Collapse, Card, CardBody, Container, Row, Fa } from 'mdbreact';
+import {Collapse, Card, CardBody, Container, Row, Fa, Button } from 'mdbreact';
 
 class Support extends Component {
   constructor(props) {
@@ -26,42 +26,44 @@ class Support extends Component {
     <Container>
         <Row className="align-items-center mt-5">
             <h2 className="grey-text" style={{margin: "0px"}}>
-                FAQ
+                Frequently Asked Questions
             </h2>
-            <a className="border grey-text px-1 border-light rounded ml-2" target="_blank"  href="#"><Fa icon="question-circle" className="mr-2"/>Frequently Asked Questions</a>
+            <span className="click border grey-text px-1 border-light rounded ml-2"><Fa icon="question-circle" className="mr-2"/>FAQ</span>
         </Row>
         <hr className="mb-5" />
+        <h5>Click below for responses to frequently asked questions.</h5>
 
-    <Container>
-        <h5 className="grey-text" style={{margin: "0px"}}>
-        <a href="#basics">
-            Basics</a>
+    {/* Not sure if needed, may take out */}
+    <Row className="align-items-center mt-5">
+        <h5 className="grey-text" style={{margin: "5px"}}>
+        <Button href="#basics">
+            Basics</Button>
         </h5>
-        <h5 className="grey-text" style={{margin: "0px"}}>
-        <a href="#product">
-            Product</a>
+        <h5 className="grey-text" style={{margin: "5px"}}>
+        <Button href="#product">
+            Product</Button>
         </h5>
-        <h5 className="grey-text" style={{margin: "0px"}}>
-        <a href="#account">
-            Account</a>
+        <h5 className="grey-text" style={{margin: "5px"}}>
+        <Button href="#account">
+            Account</Button>
         </h5>
-        <h5 className="grey-text" style={{margin: "0px"}}>
-        <a href="#payments">
-            Payments</a>
+        <h5 className="grey-text" style={{margin: "5px"}}>
+        <Button href="#payments">
+            Payments</Button>
         </h5>
-        <h5 className="grey-text" style={{margin: "0px"}}>
-        <a href="#privacy">
-            Privacy and Security</a>
+        <h5 className="grey-text" style={{margin: "5px"}}>
+        <Button href="#privacy">
+            Privacy and Security</Button>
         </h5>
+    </Row>
 
     <Container className="md-accordion mt-5">
-    <style>{'Badge.h4 { color: #000000 !important;'}</style>
         <div id = "basics">
             <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
                 Basics
             </h2>
-            <Card >
-            <a onClick={this.toggleCollapse('collapse1')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light "><h5>How do I sign up? </h5><i className={collapseID === 'collapse2' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> </a>
+            <Card className=" transparent border-0 border-light">
+            <span onClick={this.toggleCollapse('collapse1')} className=" click d-flex p-2 transparent blue-text border-bottom border-light "><h5>How do I sign up? </h5><i className={collapseID === 'collapse2' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down ml-3'}></i> </span>
 
             {/* <Badge  text="black" onClick={this.toggleCollapse('collapse1')} color="success"><h5 text="black">New</h5></Badge>
             <style>{'Badge.h4 { color: #000000 !important;'}</style> */}
@@ -81,22 +83,22 @@ class Support extends Component {
             <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
                 Product - PiDronics
             </h2>
-            <Card>
-                <a onClick={this.toggleCollapse('collapse2')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Do I require an internet connection for PiDronics?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse2')} className="click d-flex p-2 transparent blue-text border-bottom border-light"><h5>Do I require an internet connection for PiDronics?</h5>
                     <i className={collapseID === 'collapse2' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse2" isOpen={collapseID}>
-                    <CardBody>
+                    <CardBody className = "grey-text">
                         Yes, to enable remote cloud monitoring from your smartphone or web browser. Data and roaming charges may apply.
                     </CardBody>
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse3')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Can I upgrade my my setup with additional sensors?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse3')} className="click d-flex p-2 transparent blue-text border-bottom border-light"><h5>Can I upgrade my my setup with additional sensors?</h5>
                     <i className={collapseID === 'collapse3' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse3" isOpen={collapseID}>
                     <CardBody>
@@ -106,10 +108,10 @@ class Support extends Component {
             </Card>
 
             
-            <Card>
-                <a onClick={this.toggleCollapse('collapse4')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Can I give other members of my farm access to my remote monitor?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse4')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>Can I give other members of my farm access to my remote monitor?</h5>
                     <i className={collapseID === 'collapse4' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse4" isOpen={collapseID}>
                     <CardBody>
@@ -118,10 +120,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse5')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Will I receive updates and improvements that are released? Will my Raspberry Pi also receive updates?</h5>
+            <Card className=" transparent border-0 border-light"> 
+                <span onClick={this.toggleCollapse('collapse5')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>Will I receive updates and improvements that are released? Will my Raspberry Pi also receive updates?</h5>
                     <i className={collapseID === 'collapse5' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse5" isOpen={collapseID}>
                     <CardBody>
@@ -130,10 +132,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse6')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>My area is prone to power outages. How will this affect the performance of my monitoring system?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse6')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>My area is prone to power outages. How will this affect the performance of my monitoring system?</h5>
                     <i className={collapseID === 'collapse6' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse6" isOpen={collapseID}>
                     <CardBody>
@@ -142,10 +144,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse7')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Am I liable for any damages to the system? </h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse7')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>Am I liable for any damages to the system? </h5>
                     <i className={collapseID === 'collapse7' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse7" isOpen={collapseID}>
                     <CardBody>
@@ -154,10 +156,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse8')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>What is included in my PiDronics package?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse8')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>What is included in my PiDronics package?</h5>
                     <i className={collapseID === 'collapse8' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse8" isOpen={collapseID}>
                     <CardBody>
@@ -166,10 +168,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse9')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>I don't know how to use my system or how to install it.</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse9')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>I don't know how to use my system or how to install it.</h5>
                     <i className={collapseID === 'collapse9' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
             
                 <Collapse id="collapse9" isOpen={collapseID}>
                     <CardBody>
@@ -183,10 +185,10 @@ class Support extends Component {
             <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
                 Account
             </h2>
-            <Card>
-                <a onClick={this.toggleCollapse('collapse10')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>How do I change my password?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse10')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>How do I change my password?</h5>
                 <i className={collapseID === 'collapse10' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse10" isOpen={collapseID}>
                     <CardBody>
@@ -195,10 +197,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse11')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>How do I delete my account?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse11')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>How do I delete my account?</h5>
                 <i className={collapseID === 'collapse11' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse11" isOpen={collapseID}>
                     <CardBody>
@@ -207,10 +209,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse12')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>How do I change my account settings?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse12')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>How do I change my account settings?</h5>
                 <i className={collapseID === 'collapse12' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse12" isOpen={collapseID}>
                     <CardBody>
@@ -219,10 +221,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse13')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>I forgot my password. How do I reset it?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse13')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>I forgot my password. How do I reset it?</h5>
                 <i className={collapseID === 'collapse13' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse13" isOpen={collapseID}>
                     <CardBody>
@@ -236,10 +238,10 @@ class Support extends Component {
             <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
                 Payments
             </h2>
-            <Card>
-                <a onClick={this.toggleCollapse('collapse14')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"> <h5>Coming Soon</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse14')} className="click d-flex p-2 blue-text border-bottom border-light"> <h5>Coming Soon</h5>
                 <i className={collapseID === 'collapse14' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse14" isOpen={collapseID}>
                     <CardBody>
@@ -253,10 +255,10 @@ class Support extends Component {
             <h2 style={{marginBottom: "30px", marginTop: "30px"}}>
                 Privacy and Security
             </h2>
-            <Card>
-                <a onClick={this.toggleCollapse('collapse15')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>Can anyone access my information?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse15')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>Can anyone access my information?</h5>
                 <i className={collapseID === 'collapse15' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse15" isOpen={collapseID}>
                     <CardBody>
@@ -265,10 +267,10 @@ class Support extends Component {
                 </Collapse>
             </Card>
 
-            <Card>
-                <a onClick={this.toggleCollapse('collapse16')} className="d-flex p-2 grey lighten-4 blue-text border-bottom border-light"><h5>If I lose or have my smartphone stolen, how is my data protected?</h5>
+            <Card className=" transparent border-0 border-light">
+                <span onClick={this.toggleCollapse('collapse16')} className="click d-flex p-2 blue-text border-bottom border-light"><h5>If I lose or have my smartphone stolen, how is my data protected?</h5>
                 <i className={collapseID === 'collapse16' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </a>
+                </span>
 
                 <Collapse id="collapse16" isOpen={collapseID}>
                     <CardBody>
@@ -277,12 +279,9 @@ class Support extends Component {
                 </Collapse>
             </Card>
         </div>
-        </Container>
-        </Container>
-        </Container>
-
-
-     </div>
+    </Container>
+    </Container>
+    </div>
     );
   }
 }
