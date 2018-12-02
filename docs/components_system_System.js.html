@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/system/System.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/system/System.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import Sensor from '../sensor/Sensor';
+import firebase from '../../fire';
+
+/**
+ * @class System
+ * @desc Displays all relevant information for a single system. This includes the name, last updated and
+ * all the connected sensors to the raspberry pi unit
+ */
+class System extends Component{
+
+    constructor(props){
+        super();
+
+        this.state = {
+            id: props.match.params.id,
+            lastUpdated: "",
+            sensors: [],
+            systemName: "",
+            error_message: ""
+        }
+    }
+
+
+    /**
+     * @memberOf System
+     * @desc Retrieves summary information about this system and populates the component state with it
+     * @param {DataSnapshot} snap - A Firebase reference to general overview information about this system
+     */
+    getSummary = (snap) => {
+        var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
+        var systemName = snap.child("systemName").val();
+
+        this.setState({
+            lastUpdated, systemName
+        })
+    };
+
+    /**
+     * @memberOf System
+     * @desc Retrieves a list of all sensors under this system and adds it to the global list of sensors
+     * @param {DataSnapshot} snap - A Firebase reference to the list of all sensors
+     */
+    getSensorData = (snap) => {
+        var sensors = [];
+        snap.forEach((sensor) => {
+            if(sensor.val().enabled){
+                var obj = sensor.val();
+                obj["sensorName"] = sensor.key;
+                sensors.push(obj);
+            }
+        });
+
+        if(sensors.length>0){
+            this.setState({
+                error_message: ""
+            });
+        }
+        else{
+            this.setState({
+                error_message: "There are no enabled sensors in this system"
+            });
+        }
+
+        this.setState({
+            sensors:sensors
+        })
+    };
+
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                var uid = user.uid;
+
+                const dataRef = firebase.database().ref("users/"+uid);
+
+                dataRef.child("systemCard/"+this.state.id).on("value", snap => {
+                    this.getSummary(snap);
+                },error => {
+                    this.setState({
+                        error_message: error.message
+                    });
+                });
+
+                dataRef.child("systemData/"+this.state.id + "/sensors").on("value", snap => {
+                    this.getSensorData(snap);
+                },error => {
+                    this.setState({
+                        error_message: error.message
+                    });
+                });
+
+            } else {
+                this.props.history.push("/");
+            }
+        });
+    };
+
+    render(){
+        return (
+            &lt;div className="container-fluid">
+                &lt;div className="row">
+                    &lt;div className="container-fluid text-center">
+                        &lt;h1 id = "systemName">{this.state.systemName}&lt;/h1>
+                        &lt;h6 id = "lastUpdated" className="font-italic text-muted">{this.state.lastUpdated}&lt;/h6>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="row mt-2">
+                    &lt;div className="container-fluid">
+                        &lt;div className="row">
+                            &lt;div className="container-fluid d-flex justify-content-center">
+                                &lt;p className="text-danger text-center">{this.state.error_message}&lt;/p>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="row" id = "sensorList">
+                    {this.state.sensors &amp;&amp; this.state.sensors.map(sensor => {
+                        return (
+                            &lt;Sensor sensorName={sensor.sensorName} key={sensor.sensorName} min={sensor.min} max={sensor.max} avg={sensor.avg} current={sensor.current} device={this.state.id}/>
+                        );
+                    })}
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+}
+
+export default System;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Configuration.html">Configuration</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="ModalConfig.html">ModalConfig</a></li><li><a href="ModalConfigAdd.html">ModalConfigAdd</a></li><li><a href="ModalGraph.html">ModalGraph</a></li><li><a href="ModalGraphEdit.html">ModalGraphEdit</a></li><li><a href="NavbarFeatures.html">NavbarFeatures</a></li><li><a href="Sensor.html">Sensor</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li><li><a href="Support.html">Support</a></li><li><a href="System.html">System</a></li><li><a href="SystemCardConfig.html">SystemCardConfig</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 02 2018 16:08:11 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

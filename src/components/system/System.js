@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Sensor from '../sensor/Sensor';
 import firebase from '../../fire';
 
+/**
+ * @class System
+ * @desc Displays all relevant information for a single system. This includes the name, last updated and
+ * all the connected sensors to the raspberry pi unit
+ */
 class System extends Component{
 
     constructor(props){
@@ -13,11 +18,19 @@ class System extends Component{
             sensors: [],
             systemName: "",
             error_message: ""
-        }
+        };
+
+        this.getSummary = this.getSummary.bind(this);
+        this.getSensorData = this.getSensorData.bind(this);
     }
 
 
-    getSummary = (snap) => {
+    /**
+     * @memberOf System
+     * @desc Retrieves summary information about this system and populates the component state with it
+     * @param {DataSnapshot} snap - A Firebase reference to general overview information about this system
+     */
+    getSummary(snap) {
         var lastUpdated = "(last updated @ "+snap.child("lastUpdated").val()+")";
         var systemName = snap.child("systemName").val();
 
@@ -26,7 +39,12 @@ class System extends Component{
         })
     };
 
-    getSensorData = (snap) => {
+    /**
+     * @memberOf System
+     * @desc Retrieves a list of all sensors under this system and adds it to the global list of sensors
+     * @param {DataSnapshot} snap - A Firebase reference to the list of all sensors
+     */
+    getSensorData(snap) {
         var sensors = [];
         snap.forEach((sensor) => {
             if(sensor.val().enabled){
