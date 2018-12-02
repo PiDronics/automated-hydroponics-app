@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/modal/ModalGraphEdit.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/modal/ModalGraphEdit.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import { Container, Button, Modal, ModalBody, ModalHeader, ModalFooter, Fa } from 'mdbreact';
+import PropTypes from 'prop-types';
+
+/**
+ * @class ModalGraphEdit
+ * @desc Responsible for change the configuration of the graph. This allows a user to edit the range of the time
+ * interval along with other useful options. Automatically sets to the last 24 hours and previous settings
+ */
+class ModalGraphEdit extends Component {
+
+    constructor(props) {
+        super(props);
+
+        var currDate = new Date();
+        var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
+
+        const parsed_date = this.parseDate(currDate);
+
+        this.state = {
+            modal: false,
+            start: last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate(),
+            end: currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate(),
+            startHr: parsed_date.hr,
+            startMin: parsed_date.min,
+            startPer: parsed_date.per,
+            endHr: parsed_date.hr,
+            endMin: parsed_date.min,
+            endPer: parsed_date.per,
+            errorMessage: "",
+            successMsg: ""
+        };
+
+        this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Breaks up a Date Object into hours, minutes and AM/PM. The minutes are rounded to the nearest 5
+     * @param {Date} current_date - Represents today's date
+     * @return {Object} - An object containing hours, minutes and AM/PM
+     */
+    parseDate(current_date) {
+        let period = "am";
+        var hr = current_date.getHours();
+        if(hr > 12){
+            hr = (hr - 12);
+            period = "pm";
+        }
+        hr = hr.toString();
+        if(hr.length&lt;2) {
+            hr = "0" + hr;
+        }
+
+        var min = current_date.getMinutes();
+        var min_rounded = (5 * Math.round(min/5)).toString();
+
+        if(min_rounded.length&lt;2){
+            min_rounded = "0"+min_rounded;
+        }
+        return {
+            hr: hr,
+            min: min_rounded,
+            per: period
+        }
+    }
+
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc A reverse to the parseDate function; Responsible for taking a date formatted as a string, or number of
+     * hours, minutes and AM/PM and returns the appropriate Date Object
+     * @param {String} date - Date formatted as a string
+     * @param {Number} hr - hour
+     * @param {Number} min - minutes
+     * @param {String} per - AM/PM
+     * @return {Date} - A date Object
+     */
+    convertToDate(date, hr, min, per){
+        if(hr==null || min==null || per==null){
+            return (new Date(date));
+        }
+
+        if(parseInt(min)>=60){
+            min = 0;
+
+            if(parseInt(hr)===11 &amp;&amp; per==="pm"){
+                hr=0;
+                per="am";
+            }
+            else{
+                hr=parseInt(hr)+1;
+            }
+        }
+
+        if(per==="am"){
+            if(parseInt(hr)===12){
+                hr=0;
+            }
+        }
+        else if(per==="pm"){
+            if(hr&lt;12){
+                hr=parseInt(hr)+12;
+            }
+        }
+
+        hr = hr.toString();
+        min = min.toString();
+        var newHr = hr;
+
+        if(newHr.length&lt;2){
+            newHr = "0"+newHr;
+        }
+
+        if(min.length&lt;2){
+            min = "0"+min;
+        }
+
+        return new Date(date+"T"+newHr+":"+min+":00");
+    }
+
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Responsible for opening and closing the Modal window
+     */
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    };
+
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Updates state based on user input.
+     * @param {Event} e - A keypress event or the update of the dropdown menu
+     */
+    handleChange(e) {
+        e.preventDefault();
+
+        this.setState({
+            [e.target.name]: e.target.value,
+            errorMessage: "",
+            successMsg: ""
+        });
+    };
+
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Saves display configuration for the Modal Graph
+     * @param {Event} e - The Submit event
+     */
+    handleSubmit(e) {
+        e.preventDefault();
+
+        var obj = {};
+
+        obj.start = e.target.start.value;
+        obj.end = e.target.end.value;
+        obj.startHr = e.target.startHr.value;
+        obj.endHr = e.target.endHr.value;
+        obj.startMin = e.target.startMin.value;
+        obj.endMin = e.target.endMin.value;
+        obj.startPer = e.target.startPer.value;
+        obj.endPer = e.target.endPer.value;
+
+        this.setState({
+            ...obj
+        });
+
+        var values = this.checkValues();
+        if(values !== false){
+            this.props.callback(values);
+        }
+    };
+
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Responsible for validating all inputs made by the user. Displays the appropriate error message if bad
+     * data is given
+     * @return {*} - If settings are valid, returns an Object with the start and end date. If settings are invalid,
+     * returns false.
+     */
+    checkValues() {
+        var startFullDate = this.convertToDate(this.state.start, this.state.startHr, this.state.startMin, this.state.startPer);
+        var endFullDate = this.convertToDate(this.state.end, this.state.endHr, this.state.endMin, this.state.endPer);
+        // TODO - Throw exceptions for developers, throw snackbar or side modal for users
+        if(startFullDate > new Date()){
+            this.setState({
+                errorMessage: "The start date cannot be in the future.",
+                successMsg: ""
+            });
+        }
+        else if(startFullDate > endFullDate){
+            this.setState({
+                errorMessage: "The starting date and time cannot be later than the end date and time.",
+                successMsg: ""
+            });
+        }
+        else if(startFullDate.getTime() === endFullDate.getTime()){
+            this.setState({
+                errorMessage: "The start and end dates and times cannot be the same.",
+                successMsg: ""
+            });
+        }
+        else{
+            this.setState({
+                errorMessage: "",
+                successMsg: "Settings are valid!"
+            });
+            return {start: startFullDate.getTime(), end: endFullDate.getTime()};
+        }
+        return false;
+    };
+
+    componentDidMount(){
+        var values = this.checkValues();
+        if(values !== false){
+            this.props.callback(values);
+        }
+    }
+
+    render() {
+        return (
+            &lt;Container>
+                &lt;div className="d-flex justify-content-around">
+                    &lt;Button color="secondary" onClick={this.toggle}>Select Range&lt;/Button>
+                &lt;/div>
+
+                &lt;Modal isOpen={this.state.modal} toggle={this.toggle} size="lg">
+                    &lt;ModalHeader toggle={this.toggle}>Select Range&lt;/ModalHeader>
+                    &lt;ModalBody>
+                        &lt;form onSubmit={this.handleSubmit} id="graphValues">
+                            &lt;div className="container-fluid text-center">
+                                &lt;div className="row">
+                                    &lt;div className="col-lg-6 mb-2">
+                                        &lt;Fa icon="calendar" size="2x"/>
+                                        &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="start">Start Date&lt;/label>
+                                            &lt;input className="form-control" type="date" name="start" onChange={this.handleChange.bind(this)} defaultValue={this.state.start}/>
+                                        &lt;/div>
+                                        &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="end">End Date&lt;/label>
+                                            &lt;input className="form-control" type="date" name="end" onChange={this.handleChange.bind(this)} defaultValue={this.state.end}/>
+                                        &lt;/div>
+                                    &lt;/div>
+                                    &lt;div className="col-lg-6 mb-2">
+                                        &lt;Fa icon="clock-o" size="2x"/>
+                                        &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="sTime">Start Time&lt;/label>
+                                            &lt;div className="d-flex justify-content-start">
+                                                &lt;select className="form-control" name="startHr" onChange={this.handleChange.bind(this)} defaultValue={this.state.startHr}>
+                                                    &lt;option value="01">1&lt;/option>
+                                                    &lt;option value="02">2&lt;/option>
+                                                    &lt;option value="03">3&lt;/option>
+                                                    &lt;option value="04">4&lt;/option>
+                                                    &lt;option value="05">5&lt;/option>
+                                                    &lt;option value="06">6&lt;/option>
+                                                    &lt;option value="07">7&lt;/option>
+                                                    &lt;option value="08">8&lt;/option>
+                                                    &lt;option value="09">9&lt;/option>
+                                                    &lt;option value="10">10&lt;/option>
+                                                    &lt;option value="11">11&lt;/option>
+                                                    &lt;option value="12">12&lt;/option>
+                                                &lt;/select>
+                                                &lt;select className="form-control" name="startMin" onChange={this.handleChange.bind(this)} defaultValue={this.state.startMin}>
+                                                    &lt;option value="0">00&lt;/option>
+                                                    &lt;option value="5">05&lt;/option>
+                                                    &lt;option value="10">10&lt;/option>
+                                                    &lt;option value="15">15&lt;/option>
+                                                    &lt;option value="20">20&lt;/option>
+                                                    &lt;option value="25">25&lt;/option>
+                                                    &lt;option value="30">30&lt;/option>
+                                                    &lt;option value="35">35&lt;/option>
+                                                    &lt;option value="40">40&lt;/option>
+                                                    &lt;option value="45">45&lt;/option>
+                                                    &lt;option value="50">50&lt;/option>
+                                                    &lt;option value="55">55&lt;/option>
+                                                &lt;/select>
+                                                &lt;select className="form-control" name="startPer" onChange={this.handleChange.bind(this)} defaultValue={this.state.startPer}>
+                                                    &lt;option value="am">A.M.&lt;/option>
+                                                    &lt;option value="pm">P.M.&lt;/option>
+                                                &lt;/select>
+                                            &lt;/div>
+                                        &lt;/div>
+                                        &lt;div className="input-field mb-3">
+                                            &lt;label htmlFor="eTime">End Time&lt;/label>
+                                            &lt;div className="d-flex justify-content-start">
+                                                &lt;select className="form-control" name="endHr" onChange={this.handleChange.bind(this)} defaultValue={this.state.endHr}>
+                                                    &lt;option value="01">1&lt;/option>
+                                                    &lt;option value="02">2&lt;/option>
+                                                    &lt;option value="03">3&lt;/option>
+                                                    &lt;option value="04">4&lt;/option>
+                                                    &lt;option value="05">5&lt;/option>
+                                                    &lt;option value="06">6&lt;/option>
+                                                    &lt;option value="07">7&lt;/option>
+                                                    &lt;option value="08">8&lt;/option>
+                                                    &lt;option value="09">9&lt;/option>
+                                                    &lt;option value="10">10&lt;/option>
+                                                    &lt;option value="11">11&lt;/option>
+                                                    &lt;option value="12">12&lt;/option>
+                                                &lt;/select>
+                                                &lt;select className="form-control" name="endMin" onChange={this.handleChange.bind(this)} defaultValue={this.state.endMin}>
+                                                    &lt;option value="00">00&lt;/option>
+                                                    &lt;option value="05">05&lt;/option>
+                                                    &lt;option value="10">10&lt;/option>
+                                                    &lt;option value="15">15&lt;/option>
+                                                    &lt;option value="20">20&lt;/option>
+                                                    &lt;option value="25">25&lt;/option>
+                                                    &lt;option value="30">30&lt;/option>
+                                                    &lt;option value="35">35&lt;/option>
+                                                    &lt;option value="40">40&lt;/option>
+                                                    &lt;option value="45">45&lt;/option>
+                                                    &lt;option value="50">50&lt;/option>
+                                                    &lt;option value="55">55&lt;/option>
+                                                &lt;/select>
+                                                &lt;select className="form-control" name="endPer" onChange={this.handleChange.bind(this)} defaultValue={this.state.endPer}>
+                                                    &lt;option value="am">A.M.&lt;/option>
+                                                    &lt;option value="pm">P.M.&lt;/option>
+                                                &lt;/select>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/div>
+                            &lt;span className="red-text d-flex justify-content-center text-center">{this.state.errorMessage}&lt;/span>
+                            &lt;span className="green-text d-flex justify-content-center text-center">{this.state.successMsg}&lt;/span>
+                            &lt;div className="input-field d-flex justify-content-around">
+                                &lt;button className="btn success-color lighten-1 z-depth-0" id ="signup_btn">Save&lt;/button>
+                            &lt;/div>
+                        &lt;/form>
+                    &lt;/ModalBody>
+                    &lt;div className="d-flex justify-content-around">
+                        &lt;ModalFooter>
+                            &lt;Button color="danger" onClick={this.toggle}>Close&lt;/Button>
+                        &lt;/ModalFooter>
+                    &lt;/div>
+                &lt;/Modal>
+            &lt;/Container>
+        );
+    }
+}
+
+ModalGraphEdit.protoTypes = {
+    callback : PropTypes.func,
+};
+
+export default ModalGraphEdit;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Configuration.html">Configuration</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="ModalConfig.html">ModalConfig</a></li><li><a href="ModalConfigAdd.html">ModalConfigAdd</a></li><li><a href="ModalGraph.html">ModalGraph</a></li><li><a href="ModalGraphEdit.html">ModalGraphEdit</a></li><li><a href="NavbarFeatures.html">NavbarFeatures</a></li><li><a href="Sensor.html">Sensor</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li><li><a href="SystemCardConfig.html">SystemCardConfig</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 02 2018 15:48:35 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
