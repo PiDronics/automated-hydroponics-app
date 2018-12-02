@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @class About
+ * @desc Provides a description about the Application and the problem that it solves
+ */
 class About extends Component{
 
     render(){

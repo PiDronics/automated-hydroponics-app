@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/support/About.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/support/About.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+
+/**
+ * @class About
+ * @desc Provides a description about the Application and the problem that it solves
+ */
+class About extends Component{
+
+    render(){
+        return (
+            &lt;div className="container-fluid">
+                &lt;section className="banner-area relative" id="home">
+                    &lt;div className="overlay overlay-bg"/>
+                    &lt;div className="container">
+                        &lt;div className="row fullscreen d-flex align-items-center justify-content-center">
+                            &lt;div className="banner-content col-lg-8">
+                                &lt;h1 className="text-white">
+                                    Monitor your farm's health with PiDronics.
+                                &lt;/h1>
+                                &lt;p className="pt-20 pb-20 text-white">
+                                   tagline....
+                                &lt;/p>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/section>
+
+                &lt;section className="feature-area pb-100" id="service">
+                    &lt;div className="container">
+                        &lt;div className="row mockup-container">
+                            &lt;img className="mx-auto d-block img-fluid" src="img/laptop.png" alt=""/>
+                        &lt;/div>
+                        &lt;div className="row d-flex justify-content-center">
+                            &lt;div className="menu-content pt-100 pb-60 col-lg-10">
+                                &lt;div className="title text-center">
+                                    &lt;h1 className="mb-10">The Problem&lt;/h1>
+                                    &lt;p>Agriculture is paramount to a society’s economic and social growth. In fact, most countries choose to dedicate the majority of their resources to their agriculture sector. However, in many countries, such as Burundi, civil strife, poor education and reliance on subsistence farming results in poor crop yields. This leads to wastage of precious land and biomass resources, since the land is inefficiently used, and soil is drained of resources. Hydroponics, therefore, is the most capable method since it promotes effective land uses and, since it is its own self-contained ecosystem, is not vulnerable to nutrient-poor soil or adverse weather conditions. Despite these overwhelming benefits, hydroponics requires much experience and knowledge. Automation tools exist on the market, but at exorbitant cost that the average farmer cannot afford, thereby increasing the financial and experience barrier for entry into the field.&lt;/p>
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/div>						
+                        &lt;div className="row">
+                            &lt;div className="col-lg-4">
+                                &lt;div className="single-feature">
+                                    &lt;span className="lnr lnr-smile"/>
+                                    &lt;h4>
+                                        Our Stakeholders. Who Benefits?
+                                    &lt;/h4>
+                                    &lt;p>
+                                    Our aim is to market our system to farmers who are looking to get into the booming hydroponics industry, but lack the knowledge and experience to make it effective, and with a low cost for entry. It can replace much of the labour and time requirements, so that farmers can spend more time on marketing their crops, in addition to increasing the potential profit margin. PiDronics can be very impactful in a humanitarian setting, due to its low cost, easy scalability and portability, allowing hydroponics farms to be developed in affected countries, thus reducing transportation costs, and provide a high-yield food solution to those in need.
+
+                                    &lt;/p>
+                                &lt;/div>
+                            &lt;/div>
+                            &lt;div className="col-lg-4">
+                                &lt;div className="single-feature">
+                                    &lt;span className="lnr lnr-code"/>
+                                    &lt;h4>
+                                        Solution. 
+                                        What can we do?
+                                    &lt;/h4>
+                                    &lt;p>
+                                    The PiDronics system, benefits people wishing to break into hydroponics with little to no prior knowledge and with a low cost of entry. It’s self-monitoring and sustaining further reduces the labour costs, compensating for a farmer’s poor education in the field while allowing them to divert their time on other tasks, such as marketing. In addition, we believe the PiDronics system is an important educational tool to introduce young people into the world of agriculture in an engaging environment, since it encapsulates the fields of robotics, programming and the ever-popular Raspberry Pi. The PiDronics system integrates seamlessly with a hydroponics farm, where pressure and pH sensors are monitored to ensure a constant water and nutrient flow (for continuous-flow solution culture), temperature and light sensors are monitored to ensure the crops are in an optimal environment, nd dissolved oxygen sensors to ensure the plant roots are properly oxygenated.
+
+                                    &lt;/p>
+                                &lt;/div>
+                            &lt;/div>
+                            &lt;div className="col-lg-4">
+                                &lt;div className="single-feature">
+                                    &lt;span className="lnr lnr-smartphone"/>
+                                    &lt;h4>
+                                        Usage. 
+                                        How does it work?
+                                    &lt;/h4>
+                                    &lt;p>
+                                        dcfrtgyhuytgf
+
+                                    &lt;/p>
+                                &lt;/div>
+                            &lt;/div>												
+                        &lt;/div>
+                    &lt;/div>	
+                &lt;/section>
+                
+                &lt;section className="testimonial-area relative section-gap" id="testimonial">
+                    &lt;div className="container">
+                        &lt;div className="row d-flex justify-content-center">
+                            &lt;div className="menu-content pb-60 col-lg-8">
+                                &lt;div className="title text-center">
+                                    &lt;h1 className="mb-10">Meet the Team!&lt;/h1>
+                                    &lt;p>
+                                        Careful, Committed, Charming &lt;sub>(Coffee-Fueled)&lt;/sub>. 
+                                        &lt;i>Roles are dynamic, since we all possess the relevant experience 
+                                        in designing and developing the application.&lt;/i>
+                                    &lt;/p>
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/div>						
+                        &lt;div className="row">
+                            &lt;div className="active-testimonial">
+                                &lt;div className="single-testimonial item d-flex flex-row">
+                                    &lt;div className="thumb">
+                                        &lt;img src="../img/t1.jpeg" alt=""/>
+                                    &lt;/div>
+                                    &lt;div className="desc">
+                                        &lt;p>
+                                            Designer, frontend/backend software engineer, hardware engineer.
+                                        &lt;/p>
+                                        &lt;h4> &lt;a target="_blank" href="https://github.com/irontarkus95" rel="noopener noreferrer">Michael Ali&lt;/a>&lt;/h4>
+                                        &lt;h5> 814005475 &lt;/h5>
+                                    &lt;/div>
+                                &lt;/div>
+                                &lt;div className="single-testimonial item d-flex flex-row">
+                                    &lt;div className="thumb">
+                                        &lt;img src="./img/t2.jpeg" alt=""/>
+                                    &lt;/div>
+                                    &lt;div className="desc">
+                                        &lt;p>
+                                            Designer, frontend/backend software engineer, hardware engineer.
+                                        &lt;/p>
+                                        &lt;h4>&lt;a target="_blank" href="https://github.com/princesszelda94" rel="noopener noreferrer">Gabriela Sewdhan&lt;/a>&lt;/h4>
+                                        &lt;h5> 813001696 &lt;/h5>
+                                    &lt;/div>
+                                &lt;/div>	
+                                &lt;div className="single-testimonial item d-flex flex-row">
+                                    &lt;div className="thumb">
+                                        &lt;img src="img/t3.jpeg" alt=""/>
+                                    &lt;/div>
+                                    &lt;div className="desc">
+                                        &lt;p>
+                                            Designer, frontend/backend software engineer.
+                                        &lt;/p>
+                                        &lt;h4>&lt;a target="_blank" href="https://github.com/KCB4Rockstar" rel="noopener noreferrer">Kristan Birbalsingh&lt;/a>&lt;/h4>
+                                        &lt;h5> 816003409 &lt;/h5>
+                                    &lt;/div>
+                                &lt;/div>
+                                &lt;div className="single-testimonial item d-flex flex-row">
+                                    &lt;div className="thumb">
+                                            
+                                        &lt;img src="img/t4.jpeg" alt=""/>
+                                    &lt;/div>
+                                    &lt;div className="desc">
+                                        &lt;p>
+                                            Designer, frontend/backend software engineer, business analyst/project manager, Software Testor.
+                                        &lt;/p>
+                                        &lt;h4>&lt;a target="_blank" href="https://github.com/Qarun-Qadir-Bissoondial" rel="noopener noreferrer">Qarun Bissoondial&lt;/a>&lt;/h4>
+                                        &lt;h5> 816002009 &lt;/h5>
+                                    &lt;/div>
+                                &lt;/div>															
+                            &lt;/div>					
+                        &lt;/div>
+                    &lt;/div>	
+                &lt;/section>
+            
+            &lt;/div>
+        );
+    }
+}
+
+export default About;
+
+// render(
+//     &lt;About/>,
+//     mountNode
+//   );</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Configuration.html">Configuration</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="ModalConfig.html">ModalConfig</a></li><li><a href="ModalConfigAdd.html">ModalConfigAdd</a></li><li><a href="ModalGraph.html">ModalGraph</a></li><li><a href="ModalGraphEdit.html">ModalGraphEdit</a></li><li><a href="NavbarFeatures.html">NavbarFeatures</a></li><li><a href="Sensor.html">Sensor</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li><li><a href="SystemCardConfig.html">SystemCardConfig</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 02 2018 15:50:53 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
