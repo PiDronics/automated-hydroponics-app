@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @class Support
+ * @desc Gives a more in depth description of the application as well as how to use the application
+ */
 class Support extends Component{
 
     render(){
