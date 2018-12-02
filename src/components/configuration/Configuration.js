@@ -3,6 +3,10 @@ import firebase from "../../fire";
 import SystemCardConfig from "./SystemCardConfig";
 import ModalConfigAdd from "../modal/ModalConfigAdd";
 
+/**
+ *@class Configuration
+ * @desc Displays Configuration info for all Pi systems owned by a user
+ */
 class Configuration extends Component {
     constructor(props){
         super(props);
@@ -13,12 +17,24 @@ class Configuration extends Component {
         }
     }
 
+
+    /**
+     * @desc Simply adds the UID as an additional field inside the sensor Firebase object
+     * @param {DataSnapshot} userData - References a sensor under the "systems" key in the Firebase Database
+     * @param {DataSnapshot} userName - References a particular UID in the Firebase Database
+     * @return {any} - Returns an object with information for that system
+     */
     extractData(userData, userName) {
         var extracted = userData.child(userName).val();
         extracted["system"] = userData.key;
         return extracted;
     }
 
+    /**
+     * @desc Grabs configuration data for each sensor and adds it to the state
+     * @param {DataSnapshot} snap - References all sensors in the Firebase Database
+     * @param {String} uid - References to the UID of the user currently logged in
+     */
     processDBData(snap, uid) {
         var userSystems = [];
         snap.forEach((userData) =>{
@@ -42,6 +58,10 @@ class Configuration extends Component {
         }
     }
 
+    /**
+     * @desc If the user is logged in, then grab the configuration data for all the sensors
+     * Else, display an error
+     */
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user => {
             if (user) {

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/support/Support.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/support/Support.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+
+/**
+ * @class Support
+ * @desc Gives a more in depth description of the application as well as how to use the application
+ */
+class Support extends Component{
+
+    render(){
+        return (
+            &lt;div className="container-fluid">
+                &lt;header>
+                    &lt;h1>FAQ&lt;/h1>
+                &lt;/header>
+                &lt;section>
+                    &lt;ul >
+                        &lt;li>&lt;a href="#basics">Basics&lt;/a>&lt;/li>
+                        &lt;li>&lt;a href="#mobile">Product&lt;/a>&lt;/li>
+                        &lt;li>&lt;a href="#account">Account&lt;/a>&lt;/li>
+                        &lt;li>&lt;a href="#payments">Payments&lt;/a>&lt;/li>
+                        &lt;li>&lt;a href="#privacy">Privacy and Security&lt;/a>&lt;/li>
+                    &lt;/ul> 
+
+                    &lt;div >
+                        &lt;ul id="basics">
+                            &lt;h2>Basics&lt;/h2>
+
+                            &lt;li>
+                                &lt;span className="blue-text">How do I sign up?&lt;/span>
+                                &lt;div>
+                                    &lt;span>The sign up button the appears after the welcome screen will take you to the sign up page where you enter the required information.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+                        &lt;/ul> 
+
+                        &lt;ul id="mobile" >
+                            &lt;h2>Product - PiDronics&lt;/h2>
+                            &lt;li>
+                                &lt;span className="blue-text">Do I require an internet connection for PiDronics?&lt;/span>
+                                &lt;div >
+                                    &lt;span>Yes, to enable remote cloud monitoring from your smartphone or web browser. Data and roaming charges may apply.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">Can I upgrade my my setup with additional sensors?&lt;/span>
+                                &lt;div>
+                                    &lt;span>Yes, our modular design allows sensors to be added and removed with ease.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">Can I give other members of my farm access to my remote monitor? &lt;/span>
+                                &lt;div>
+                                    &lt;span>Yes, they may create accounts using our service and you may authenticate their accounts to your farm.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">Will I receive updates and improvements that are released? Will my Raspberry Pi also receive updates? &lt;/span>
+                                &lt;div>
+                                    &lt;span>Yes, improvements to our database will be received live and great care has been taken to ensure updates can be made to the Raspberry Pi server without disrupting service.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">My area is prone to power outages. How will this affect the performance of my monitoring system?&lt;/span>
+                                &lt;div>
+                                    &lt;span>Our system is designed to restart autonomously and resume data capture and pushing once power has been restores. However, keep in mind that a consistent internet connection is required and disruptions to internet connectivity will affect remote monitoring. Data is still captured and logged during this time.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">Am I liable for any damages to the system?  &lt;/span>
+                                &lt;div>
+                                    &lt;span>As per the contract signed before installation, the equipment (Raspberry Pi, sensors and any relevant housing and connections) are the sole property of PiSynthesis, and are on loan as such. Any damages caused by incorrect handling, storage or negligence will incur costs for replacement and/or repairs.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">What is included in my PiDronics package?  &lt;/span>
+                                &lt;div>
+                                    &lt;span>Packages include basic, mid-tier and deluxe. The basic package assumes you already have your own sensors and simply require the Raspberry Pi server to connect to, and begin remote monitoring. The mid-tier package includes the Raspberry Pi server, two sensors and includes on-site installation. The deluxe package includes everything found in the mid-tier package, in addition to every relevant sensors to fully monitor and analyse your farm. Every package allows access to our mobile and web app as well as onsite installation.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">I don't know how to use my system or how to install it.&lt;/span>
+                                &lt;div>
+                                    &lt;span>No need to worry, on-site installation and training is available for free with the mid-tier and above packages. The basic package will be subject to additional fees for these services.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+                        &lt;/ul>
+
+                        &lt;ul id="account">
+                            &lt;h2>Account&lt;/h2>
+                            &lt;li>
+                                &lt;span className="blue-text">How do I change my password?&lt;/span>
+                                &lt;div>
+                                    &lt;span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis earum autem consectetur labore eius tenetur esse, in temporibus sequi cum voluptatem vitae repellat nostrum odio perspiciatis dolores recusandae necessitatibus, unde, deserunt voluptas possimus veniam magni soluta deleniti! Architecto, quidem, totam. Fugit minus odit unde ea cupiditate ab aperiam sed dolore facere nihil laboriosam dolorum repellat deleniti aliquam fugiat laudantium delectus sint iure odio, necessitatibus rem quisquam! Ipsum praesentium quam nisi sint, impedit sapiente facilis laudantium mollitia quae fugiat similique. Dolor maiores aliquid incidunt commodi doloremque rem! Quaerat, debitis voluptatem vero qui enim, sunt reiciendis tempore inventore maxime quasi fugiat accusamus beatae modi voluptates iste officia esse soluta tempora labore quisquam fuga, cum. Sint nemo iste nulla accusamus quam qui quos, vero, minus id. Eius mollitia consequatur fugit nam consequuntur nesciunt illo id quis reprehenderit obcaecati voluptates corrupti, minus! Possimus, perspiciatis!&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">How do I delete my account?&lt;/span>
+                                &lt;div>
+                                    &lt;span>If you would like to delete your account, you would need to de-register all systems. After you've de-registered you systems, send an email to &lt;a href = "mailto:support@pisynthesis.com?Subject=Delete%20Account" target = "_top">  support@pisynthesis.com &lt;/a> for begin the deregistration process. It will necessate an onsite visit to retrieve loan equipment and to correct arrears. &lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">How do I change my account settings?&lt;/span>
+                                &lt;div>
+                                    &lt;span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">I forgot my password. How do I reset it?&lt;/span>
+                                &lt;div>
+                                    &lt;span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum at aspernatur iure facere ab a corporis mollitia molestiae quod omnis minima, est labore quidem nobis accusantium ad totam sunt doloremque laudantium impedit similique iste quasi cum! Libero fugit at praesentium vero. Maiores non consequuntur rerum, nemo a qui repellat quibusdam architecto voluptatem? Sequi, possimus, cupiditate autem soluta ipsa rerum officiis cum libero delectus explicabo facilis, odit ullam aperiam reprehenderit! Vero ad non harum veritatis tempore beatae possimus, ex odio quo.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+                        &lt;/ul> 
+
+                        &lt;ul id="payments">
+                            &lt;h2>Payments&lt;/h2>
+                            &lt;li> &lt;h4> Coming Soon &lt;/h4> &lt;/li>
+                        &lt;/ul> 
+
+                        &lt;ul id="privacy">
+                            &lt;h2>Privacy and Security&lt;/h2>
+                            &lt;li>
+                                &lt;span className="blue-text">Can anyone access my information?&lt;/span>
+                                &lt;div>
+                                    &lt;span>No, your information is accessible only to you using your login credentials, unless authorised by you.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+
+                            &lt;li>
+                                &lt;span className="blue-text">If I lose or have my smartphone stolen, how is my data protected?&lt;/span>
+                                &lt;div>
+                                    &lt;span>Our app is capable of using biometric authentication, in addition to email and password, it can also require fingerprint authentication.&lt;/span>
+                                &lt;/div> 
+                            &lt;/li>
+                        &lt;/ul> 
+                    &lt;/div> 
+                    &lt;span className="blue-text">Close&lt;/span>
+                &lt;/section> 
+                {/* &lt;script src="js/jquery-2.1.1.js">&lt;/script>
+                &lt;script src="js/jquery.mobile.custom.min.js">&lt;/script>
+                &lt;script src="js/main.js">&lt;/script>  */}
+            &lt;/div> 
+
+        );
+    }
+}
+
+export default Support;
+// ReactDOM.render(
+//     &lt;Support/>,
+//     mountNode
+//   );</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Configuration.html">Configuration</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="ModalConfig.html">ModalConfig</a></li><li><a href="ModalConfigAdd.html">ModalConfigAdd</a></li><li><a href="ModalGraph.html">ModalGraph</a></li><li><a href="ModalGraphEdit.html">ModalGraphEdit</a></li><li><a href="NavbarFeatures.html">NavbarFeatures</a></li><li><a href="Sensor.html">Sensor</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li><li><a href="Support.html">Support</a></li><li><a href="System.html">System</a></li><li><a href="SystemCardConfig.html">SystemCardConfig</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 02 2018 16:08:11 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

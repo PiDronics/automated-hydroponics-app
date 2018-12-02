@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Container, Button, Modal, ModalBody, ModalHeader, ModalFooter, Fa } from 'mdbreact';
 import PropTypes from 'prop-types';
 
+/**
+ * @class ModalGraphEdit
+ * @desc Responsible for change the configuration of the graph. This allows a user to edit the range of the time
+ * interval along with other useful options. Automatically sets to the last 24 hours and previous settings
+ */
 class ModalGraphEdit extends Component {
 
     constructor(props) {
@@ -25,8 +30,18 @@ class ModalGraphEdit extends Component {
             errorMessage: "",
             successMsg: ""
         };
+
+        this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Breaks up a Date Object into hours, minutes and AM/PM. The minutes are rounded to the nearest 5
+     * @param {Date} current_date - Represents today's date
+     * @return {Object} - An object containing hours, minutes and AM/PM
+     */
     parseDate(current_date) {
         let period = "am";
         var hr = current_date.getHours();
@@ -52,6 +67,16 @@ class ModalGraphEdit extends Component {
         }
     }
 
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc A reverse to the parseDate function; Responsible for taking a date formatted as a string, or number of
+     * hours, minutes and AM/PM and returns the appropriate Date Object
+     * @param {String} date - Date formatted as a string
+     * @param {Number} hr - hour
+     * @param {Number} min - minutes
+     * @param {String} per - AM/PM
+     * @return {Date} - A date Object
+     */
     convertToDate(date, hr, min, per){
         if(hr==null || min==null || per==null){
             return (new Date(date));
@@ -95,13 +120,22 @@ class ModalGraphEdit extends Component {
         return new Date(date+"T"+newHr+":"+min+":00");
     }
 
-    toggle = () => {
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Responsible for opening and closing the Modal window
+     */
+    toggle() {
         this.setState({
             modal: !this.state.modal
         });
     };
 
-    handleChange = (e) => {
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Updates state based on user input.
+     * @param {Event} e - A keypress event or the update of the dropdown menu
+     */
+    handleChange(e) {
         e.preventDefault();
 
         this.setState({
@@ -111,7 +145,12 @@ class ModalGraphEdit extends Component {
         });
     };
 
-    handleSubmit = (e) => {
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Saves display configuration for the Modal Graph
+     * @param {Event} e - The Submit event
+     */
+    handleSubmit(e) {
         e.preventDefault();
 
         var obj = {};
@@ -135,7 +174,14 @@ class ModalGraphEdit extends Component {
         }
     };
 
-    checkValues = () =>{
+    /**
+     * @memberOf ModalGraphEdit
+     * @desc Responsible for validating all inputs made by the user. Displays the appropriate error message if bad
+     * data is given
+     * @return {*} - If settings are valid, returns an Object with the start and end date. If settings are invalid,
+     * returns false.
+     */
+    checkValues() {
         var startFullDate = this.convertToDate(this.state.start, this.state.startHr, this.state.startMin, this.state.startPer);
         var endFullDate = this.convertToDate(this.state.end, this.state.endHr, this.state.endMin, this.state.endPer);
         // TODO - Throw exceptions for developers, throw snackbar or side modal for users

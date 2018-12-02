@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/layout/Navbar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/layout/Navbar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink } from 'mdbreact';
+import firebase from '../../fire';
+
+/**
+ * @class NavbarFeatures
+ * @desc Enables basic Navigation across the application. The Navbar is present at the top and is fixed
+ * across all pages
+ */
+class NavbarFeatures extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            collapse: false,
+            user: null
+        };
+
+        this.onClick = this.onClick.bind(this);
+        this.closeNav = this.closeNav.bind(this);
+        this.checkLogin = this.checkLogin.bind(this);
+    }
+
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Toggles the state of the Navbar menu on mobile view between open and closed
+     */
+    onClick() {
+        this.setState({
+            collapse: !this.state.collapse,
+        });
+    }
+
+
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Ensures the Navbar is closed regardless of its current state.
+     */
+    closeNav() {
+        this.setState({
+            collapse: false
+        });
+    }
+
+
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Checks the auth state of the user
+     */
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({
+                user: user
+            })
+        });
+    };
+
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Changes the view of the Navbar based on the Auth state of the user
+     */
+    checkLogin() {
+        if(this.state.user){
+            return(
+                &lt;NavbarNav right id = "userFound">
+                    &lt;NavItem>
+                        &lt;NavLink to="/">Dashboard&lt;/NavLink>
+                    &lt;/NavItem>
+                    &lt;NavItem>
+                        &lt;NavLink to="/configuration">Configuration&lt;/NavLink>
+                    &lt;/NavItem>
+                    &lt;NavItem>
+                        &lt;NavLink to="/support">Support&lt;/NavLink>
+                    &lt;/NavItem>
+                    &lt;NavItem>
+                        &lt;NavLink to="/about">About&lt;/NavLink>
+                    &lt;/NavItem>
+                    &lt;NavItem>
+                        &lt;NavLink to="/signout">Log Out&lt;/NavLink>
+                    &lt;/NavItem>
+                &lt;/NavbarNav>
+            )
+        }
+        else{
+            return(
+                &lt;NavbarNav right id = "userNotFound">
+                    &lt;NavItem>
+                        &lt;NavLink to="/">Sign In/Sign Up&lt;/NavLink>
+                    &lt;/NavItem>
+                    &lt;NavItem>
+                        &lt;NavLink to="/support">Support&lt;/NavLink>
+                    &lt;/NavItem>
+                    &lt;NavItem>
+                        &lt;NavLink to="/about">About&lt;/NavLink>
+                    &lt;/NavItem>
+                &lt;/NavbarNav>
+            )
+        }
+    };
+
+    render() {
+        return (
+            &lt;Navbar color="indigo" dark expand="md" fixed="top" scrolling>
+                &lt;NavbarBrand href="#">
+                    &lt;img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
+                    &lt;strong>PiDronics&lt;/strong>
+                &lt;/NavbarBrand>
+                &lt;NavbarToggler onClick={this.onClick} id="toggleBtn"/>
+                &lt;Collapse isOpen = { this.state.collapse } onClick={this.closeNav} navbar>
+                    {this.checkLogin()}
+                &lt;/Collapse>
+            &lt;/Navbar>
+        );
+    }
+}
+
+export default NavbarFeatures;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Configuration.html">Configuration</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="ModalConfig.html">ModalConfig</a></li><li><a href="ModalConfigAdd.html">ModalConfigAdd</a></li><li><a href="ModalGraph.html">ModalGraph</a></li><li><a href="ModalGraphEdit.html">ModalGraphEdit</a></li><li><a href="NavbarFeatures.html">NavbarFeatures</a></li><li><a href="Sensor.html">Sensor</a></li><li><a href="SignedOut.html">SignedOut</a></li><li><a href="SignOut.html">SignOut</a></li><li><a href="Support.html">Support</a></li><li><a href="System.html">System</a></li><li><a href="SystemCardConfig.html">SystemCardConfig</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 02 2018 16:08:11 GMT-0400 (AST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

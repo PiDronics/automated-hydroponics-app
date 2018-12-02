@@ -3,6 +3,11 @@ import ModalGraph from '../modal/ModalGraph';
 import ModalGraphEdit from '../modal/ModalGraphEdit';
 import { Card, CardBody, CardTitle, Table, TableBody } from 'mdbreact';
 
+/**
+ * @class Sensor
+ * @desc Gives a general overview of the data collected by this particular sensor. Automatically
+ * configures the graph to display readings over the past 24 hours
+ */
 class Sensor extends Component{
 
     constructor(props){
@@ -18,6 +23,11 @@ class Sensor extends Component{
         this.graphStuff = this.graphStuff.bind(this);
     }
 
+    /**
+     * @memberOf Sensor
+     * @desc Sets the date for the graph
+     * @param {Object} params - An object containing the start and end times for the graph
+     */
     graphStuff(params){
         this.setState({
             graphStart: params.start,

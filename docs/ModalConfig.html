@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SignedOut</title>
+    <title>JSDoc: Class: ModalConfig</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SignedOut</h1>
+    <h1 class="page-title">Class: ModalConfig</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>SignedOut<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ModalConfig<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="SignedOut"><span class="type-signature"></span>new SignedOut<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ModalConfig"><span class="type-signature"></span>new ModalConfig<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    Initializes the component, ready to accept input from the user
+    Responsible for editing configuration data for a raspberry pi system. Options are displayed in a Modal
 </div>
 
 
@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_auth_SignedOut.js.html">components/auth/SignedOut.js</a>, <a href="components_auth_SignedOut.js.html#line12">line 12</a>
+        <a href="components_modal_ModalConfig.js.html">components/modal/ModalConfig.js</a>, <a href="components_modal_ModalConfig.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -147,7 +147,7 @@
     
 
     
-    <h4 class="name" id="handleChange"><span class="type-signature"></span>handleChange<span class="signature">(e)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteSystem"><span class="type-signature"></span>deleteSystem<span class="signature">(e)</span><span class="type-signature"></span></h4>
     
 
     
@@ -155,8 +155,7 @@
 
 
 <div class="description">
-    Updates the state with the input. Due to [e.target.name] being used, this function will
-work for both the e-mail and password input fields
+    Responsible for removing a system from Firebase and display appropriate errors
 </div>
 
 
@@ -208,7 +207,7 @@ work for both the e-mail and password input fields
 
             
 
-            <td class="description last">captures a keypress</td>
+            <td class="description last">A button click event</td>
         </tr>
 
     
@@ -249,7 +248,7 @@ work for both the e-mail and password input fields
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_auth_SignedOut.js.html">components/auth/SignedOut.js</a>, <a href="components_auth_SignedOut.js.html#line33">line 33</a>
+        <a href="components_modal_ModalConfig.js.html">components/modal/ModalConfig.js</a>, <a href="components_modal_ModalConfig.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -283,7 +282,7 @@ work for both the e-mail and password input fields
     
 
     
-    <h4 class="name" id="handleSignIn"><span class="type-signature"></span>handleSignIn<span class="signature">(e)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="handleChange"><span class="type-signature"></span>handleChange<span class="signature">(event)</span><span class="type-signature"></span></h4>
     
 
     
@@ -291,7 +290,143 @@ work for both the e-mail and password input fields
 
 
 <div class="description">
-    Signs a user into the system through a Firebase Auth backend.
+    Responsible for updating the state based on the user input. Reads the event object to automatically
+determine whether "name" or "time" input fields were changed.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A keypress event or an update in the dropdown menu</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_modal_ModalConfig.js.html">components/modal/ModalConfig.js</a>, <a href="components_modal_ModalConfig.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleSubmit"><span class="type-signature"></span>handleSubmit<span class="signature">(e)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Responsible for uploading form data to Firebase and display any errors
 </div>
 
 
@@ -343,7 +478,7 @@ work for both the e-mail and password input fields
 
             
 
-            <td class="description last">captures a submit event</td>
+            <td class="description last">A submit event</td>
         </tr>
 
     
@@ -384,7 +519,7 @@ work for both the e-mail and password input fields
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_auth_SignedOut.js.html">components/auth/SignedOut.js</a>, <a href="components_auth_SignedOut.js.html#line44">line 44</a>
+        <a href="components_modal_ModalConfig.js.html">components/modal/ModalConfig.js</a>, <a href="components_modal_ModalConfig.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -418,7 +553,7 @@ work for both the e-mail and password input fields
     
 
     
-    <h4 class="name" id="handleSignUp"><span class="type-signature"></span>handleSignUp<span class="signature">(e)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="toggle"><span class="type-signature"></span>toggle<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -426,142 +561,7 @@ work for both the e-mail and password input fields
 
 
 <div class="description">
-    Adds a user to the Firebase Auth backend using their e-mail and password
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>e</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Event</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">captures a submit event</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_auth_SignedOut.js.html">components/auth/SignedOut.js</a>, <a href="components_auth_SignedOut.js.html#line60">line 60</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="toggleScreen"><span class="type-signature"></span>toggleScreen<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Switches between the Sign-In form and the Sign-up form on the login page
+    Responsible for opening and closing the modal
 </div>
 
 
@@ -605,7 +605,7 @@ work for both the e-mail and password input fields
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_auth_SignedOut.js.html">components/auth/SignedOut.js</a>, <a href="components_auth_SignedOut.js.html#line75">line 75</a>
+        <a href="components_modal_ModalConfig.js.html">components/modal/ModalConfig.js</a>, <a href="components_modal_ModalConfig.js.html#line32">line 32</a>
     </li></ul></dd>
     
 

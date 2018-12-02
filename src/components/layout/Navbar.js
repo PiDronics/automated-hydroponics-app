@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink } from 'mdbreact';
 import firebase from '../../fire';
 
+/**
+ * @class NavbarFeatures
+ * @desc Enables basic Navigation across the application. The Navbar is present at the top and is fixed
+ * across all pages
+ */
 class NavbarFeatures extends Component {
     constructor() {
         super();
@@ -13,20 +18,35 @@ class NavbarFeatures extends Component {
 
         this.onClick = this.onClick.bind(this);
         this.closeNav = this.closeNav.bind(this);
+        this.checkLogin = this.checkLogin.bind(this);
     }
 
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Toggles the state of the Navbar menu on mobile view between open and closed
+     */
     onClick() {
         this.setState({
             collapse: !this.state.collapse,
         });
     }
 
+
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Ensures the Navbar is closed regardless of its current state.
+     */
     closeNav() {
         this.setState({
             collapse: false
         });
     }
 
+
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Checks the auth state of the user
+     */
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user => {
             this.setState({
@@ -35,7 +55,11 @@ class NavbarFeatures extends Component {
         });
     };
 
-    checkLogin = () => {
+    /**
+     * @memberOf NavbarFeatures
+     * @desc Changes the view of the Navbar based on the Auth state of the user
+     */
+    checkLogin() {
         if(this.state.user){
             return(
                 <NavbarNav right id = "userFound">
