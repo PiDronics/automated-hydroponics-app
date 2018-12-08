@@ -15,12 +15,31 @@ class ModalGraphEdit extends Component {
         var currDate = new Date();
         var last24hr = new Date(currDate.getTime()-(24 * 3600 * 1000));
 
+        var startArr = (last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate()).split("-");
+        if(startArr[1].length<2){
+            startArr[1] = "0"+startArr[1];
+        }
+        if(startArr[2].length<2){
+            startArr[2] = "0"+startArr[2];
+        }
+        var startDate = startArr.join("-");
+
+        var endArr = (currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate()).split("-");
+        if(endArr[1].length<2){
+            endArr[1] = "0"+endArr[1];
+        }
+        if(endArr[2].length<2){
+            endArr[2] = "0"+endArr[2];
+        }
+        var endDate = endArr.join("-");
+
+
         const parsed_date = this.parseDate(currDate);
 
         this.state = {
             modal: false,
-            start: last24hr.getFullYear()+"-"+(last24hr.getMonth()+1)+"-"+last24hr.getDate(),
-            end: currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate(),
+            start: startDate,
+            end: endDate,
             startHr: parsed_date.hr,
             startMin: parsed_date.min,
             startPer: parsed_date.per,
