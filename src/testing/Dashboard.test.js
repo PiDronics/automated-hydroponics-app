@@ -5,30 +5,22 @@ const mockData = require('./model');
 
 /*
     UI TESTS
-    - Testing for rendering on the screen (done)
-    - Testing for 3 container-fluid classes (done)
-    - Testing for at least 2 row classes (done)
-    - Supply mock system data and see if more rows are generated (done)
-    - Testing for the text in h2 (done)
-
+    - Testing for rendering on the screen
+    - Testing for 3 container-fluid classes
+    - Testing for at least 2 row classes
+    - Supply mock system data and see if more rows are generated
+    - Testing for the text in h2
  */
-
 describe('Dashboard Component', () => {
     let shallow_render;
 
     beforeEach(() => {
-        // runs before each tests
         shallow_render = shallow(<Dashboard/>);
     });
 
     it('-> should render on the screen without throwing an error', () => {
         expect(shallow_render.find('div.container-fluid').exists()).toBe(true);
     });
-
-    /*
-    it('-> should contain 3 div.container-fluid elements', () => {
-        expect(shallow_render.find('div.container-fluid').length).toEqual(3);
-    });*/
 
     it('-> should contain at least 2 row classes', () => {
         expect(shallow_render.find('.row').length).toBeGreaterThan(1);

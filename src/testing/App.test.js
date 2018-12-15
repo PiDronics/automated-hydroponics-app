@@ -3,6 +3,10 @@ import { shallow } from 'enzyme'
 import firebase from '../fire';
 import App from "../App";
 
+/*
+    - Checks for all important UI details for this component
+    - Also checks for proper functionality when the Auth state changes
+ */
 describe("App Component", () => {
     let shallow_render;
 

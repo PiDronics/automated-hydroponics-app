@@ -15,6 +15,13 @@ import SignedOut from '../components/auth/SignedOut';
  */
 
 
+/*
+    - Testing proper rendering of UI components
+    - Testing valid input for both sign up and sign in forms
+    - Testing whether functions were called due to UI
+    - Due to constraints of time, and lack of familiarity with React, routing to
+    another page after a successful login/sign up was not tested
+ */
 describe('SignedOut Page', () => {
     let shallow_render;
     let historyMock;
@@ -92,17 +99,18 @@ describe('SignedOut Page', () => {
         sinon.assert.callCount(spy, 3);
     });
 
-    // it('-> executes the handleSignUp function on submitting the Sign up form', () => {
-    //     const spy = sinon.spy(shallow_render.instance(), 'handleSignUp');
-    //     shallow_render.instance().forceUpdate();
-    //     shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
-    //     sinon.assert.calledOnce(spy);
-    //     shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
-    //     sinon.assert.callCount(spy, 2);
-    //     shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
-    //     sinon.assert.callCount(spy, 3);
-    // });
-
-
-
+    it('-> executes the handleSignUp function on submitting the Sign up form', () => {
+        const spy = sinon.spy(shallow_render.instance(), 'handleSignUp');
+        const instance = shallow_render.instance();
+        instance.setState({
+            auth: 'signupbtn'
+        });
+        instance.forceUpdate();
+        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.calledOnce(spy);
+        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.callCount(spy, 2);
+        shallow_render.find('#form2').simulate('submit', {preventDefault: jest.fn()});
+        sinon.assert.callCount(spy, 3);
+    });
 });

@@ -2,6 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Sensor from '../components/sensor/Sensor';
 
+/*
+    Testing proper rendering of UI and properly pulling values from state into the DOM
+ */
 describe('Sensor Component', () => {
     let shallow_render;
 

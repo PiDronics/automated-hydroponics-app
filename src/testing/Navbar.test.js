@@ -3,8 +3,10 @@ import { shallow } from 'enzyme';
 import NavbarFeatures from "../components/layout/Navbar";
 import firebase from '../fire';
 
-
-
+/*
+    Tests simple UI events such as collapsing the view and
+    displaying different buttons based on Auth state
+ */
 describe("Navbar Component", () => {
     let shallow_render;
 
@@ -16,8 +18,6 @@ describe("Navbar Component", () => {
                 'user': data
             });
         });
-
-
     });
 
     it('-> should render on the screen without errors', () => {

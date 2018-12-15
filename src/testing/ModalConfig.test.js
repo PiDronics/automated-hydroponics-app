@@ -2,8 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ModalConfig from "../components/modal/ModalConfig";
 
+/*
+    Mocking the preventDefault method of the event object was necessary
+    since it is run in the original code itself.
+ */
 const mockEvent = () => { console.log('Default Behaviour Prevented...'); };
 
+/*
+    UI tests typically consist of testing if the HTML elements rendered
+    on the screen properly and testing if the UI events actually execute
+    the functions. It does not test the actual logic of the functions
+    themselves.
+ */
 describe('ModalConfig UI Tests -> ', () => {
     let shallow_render;
     let toggleModalSpy, onChangeSpy, deleteSpy;
@@ -45,6 +55,15 @@ describe('ModalConfig UI Tests -> ', () => {
         expect(onChangeSpy).toHaveBeenCalled();
     });
 
+    /*
+        The test below runs but throws an exception showing a stack trace back to the deleteSystem
+        method. The actual code (ModalConfig.js) has a window.confirm method inside of the
+        function, but this window.confirm will not run in the tests since the testing environment
+        does not contain the window object. Hence the stack trace is printed.
+
+        The test still passes because the call to the function is tested and not the actual function
+        execution. Window.confirm will have to be mocked in order to properly unit test the deleteSystem function.
+     */
     it('-> should call deleteSystem() when the "Delete System" button is pressed', () => {
         const deleteBtn = shallow_render.find('#delete_btn');
         deleteBtn.simulate('click', {
@@ -55,6 +74,9 @@ describe('ModalConfig UI Tests -> ', () => {
     });
 });
 
+/*
+    Function logic tests whether or not the functions run as they are supposed to
+ */
 describe('ModalConfig function logic', () => {
    let shallow_render;
 

@@ -2,12 +2,15 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ModalGraphEdit from "../components/modal/ModalGraphEdit";
 
+/*
+    props and createMockEvent functions needed to be mocked to eliminate the code relying on these
+    external factors in the unit tests.
+ */
 const props = {
     callback: (values) => {
         console.log(values);
     }
 };
-
 const createMockEvent = (name, value) => {
     return {
         preventDefault: () => { console.log('Default behaviour prevented...'); },
@@ -18,6 +21,10 @@ const createMockEvent = (name, value) => {
     };
 };
 
+/*
+    Due to limited knowledge of working with Material Design Bootstrap Library,
+    much of the UI could not have been tested.
+ */
 describe('ModalGraphEdit component UI', () => {
     let shallow_render;
 
@@ -31,6 +38,10 @@ describe('ModalGraphEdit component UI', () => {
 
 });
 
+/*
+    The group of tests below test changes in the React Component state and whether or not dates are
+    parsed properly.
+ */
 describe('ModalGraphEdit component functions', () => {
     let shallow_render, instance;
 
