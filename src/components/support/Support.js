@@ -286,6 +286,18 @@ class Support extends Component {
         </div>
     </Container>
     </Container>
+
+
+    <Container>
+        <Row className="align-items-center mt-5">
+            <h2 className="grey-text" style={{margin: "0px"}}>
+                Frequently Asked Questions
+            </h2>
+            <span className="click border grey-text px-1 border-light rounded ml-2"><Fa icon="question-circle" className="mr-2"/>FAQ</span>
+        </Row>
+        <hr className="mb-5" />
+        <h5>Click on the link to view our Product Manual: <a href = "https://docs.google.com/document/d/1FWLsea7MBdXaazkmk156T1Quhn5-B72oxn0frQKcgs8/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Our Product Manual</a></h5>
+    </Container>
     </div>
     );
   }
