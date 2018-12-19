@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import {Collapse, Card, CardBody, Container, Row, Fa, Button } from 'mdbreact';
 
+/**
+ * @class Support
+ * @desc Gives a more in depth description of the application as well as how to use the application
+ */
+
 class Support extends Component {
   constructor(props) {
     super(props);
