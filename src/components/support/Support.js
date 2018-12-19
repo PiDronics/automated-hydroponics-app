@@ -291,7 +291,7 @@ class Support extends Component {
     <Container>
         <Row className="align-items-center mt-5">
             <h2 className="grey-text" style={{margin: "0px"}}>
-                Frequently Asked Questions
+                Product Manual
             </h2>
             <span className="click border grey-text px-1 border-light rounded ml-2"><Fa icon="question-circle" className="mr-2"/>FAQ</span>
         </Row>
