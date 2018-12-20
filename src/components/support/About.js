@@ -509,6 +509,31 @@ class timeline extends Component{
 
     <div className = "container-fluid p-0">
 
+    <MDBCard className="my-5 px-5 pb-5 text-center">
+        <MDBCardBody>
+          <h2 className="h1-responsive font-weight-bold">
+            Our Product - PiDronics
+          </h2>
+          <p className="grey-text w-responsive mx-auto mb-5">
+            Solving world hunger one step at a time.
+          </p>
+          <img
+            src="/img/hydroponics2.jpg"
+            className="z-depth-1 img-fluid"
+            alt="Sample avatar"
+          />
+          <h5 className="font-weight-bold mt-4 mb-3">About our product</h5>
+              <p className="text-uppercase blue-text">Neque porro quisquam est,</p>
+              <p className="grey-text">
+              The PiDronics system benefits people wishing to break into hydroponics with little to no prior knowledge and with a low cost of entry. It’s remote monitoring capability reduces risk by providing timely readings on their farm and notifies them if it has reached unsafe levels, compensating for a farmer’s poor education in the field while allowing them to divert their time on other tasks, such as marketing. In addition, we believe the PiDronics system is an important educational tool to introduce young people into the world of agriculture in an engaging environment, since it encapsulates the fields of agriculture, programming and the ever-popular Raspberry Pi. The PiDronics system integrates seamlessly with a hydroponics farm, and the modularity of the system allows various sensors to be integrated and viewable on the app.
+              </p>
+              <ul className="list-unstyled mb-0">
+              <a href="https://github.com/PiDronics" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg">
+                  See our Code <MDBIcon icon="github" className="blue-text" />
+                </a>
+              </ul>
+        </MDBCardBody>
+      </MDBCard>
 
     {/* <section className="my-100">
         <h2 className="h1-responsive font-weight-bold text-center my-5">
@@ -779,7 +804,6 @@ class timeline extends Component{
             style={{ paddingLeft: '78px' }}
             iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff'}}
             icon={<FaReact />}
-            
           >
             <h3 className="vertical-timeline-element-title">What we have now</h3>
             <h4 className="vertical-timeline-element-subtitle">Present</h4>
@@ -895,8 +919,8 @@ class timeline extends Component{
         </Container>
 
 
-        {/* Contact Us */}
-        <section className="my-5">
+    {/* Contact Us */}
+    <section className="my-5">
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         Contact us
       </h2>
@@ -992,7 +1016,7 @@ class timeline extends Component{
               <p className="mb-md-0">Mon - Fri, 8:00-6:00</p>
             </MDBCol>
             <MDBCol md="4">
-              <MDBBtn tag="a" floating color="blue" className="accent-1 rounded-circle">
+              <MDBBtn tag="a" floating color="blue" className="accent-1">
                 <MDBIcon icon="envelope" />
               </MDBBtn>
               <p>support@pisynthesis.com </p>
@@ -1002,9 +1026,7 @@ class timeline extends Component{
         </MDBCol>
       </MDBRow>
     </section>
-
-
-      </div>
+    </div>
     );
   }
 }
