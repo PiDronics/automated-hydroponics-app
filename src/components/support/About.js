@@ -507,7 +507,7 @@ class timeline extends Component{
   render(){
     return (
 
-    <div className = "container-fluid p-0">
+    <div className = "container-fluid">
 
     <MDBCard className="my-5 px-5 pb-5 text-center">
         <MDBCardBody>
