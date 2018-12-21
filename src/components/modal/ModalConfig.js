@@ -75,7 +75,7 @@ class ModalConfig extends Component {
                 errorMessage: "The system name must be between 1 and 30 characters long."
             })
         }
-        else if(this.state.time < 5 || this.state.time > 30){
+        else if(this.state.time < 0 || this.state.time > 30){
             this.setState({
                 successMsg: "",
                 errorMessage: "Interval time is out of range (5mins-30mins)"
