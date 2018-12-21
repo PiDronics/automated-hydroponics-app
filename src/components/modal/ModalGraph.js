@@ -149,21 +149,19 @@ class ModalGraph extends Component {
 
     deleteComment(e){
         if(window.confirm("Are you sure you want to delete this comment?")){
-            firebase.auth().onAuthStateChanged(user => {
-                if(user){
-                    var uid = user.uid;
+            if(this.state.user){
+                var uid = this.state.user.uid;
 
-                    var ref = "/users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allComments/"+e.comment.id;
-                    const dataRef = firebase.database().ref(ref);
+                var ref = "/users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allComments/"+e.comment.id;
+                const dataRef = firebase.database().ref(ref);
 
-                    dataRef.remove().then(() => {
-                        this.toggleComments();
-                    }
-                    ,(error) => {
-                        alert("Failed to delete comment." + error.message);
-                    });
+                dataRef.remove().then(() => {
+                    this.toggleComments();
                 }
-            });
+                ,(error) => {
+                    alert("Failed to delete comment." + error.message);
+                });
+            }
         }
     }
 
@@ -239,33 +237,31 @@ class ModalGraph extends Component {
             })
         }
         else{
-            firebase.auth().onAuthStateChanged(user => {
-                if(user) {
-                    var uid = user.uid;
+            if(this.state.user) {
+                var uid = this.state.user.uid;
 
-                    var newComment = {
-                        comment: this.state.comment,
-                        time: new Date(this.state.date + "Z").getTime()
-                    };
+                var newComment = {
+                    comment: this.state.comment,
+                    time: new Date(this.state.date + "Z").getTime()
+                };
 
-                    const dataRef = firebase.database().ref();
+                const dataRef = firebase.database().ref();
 
-                    dataRef.child("/users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allComments").push(newComment, error => {
-                        if (error) {
-                            this.setState({
-                                successMsg: "",
-                                errorMessage: error.message
-                            })
-                        }
-                        else {
-                            this.setState({
-                                successMsg: "Added successfully!",
-                                errorMessage: ""
-                            });
-                        }
-                    });
-                }
-            });
+                dataRef.child("/users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allComments").push(newComment, error => {
+                    if (error) {
+                        this.setState({
+                            successMsg: "",
+                            errorMessage: error.message
+                        })
+                    }
+                    else {
+                        this.setState({
+                            successMsg: "Added successfully!",
+                            errorMessage: ""
+                        });
+                    }
+                });
+            }
         }
     };
 
