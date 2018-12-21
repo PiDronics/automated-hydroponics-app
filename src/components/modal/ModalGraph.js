@@ -283,7 +283,7 @@ class ModalGraph extends Component {
                         <form onSubmit={this.handleSubmit} id="commentForm">
                             <div className="container-fluid text-center">
                                 <div className="row">
-                                    <div className="col-lg-6 mb-2">
+                                    <div className="col-lg-6 offset-lg-3 mb-2">
                                         <Fa icon="calendar" size="2x"/>
                                         <div className="input-field mb-3">
                                             <label htmlFor="date">Date</label>
