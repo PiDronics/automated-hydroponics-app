@@ -83,9 +83,9 @@ class ModalGraph extends Component {
                 var uid = user.uid;
 
                 ReactChartkick.addAdapter(Chart);
-                console.log(this.props.graphStart, this.props.graphEnd);
+                //console.log(this.props.graphStart, this.props.graphEnd);
 
-                var ref = "users/EDK0mjXlciOClM82vlqVV7qU7N82/systemData/pi-1/sensorData/Temperature/allData";
+                var ref = "users/"+ uid+ "/systemData/"+ this.state.device+ "/sensorData/" + this.state.title + "/allData";
                 const dataRef = firebase.database().ref(ref).orderByChild("time");
 
                 if(this.state.modal) {
