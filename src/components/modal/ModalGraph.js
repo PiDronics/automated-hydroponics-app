@@ -83,12 +83,14 @@ class ModalGraph extends Component {
                 var uid = user.uid;
 
                 ReactChartkick.addAdapter(Chart);
+                console.log(this.props.graphStart, this.props.graphEnd);
 
-                var ref = "users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allData";
-                const dataRef = firebase.database().ref(ref).orderByChild("time").startAt(this.props.graphStart).endAt(this.props.graphEnd);
+                var ref = "users/EDK0mjXlciOClM82vlqVV7qU7N82/systemData/pi-1/sensorData/Temperature/allData";
+                const dataRef = firebase.database().ref(ref).orderByChild("time");
 
                 if(this.state.modal) {
                     dataRef.once("value", snap => {
+                        console.log(snap.val());
                         const data = this.getAllGraphPoints(snap); // grab all points
 
                         if (data.length > 0) {
@@ -239,24 +241,24 @@ class ModalGraph extends Component {
         }
         else{
             firebase.auth().onAuthStateChanged(user => {
-                if(user){
+                if(user) {
                     var uid = user.uid;
 
                     var newComment = {
                         comment: this.state.comment,
-                        time: new Date(this.state.date+"Z").getTime()
+                        time: new Date(this.state.date + "Z").getTime()
                     };
 
                     const dataRef = firebase.database().ref();
 
                     dataRef.child("/users/" + uid + "/systemData/" + this.state.device + "/sensorData/" + this.state.title + "/allComments").push(newComment, error => {
-                        if(error){
+                        if (error) {
                             this.setState({
                                 successMsg: "",
                                 errorMessage: error.message
                             })
                         }
-                        else{
+                        else {
                             this.setState({
                                 successMsg: "Added successfully!",
                                 errorMessage: ""
