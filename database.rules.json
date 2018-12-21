@@ -22,8 +22,8 @@
         },
         "systemCard":{
           "$device":{
-            ".read":"$device === auth.uid",
-            ".write":"$device === auth.uid"
+            ".read":true,
+            ".write":true
           },
           ".read":"$uid === auth.uid",
           ".write":"$uid === auth.uid"

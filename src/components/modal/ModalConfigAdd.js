@@ -165,6 +165,7 @@ class ModalConfigAdd extends Component {
                                             <label htmlFor="time">Update Interval</label>
                                             <div className="d-flex justify-content-start">
                                                 <select className="form-control" name="time" id="time" onChange={this.handleChange.bind(this)} defaultValue={this.state.time}>
+                                                    <option value="0.5">30s</option>
                                                     <option value="5">5</option>
                                                     <option value="6">6</option>
                                                     <option value="7">7</option>
