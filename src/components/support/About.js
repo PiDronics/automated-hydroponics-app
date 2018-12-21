@@ -89,9 +89,9 @@ class About extends Component{
                 </p>
                 <ul className="list-unstyled mb-0">
 
-                <MDBBtn outline rounded size="lg" color="white" className="rounded-circle z-depth-1" >
+                <MDBBtn outline size="sm" color="white" className="rounded-circle z-depth-1" >
                 <a href="https://github.com/irontarkus95" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg">
-                    <MDBIcon icon="github" className="blue-text" size="2x" />
+                    <MDBIcon icon="github" className="blue-text" size="3x" />
                   </a>
                 </MDBBtn>
                 </ul>
@@ -108,9 +108,9 @@ class About extends Component{
                 <p className="grey-text">
                 </p>
                 <ul className="list-unstyled mb-0">
-                <MDBBtn outline rounded size="lg" color="white" className="rounded-circle z-depth-1" >
+                <MDBBtn  outline size="sm" color="white" className="rounded-circle z-depth-1" >
                 <a href="https://github.com/KCB4Rockstar" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg">
-                    <MDBIcon icon="github" className="blue-text" size="2x"  />
+                    <MDBIcon icon="github" className="blue-text" size="3x"  />
                   </a>
                 </MDBBtn>
                 </ul>
@@ -128,9 +128,9 @@ class About extends Component{
                 </p>
                 <ul className="list-unstyled mb-0">
 
-                <MDBBtn outline rounded size="lg" color="white" className="rounded-circle z-depth-1" >
+                <MDBBtn outline size="sm" color="white" className="rounded-circle z-depth-1" >
                 <a href="https://github.com/Qarun-Qadir-Bissoondial" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg">
-                    <MDBIcon icon="github" className="blue-text" size="2x"  />
+                    <MDBIcon icon="github" className="blue-text" size="3x"  />
                   </a>
                 </MDBBtn>
                 </ul>
@@ -148,9 +148,9 @@ class About extends Component{
                 </p>
                 <ul className="list-unstyled mb-0">
 
-                <MDBBtn outline rounded size="lg" color="white" className="rounded-circle z-depth-1" >
+                <MDBBtn outline size="sm" color="white" className="rounded-circle z-depth-1">
                   <a href="https://github.com/princesszelda94" target="_blank" rel="noopener noreferrer" className="p-2 fa-lg">
-                    <MDBIcon icon="github" className="blue-text" size="2x"  />
+                    <MDBIcon icon="github" className="blue-text" size="3x"  />
                   </a>
                   </MDBBtn>
 
