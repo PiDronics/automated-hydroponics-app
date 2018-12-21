@@ -807,7 +807,7 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">What we have now</h3>
             <h4 className="vertical-timeline-element-subtitle">Present</h4>
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
               <h6>Fully authenticated front-end Web App</h6>
               <h6>Multiple sensors can connect to a resilient Raspberry Pi server</h6>
               <h6>Data can be pushed to Firebase in realtime</h6>
@@ -825,7 +825,7 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">EC and Dissolved Oxygen Probes Testing</h3>
             <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
               <h6>Obtain EC and Dissolved Oxygen Probes</h6>
               <h6>Ensure New probes work with our app</h6>
               <h6>Test Monitoring system fully</h6>
@@ -844,7 +844,7 @@ class timeline extends Component{
             <h3 className="vertical-timeline-element-title">Plant Disease Diagnoser</h3>
             <h4 className="vertical-timeline-element-subtitle">2 Month</h4>
            
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
             <h6>Plant Disease Detecter and Diagnoser Developed</h6>
             <h6>Upload Plant Disease Diagnoser to the cloud</h6>
             <h6>Live camera feed viewable in app</h6>
@@ -860,7 +860,7 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">Hydroponics Automation System</h3>
             <h4 className="vertical-timeline-element-subtitle">3 Month</h4>
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
               <h6>Hydroponics system will be automated to maintain a homeostatic environment</h6>
               <h6>This involves the use of sun lamps, misting, ventilation fans, arduino to release a controlled amount of the nutrient chemical for controlled EC and alkaline solution for pH.</h6>
             </ul>
@@ -874,7 +874,7 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">Beta Test and Final Product</h3>
             <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
               <h6>Beta test</h6>
               <h6>Start building anticipation</h6>
               <h6>Finalize launch content</h6>
@@ -890,7 +890,7 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">Launch</h3>
             <h4 className="vertical-timeline-element-subtitle">LAUNCH WEEK</h4>
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
               <h6>Make launch a special event</h6>
               <h6>Keep sharing on social media and email list</h6>
               <h6>Continue contact with stakeholders</h6>
@@ -905,7 +905,7 @@ class timeline extends Component{
           >
             <h3 className="vertical-timeline-element-title">Improving PiDronics</h3>
             <h4 className="vertical-timeline-element-subtitle">AFTER LAUNCH</h4>
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
             <h6>Celebrate :D</h6>
               <h6>Follow up testimonials</h6>
               <h6>Take feedback and make your product even better</h6>

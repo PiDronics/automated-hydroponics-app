@@ -36,3 +36,22 @@ code {
 }
 
 .click { cursor: pointer; }
+
+.mh-400px{
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.comment{
+  list-style-type: none;
+  border: 1px solid black;
+}
+
+.zindex-2000{
+  z-index: 2000;
+}
+
+.zindex-1000{
+  z-index: 1000;
+}

@@ -8,6 +8,9 @@
               "$sensor":{
                 "allData":{
                   ".indexOn": "time"
+                },
+                "allComments":{
+                  ".indexOn": "time"
                 }
               }
             },
