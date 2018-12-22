@@ -13,8 +13,8 @@ Hydroponics is a compact and efficient alternative to soil agriculture. One of t
 - To help farmers better understand the needs of their crops
 - To encourage more people to get involved in hydroponics
 
-## Link to the Product Manual
-[Product Manual] (https://docs.google.com/document/d/1FWLsea7MBdXaazkmk156T1Quhn5-B72oxn0frQKcgs8/edit?usp=sharing)
+## The product manual can be found here on how to get started with using the PiDronics app
+[Product Manual](https://docs.google.com/document/d/1FWLsea7MBdXaazkmk156T1Quhn5-B72oxn0frQKcgs8/edit?usp=sharing)
 
 ## Serve
 
