@@ -3,7 +3,7 @@ import {Collapse, Card, CardBody, Container, Row, Fa, Button } from 'mdbreact';
 
 /**
  * @class Support
- * @desc Gives a more in depth description of the application as well as how to use the application
+ * @desc Gives a more in depth description of the application as well as how to use the application. It also answer frequently asked questions and has the product manual.
  */
 
 class Support extends Component {
@@ -38,7 +38,6 @@ class Support extends Component {
         <hr className="mb-5" />
         <h5>Click below for responses to frequently asked questions.</h5>
 
-    {/* Not sure if needed, may take out */}
     <Row className="align-items-center mt-5">
         <h5 className="grey-text" style={{margin: "5px"}}>
         <Button href="#basics">
@@ -69,12 +68,6 @@ class Support extends Component {
             </h2>
             <Card className=" transparent border-0 border-light">
             <span onClick={this.toggleCollapse('collapse1')} className=" click d-flex p-2 transparent blue-text border-bottom border-light "><h5>How do I sign up? </h5><i className={collapseID === 'collapse2' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down ml-3'}></i> </span>
-
-            {/* <Badge  text="black" onClick={this.toggleCollapse('collapse1')} color="success"><h5 text="black">New</h5></Badge>
-            <style>{'Badge.h4 { color: #000000 !important;'}</style> */}
-                {/* <MDBBtn className="d-flex p-2" outline color="success" onClick={this.toggleCollapse('collapse1')}>How do I sign up?
-                <i className={collapseID === 'collapse1' ? 'fa fa-angle-down rotate-icon' : 'fa fa-angle-down'}></i> 
-                </MDBBtn> */}
             
                 <Collapse id="collapse1" isOpen={collapseID}>
                     <CardBody>

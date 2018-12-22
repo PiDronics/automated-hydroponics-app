@@ -13,6 +13,9 @@ Hydroponics is a compact and efficient alternative to soil agriculture. One of t
 - To help farmers better understand the needs of their crops
 - To encourage more people to get involved in hydroponics
 
+## Link to the Product Manual
+[Product Manual] (https://docs.google.com/document/d/1FWLsea7MBdXaazkmk156T1Quhn5-B72oxn0frQKcgs8/edit?usp=sharing)
+
 ## Serve
 
 Running `npm run start` to serve to localhost:3000. Webpack is listening for changes in your IDE so you don't need to restart everytime.

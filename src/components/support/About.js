@@ -7,22 +7,10 @@ import { GoTasklist, GoRocket, GoAlert, GoTools } from "react-icons/go";
 
 /**
  * @class About
- * @desc Provides a description about the Application and the problem that it solves
+ * @desc Provides a description about the Application and the problem that it solves, an introduction to the team, a product roadmap and a contact us to receive queries.
  */
 
 class About extends Component{
-
-  constructor(props) {
-    super(props);
-    this.state = {
-     name: null,
-     mobile: null,
-     email:null,
-     msg: null,
-  
-    };
-  }
-  
   render(){
     return (
     // Header
@@ -168,8 +156,6 @@ class About extends Component{
           <VerticalTimeline>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              // date ="NOW 21/12/2018"
-              // style={{ paddingLeft: '78px' }}
               iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff'}}
               icon={<FaReact />}
             >
@@ -189,8 +175,6 @@ class About extends Component{
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              // date="31/01/2019"
-              // style={{ paddingRight: '78px' }}
               iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
               icon={ <FaThermometer />}
             >
@@ -208,8 +192,6 @@ class About extends Component{
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              // date="31/03/2019"
-              // style={{ paddingLeft: '78px' }}
               iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
               icon={<GoAlert />}
             >
@@ -225,8 +207,6 @@ class About extends Component{
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              // date="30/06/2019"
-              // style={{ paddingRight: '78px' }}
               iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
               icon={<FaRobot />}
             >
@@ -240,8 +220,6 @@ class About extends Component{
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--education"
-              // date="July 2019"
-              // style={{ paddingLeft: '78px' }}
               iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
               icon={<GoTasklist />}
             >
@@ -257,8 +235,6 @@ class About extends Component{
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--education"
-              // date="August 2019"
-              // style={{ paddingRight: '78px' }}
               iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
               icon={<GoRocket />}
             >
@@ -273,8 +249,6 @@ class About extends Component{
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--education"
-              // date="September 2019"
-              // style={{ paddingLeft: '78px' }}
               iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
               icon={<GoTools />}
             >
