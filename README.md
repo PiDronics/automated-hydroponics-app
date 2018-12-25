@@ -29,6 +29,5 @@ Running `npm run build` to produce an optimized, deployable React Application
 Running `npm run test` will run all of the testing suites in the `/src` folder. Note that react testing files are typically names `component_name.test.js`
 
 ## Coming soon
-- Acceptable ranges of values
-- Real time graphs
+- Notification and Reporting System
 - Allowing a single user to have multiple groups of sensors
