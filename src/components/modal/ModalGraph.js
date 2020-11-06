@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Button, Modal, ModalBody, ModalHeader, ModalFooter, MDBContainer, MDBListGroup, MDBListGroupItem, Fa, Badge } from 'mdbreact';
-import ReactChartkick, { LineChart, AreaChart  } from 'react-chartkick'
+import ReactChartkick, { AreaChart  } from 'react-chartkick'
 import Chart from 'chart.js'
 import firebase from "../../fire";
 
