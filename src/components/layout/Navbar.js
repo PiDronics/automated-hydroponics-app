@@ -70,10 +70,10 @@ class NavbarFeatures extends Component {
                         <NavLink to="/configuration">Configuration</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to="/support">Support</NavLink>
+                        <NavLink to="/about">About</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to="/about">About</NavLink>
+                        <NavLink to="/support">Support</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink to="/signout">Log Out</NavLink>
@@ -85,13 +85,13 @@ class NavbarFeatures extends Component {
             return(
                 <NavbarNav right id = "userNotFound">
                     <NavItem>
-                        <NavLink to="/">Sign In/Sign Up</NavLink>
+                        <NavLink to="/about">About</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink to="/support">Support</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to="/about">About</NavLink>
+                        <NavLink to="/login">Login</NavLink>
                     </NavItem>
                 </NavbarNav>
             )
@@ -99,8 +99,9 @@ class NavbarFeatures extends Component {
     };
 
     render() {
+        const bgGreen = {backgroundColor: '#35a56f'}
         return (
-            <Navbar color="green" dark expand="md" fixed="top" scrolling>
+            <Navbar style={bgGreen} dark expand="md" fixed="top" scrolling>
                 <NavbarBrand href="#">
                     <img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>

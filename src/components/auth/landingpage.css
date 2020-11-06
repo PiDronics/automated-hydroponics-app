@@ -1,0 +1,16 @@
+#videobackground .gradient {
+    background: -moz-linear-gradient(45deg, rgba(48, 85, 54, 0.452), rgba(50, 158, 86, 0.575) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(48, 85, 54, 0.452), rgba(50, 158, 86, 0.575) 100%);
+    background: linear-gradient(45deg, rgba(48, 85, 54, 0.452), rgba(50, 158, 86, 0.575) 100%);
+    }
+    
+    #videobackground .view video {
+    top: 0!important;
+    left: 0!important;
+    bottom: 0!important;
+    transform: none!important;
+    height: 129vh;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    }

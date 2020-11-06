@@ -10,6 +10,8 @@ import About from './components/support/About';
 import Support from './components/support/Support';
 import firebase from './fire';
 
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 // import AppPage from './components/landing_page/AppPage';
 import BackgroundImagePage from './components/landing_page/background'
 
@@ -55,13 +57,16 @@ class App extends Component {
             <BrowserRouter>
                 <div className="App" > 
                     <NavbarFeatures/>
+                    {this.checkLogin()}
                     <div className="container-fluid">
                         <div className="row">
                             <div className="container mt-5">
-                                <div className="row mt-4">
+                                <div className="row mt-5">
                                     <Switch>
-                                        {this.checkLogin()}
+                                        {/* {this.checkLogin()} */}
                                         <Route path='/system/:id' component={System}/>
+                                        <Route path='/login' component={Login}/>
+                                        <Route path='/register' component={Register}/>
                                         <Route path='/signout' component={SignOut}/>
                                         <Route path='/configuration' component={Configuration}/>
                                         <Route path='/support' component={Support}/>

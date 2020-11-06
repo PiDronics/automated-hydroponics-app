@@ -88,34 +88,43 @@ class Dashboard extends Component{
     render(){
         return (
             <div className="container-fluid">
-                <div className="row">
-                    <div className="container-fluid text-center">
-                        <h2>PiDronics Monitoring System</h2>
-                        <p>Manage complicated hydroponic farms with ease!</p>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="container-fluid">
-                        <h2 className="text-center">Systems</h2>
-                    </div>
-                </div>
-                <div className="row mt-2">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="container-fluid d-flex justify-content-center">
-                                <p className="text-danger text-center">{this.state.error_message}</p>
+            <div className="row">
+                <div className="container mt-5">
+                    <div className="row mt-5">
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="container-fluid text-center">
+                                    <h2>PiDronics Monitoring System</h2>
+                                    <p>Manage complicated hydroponic farms with ease!</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="container-fluid">
+                                    <h2 className="text-center">Systems</h2>
+                                </div>
+                            </div>
+                            <div className="row mt-2">
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        <div className="container-fluid d-flex justify-content-center">
+                                            <p className="text-danger text-center">{this.state.error_message}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                {this.state.systems && this.state.systems.map(system => {
+                                    return(
+                                        <SystemCard system={system} key={system.systemId}/>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                    {this.state.systems && this.state.systems.map(system => {
-                        return(
-                            <SystemCard system={system} key={system.systemId}/>
-                        )
-                    })}
-                </div>
             </div>
+            </div>
+
         );
     }
 }
