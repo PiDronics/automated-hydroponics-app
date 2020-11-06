@@ -392,7 +392,7 @@ class ModalGraph extends Component {
         return (
             <Container>
                 <div className="d-flex justify-content-around">
-                    <Button id = "toggleBtn" color="info" onClick={this.toggle}>View Graph</Button>
+                    <Button id = "toggleBtn" color="success" onClick={this.toggle}>View Graph</Button>
                 </div>
                 {this.getModal()}
             </Container>

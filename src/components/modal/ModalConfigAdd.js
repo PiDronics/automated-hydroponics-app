@@ -140,10 +140,11 @@ class ModalConfigAdd extends Component {
     }
 
     render() {
+        const bgGreen = {backgroundColor: '#35a56f'}
         return (
             <Container>
                 <div className="d-flex justify-content-end">
-                    <Button onClick={this.toggle} color="blue" size="sm"><Fa icon="plus"/> Add New System</Button>
+                    <Button onClick={this.toggle} style={bgGreen} size="sm"><Fa icon="plus"/> Add New System</Button>
                 </div>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>

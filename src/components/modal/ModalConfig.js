@@ -162,10 +162,11 @@ class ModalConfig extends Component {
     }
 
     render() {
+        const bgGreen = {backgroundColor: '#35a56f'}
         return (
             <Container>
                 <div className="d-flex justify-content-around">
-                    <Button id = "toggleModal" color="blue" onClick={this.toggle}>Edit System</Button>
+                    <Button id = "toggleModal" style={bgGreen} onClick={this.toggle}>Edit System</Button>
                 </div>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>

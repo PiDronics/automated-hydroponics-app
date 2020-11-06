@@ -286,7 +286,7 @@ class About extends Component{
                   <MDBCard>
                     <MDBCardBody>
 
-                    <span className=" text-center d-block p-2  blue accent-1 text-white">
+                    <span className=" text-center d-block p-2  green text-white">
                     <h3 className="mt-2">
                           <MDBIcon icon="envelope" /> Write to us: 
                       </h3>
@@ -331,7 +331,7 @@ class About extends Component{
                         />
                       </div>
                       <div className="text-center">
-                        <MDBBtn color="light-blue">Submit</MDBBtn>
+                        <MDBBtn color="green">Submit</MDBBtn>
                       </div>
                     </MDBCardBody>
                   </MDBCard>
@@ -354,21 +354,21 @@ class About extends Component{
                   <br />
                   <MDBRow className="text-center">
                     <MDBCol md="4">
-                      <MDBBtn tag="a" floating color="blue" className="accent-1">
+                      <MDBBtn tag="a" floating color="light-green" className="accent-1">
                         <MDBIcon icon="map-marker" />
                       </MDBBtn>
                       <p>U.W.I St Augustine</p>
                       <p className="mb-md-0">Trinidad and Tobago</p>
                     </MDBCol>
                     <MDBCol md="4">
-                      <MDBBtn tag="a" floating color="blue" className="accent-1">
+                      <MDBBtn tag="a" floating color="light-green" className="accent-1">
                         <MDBIcon icon="phone" />
                       </MDBBtn>
                       <p>+ 1(868)435-3532</p>
                       <p className="mb-md-0">Mon - Fri, 8:00-18:00</p>
                     </MDBCol>
                     <MDBCol md="4">
-                      <MDBBtn tag="a" floating color="blue" className="accent-1">
+                      <MDBBtn tag="a" floating color="light-green" className="accent-1">
                         <MDBIcon icon="envelope" />
                       </MDBBtn>
                       <p><a href = "mailto:support@pisynthesis.com?Subject=Delete%20Account" target = "_top">  support@pisynthesis.com </a></p>

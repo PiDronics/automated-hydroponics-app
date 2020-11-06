@@ -240,10 +240,11 @@ class ModalGraphEdit extends Component {
     }
 
     render() {
+        const bgGreen = {backgroundColor: '#35a56f'}
         return (
             <Container>
                 <div className="d-flex justify-content-around">
-                    <Button color="secondary" onClick={this.toggle}>Select Range</Button>
+                    <Button style={bgGreen} className= "btn lighten-1" onClick={this.toggle}>Select Range</Button>
                 </div>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} size="lg">
