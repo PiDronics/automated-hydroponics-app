@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "chart.js": "^2.7.3",
-    "firebase": "^5.5.4",
+    "firebase": "^4.8.0",
     "mdbreact": "^4.8.1",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",

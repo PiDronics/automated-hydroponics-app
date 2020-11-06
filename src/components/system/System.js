@@ -47,7 +47,8 @@ class System extends Component{
     getSensorData(snap) {
         var sensors = [];
         snap.forEach((sensor) => {
-            if(sensor.val().enabled){
+            if(sensor.val().enabled === "true"){
+                console.log("enabled", sensor.val());
                 var obj = sensor.val();
                 obj["sensorName"] = sensor.key;
                 sensors.push(obj);
@@ -60,6 +61,7 @@ class System extends Component{
             });
         }
         else{
+            console.log("sensors", sensors);
             this.setState({
                 error_message: "There are no enabled sensors in this system"
             });
@@ -78,6 +80,7 @@ class System extends Component{
                 const dataRef = firebase.database().ref("users/"+uid);
 
                 dataRef.child("systemCard/"+this.state.id).on("value", snap => {
+                    console.log("systemCard", snap);
                     this.getSummary(snap);
                 },error => {
                     this.setState({
@@ -85,8 +88,11 @@ class System extends Component{
                     });
                 });
 
-                dataRef.child("systemData/"+this.state.id + "/sensors").on("value", snap => {
+                // dataRef.child("systemData/"+this.state.id + "/sensorData").on("value", snap => {
+                dataRef.child("systemCard/"+this.state.id + "/sensors").on("value", snap => {
+                    console.log("sensor data", snap);
                     this.getSensorData(snap);
+                    console.log("sensor data weewee", this.getSensorData(snap));
                 },error => {
                     this.setState({
                         error_message: error.message

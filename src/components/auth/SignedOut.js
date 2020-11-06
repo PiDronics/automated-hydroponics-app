@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, CardHeader, CardBody, Fa } from 'mdbreact';
+import { Card, CardHeader, CardBody, Fa, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput, MDBModalFooter } from 'mdbreact';
 import firebase from "../../fire";
 
 
@@ -75,10 +75,12 @@ class SignedOut extends Component  {
     toggleScreen(){
         if(this.state.auth==="signinbtn"){
             return(
-                <Card>
-                    <CardHeader className="text-center" color="primary-color">Sign In</CardHeader>
-                    <CardBody>
+                <MDBCol className="row mb-3 d-flex justify-content-center">
+                <MDBCard>
+                    {/* <MDBCardHeader className="text-center" color="primary-color">Sign In</MDBCardHeader> */}
+                    <MDBCardBody>
                         <form onSubmit={this.handleSignIn} id = "form1">
+                        <p className="h4 text-center py-4">Login</p>
                             <div className="input-field mb-3 d-flex justify-content-around">
                                 <Fa className="grey-text mr-3" size="2x" icon="envelope"/>
                                 <input className="form-control" type="email" id="email1" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
@@ -89,22 +91,38 @@ class SignedOut extends Component  {
                             </div>
                             <span className="red-text d-flex justify-content-center">{this.state.errorMessage1}</span>
                             <div className="input-field d-flex justify-content-around">
-                                <button className="btn primary-color lighten-1 z-depth-0" id = "login_btn">Login</button>
+                                <button className="btn info-color lighten-1 z-depth-0" id = "login_btn">Login</button >
                             </div>
                         </form>
-                    </CardBody>
-                </Card>
+                    </MDBCardBody>
+                    <MDBModalFooter className="justify-content-center mx-5 pt-3 mb-1">
+                        <p className="font-small grey-text d-flex justify-content-center">
+                            Not a member?
+                            <a href="#!" className="blue-text ml-1">
+
+                            Register User
+                            </a>
+                        </p>
+                    </MDBModalFooter>
+                </MDBCard>
+                </MDBCol>
             )
         }
         else{
             return(
-                <Card>
-                    <CardHeader className="text-center" color="secondary-color">Sign Up</CardHeader>
-                    <CardBody>
+                <MDBCol className="row mb-3 d-flex justify-content-center">
+                <MDBCard>
+                    {/* <CardHeader className="text-center" color="secondary-color">Register</CardHeader> */}
+                    <MDBCardBody>
                         <form onSubmit={this.handleSignUp} id = "form2">
+                        <p className="h4 text-center py-4">Register</p>
                             <div className="input-field mb-3 d-flex justify-content-around">
                                 <Fa className="grey-text mr-3" size="2x" icon="envelope"/>
                                 <input className="form-control" type="email" id="email2" name="email" onChange={this.handleChange} placeholder="E-Mail Address"/>
+                            </div>
+                            <div className="input-field mb-3 d-flex justify-content-around">
+                                <Fa className="grey-text mr-3" size="2x" icon="exclamation-triangle"/>
+                                <input className="form-control" type="email" id="emailconfirm" name="emailconfirm" onChange={this.handleChange} placeholder="Confirm Your Email"/>
                             </div>
                             <div className="input-field mb-3 d-flex justify-content-around">
                                 <Fa className="grey-text mr-4 ml-1" size="2x" icon="lock"/>
@@ -112,11 +130,21 @@ class SignedOut extends Component  {
                             </div>
                             <span className="red-text d-flex justify-content-center">{this.state.errorMessage2}</span>
                             <div className="input-field d-flex justify-content-around">
-                                <button className="btn secondary-color lighten-1 z-depth-0" id = "signup_btn">Sign Up</button>
+                                <button className="btn info-color lighten-1 z-depth-0" id = "signup_btn">Sign Up</button>
                             </div>
                         </form>
-                    </CardBody>
-                </Card>
+                    </MDBCardBody>
+                    <MDBModalFooter className="justify-content-center mx-5 pt-3 mb-1">
+                        <p className="font-small grey-text d-flex justify-content-center">
+                            Already Have an Account?
+                            <a href="#!" className="blue-text ml-1">
+
+                            Login
+                            </a>
+                        </p>
+                    </MDBModalFooter>
+                </MDBCard>
+                </MDBCol>
             )
         }
     }

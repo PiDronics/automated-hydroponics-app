@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink } from 'mdbreact';
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import firebase from '../../fire';
 
 /**
@@ -100,7 +102,7 @@ class NavbarFeatures extends Component {
 
     render() {
         return (
-            <Navbar color="indigo" dark expand="md" fixed="top" scrolling>
+            <Navbar color="green" dark expand="md" fixed="top" scrolling>
                 <NavbarBrand href="#">
                     <img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
                     <strong>PiDronics</strong>

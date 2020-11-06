@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Button, Modal, ModalBody, ModalHeader, ModalFooter, MDBContainer, MDBListGroup, MDBListGroupItem, Fa, Badge } from 'mdbreact';
-import ReactChartkick, { LineChart } from 'react-chartkick'
+import ReactChartkick, { LineChart, AreaChart  } from 'react-chartkick'
 import Chart from 'chart.js'
 import firebase from "../../fire";
 
@@ -319,8 +319,13 @@ class ModalGraph extends Component {
                 <Modal id = "graphModal" isOpen={this.state.modal} toggle={this.toggle} size="lg">
                     <ModalHeader toggle={this.toggle}>{this.state.title} Data from {this.state.first} - {this.state.last}</ModalHeader>
                     <ModalBody>
-                        <LineChart data={this.state.graphData}
+                        <AreaChart data={this.state.graphData}
                                    dataset={{pointRadius: 5}}
+                                   label="Sensor Data"
+                                   legend={true}
+                                   discrete={true}
+                                   xtitle="DateTime" ytitle="Sensor Data Points"
+                                   round={2}
                                    download={gName}
                                    messages={{empty:"No data available for this range."}}
                                    library={{

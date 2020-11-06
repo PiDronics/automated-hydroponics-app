@@ -10,6 +10,9 @@ import About from './components/support/About';
 import Support from './components/support/Support';
 import firebase from './fire';
 
+import AppPage from './components/landing_page/AppPage';
+import BackgroundImagePage from './components/landing_page/background'
+
 class App extends Component {
 
     constructor(){
@@ -63,6 +66,7 @@ class App extends Component {
                                         <Route path='/configuration' component={Configuration}/>
                                         <Route path='/support' component={Support}/>
                                         <Route path='/about' component={About}/>
+                                        <Route path='/landingpage' component={BackgroundImagePage}/>
                                     </Switch>
                                 </div>
                             </div>

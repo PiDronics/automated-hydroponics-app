@@ -4,12 +4,12 @@ import 'firebase/database';
 
 // Initialize Firebase
 const config = {
-    apiKey: "AIzaSyDyO0W034rgyGQg579SkVKEwEe4bdrya1w",
+    apiKey: "AIzaSyCoUR60sK5sc2Qs_UI8_hhqXddYAMU0GG4",
     authDomain: "comp3613-pisynthesis.firebaseapp.com",
-    databaseURL: "https://comp3613-pisynthesis.firebaseio.com",
-    projectId: "comp3613-pisynthesis",
-    storageBucket: "comp3613-pisynthesis.appspot.com",
-    messagingSenderId: "466720894084"
+    databaseURL: "https://pidronics.firebaseio.com/",
+    projectId: "pidronics",
+    storageBucket: "pidronics.appspot.com",
+    messagingSenderId: "599603895980"
 };
 
 firebase.initializeApp(config);
