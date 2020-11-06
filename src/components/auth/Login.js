@@ -48,7 +48,8 @@ class Login extends Component  {
             });
         });
 
-        this.props.history.push("/");
+        // this.props.history.push("/");
+        this.props.history.push("/dashboard");
     };
 
 
@@ -95,15 +96,23 @@ class Login extends Component  {
     render() {
         return(
             <div className="container-fluid">
-                <div className="row mb-3 mt-5">
-                    <div className="container-fluid text-center">
-                        <h2>PiDronics Monitoring System</h2>
-                        <p>Manage complicated hydroponic farms with ease!</p>
-                    </div>
-                </div>
-                <div className="row d-flex justify-content-center">
-                    <div className="col-lg-6 mb-3">
-                        {this.toggleScreen()}
+                <div className="row">
+                    <div className="container mt-5">
+                        <div className="row mt-5">
+                            <div className="container-fluid">
+                                <div className="row mb-3 mt-5">
+                                    <div className="container-fluid text-center">
+                                        <h2>PiDronics Monitoring System</h2>
+                                        <p>Manage complicated hydroponic farms with ease!</p>
+                                    </div>
+                                </div>
+                                <div className="row d-flex justify-content-center">
+                                    <div className="col-lg-6 mb-3">
+                                        {this.toggleScreen()}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -83,37 +83,45 @@ class Configuration extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="row">
-                    <div className="container-fluid text-center">
-                        <h1>Configuration</h1>
-                        <h6>Modify your system settings here. Select any of you systems you wish to edit or add a new system!</h6>
-                    </div>
-                </div>
-                <div className="row mt-2">
-                    <div className="container-fluid d-flex justify-content-end">
-                        <ModalConfigAdd/>
-                    </div>
-                </div>
-                <div className="row mt-2">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="container-fluid d-flex justify-content-center">
-                                <p className="text-danger text-center">{this.state.error_message}</p>
+            <div className="row">
+                <div className="container mt-5">
+                    <div className="row mt-5">
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="container-fluid text-center">
+                                    <h1>Configuration</h1>
+                                    <h6>Modify your system settings here. Select any of you systems you wish to edit or add a new system!</h6>
+                                </div>
+                            </div>
+                            <div className="row mt-2">
+                                <div className="container-fluid d-flex justify-content-end">
+                                    <ModalConfigAdd/>
+                                </div>
+                            </div>
+                            <div className="row mt-2">
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        <div className="container-fluid d-flex justify-content-center">
+                                            <p className="text-danger text-center">{this.state.error_message}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row mt-2">
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        {this.state.userSystems && this.state.userSystems.map(system => {
+                                            return (
+                                                <SystemCardConfig name={system.systemName} time={system.interval} key={system.system} system={system.system}/>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row mt-2">
-                    <div className="container-fluid">
-                        <div className="row">
-                            {this.state.userSystems && this.state.userSystems.map(system => {
-                                return (
-                                    <SystemCardConfig name={system.systemName} time={system.interval} key={system.system} system={system.system}/>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
+            </div>
             </div>
         );
     }

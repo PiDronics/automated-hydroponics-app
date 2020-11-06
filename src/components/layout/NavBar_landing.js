@@ -7,7 +7,7 @@ import firebase from '../../fire';
  * @desc Enables basic Navigation across the application. The Navbar is present at the top and is fixed
  * across all pages
  */
-class NavbarFeatures extends Component {
+class NavbarLanding extends Component {
     constructor() {
         super();
 
@@ -64,10 +64,7 @@ class NavbarFeatures extends Component {
             return(
                 <NavbarNav right id = "userFound">
                     <NavItem>
-                        <NavLink to="/home">Home</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink to="/dashboard">Dashboard</NavLink>
+                        <NavLink to="/">Dashboard</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink to="/configuration">Configuration</NavLink>
@@ -88,9 +85,6 @@ class NavbarFeatures extends Component {
             return(
                 <NavbarNav right id = "userNotFound">
                     <NavItem>
-                        <NavLink to="/home">Home</NavLink>
-                    </NavItem>
-                    <NavItem>
                         <NavLink to="/about">About</NavLink>
                     </NavItem>
                     <NavItem>
@@ -105,38 +99,20 @@ class NavbarFeatures extends Component {
     };
 
     render() {
-        const bgGreen = {backgroundColor: '#35a56f'}
-        const bgGreen_tr = {backgroundColor: 'rgba(76, 175, 80, 0.5)'}
-        const pathname = window.location.pathname
-        if (pathname === "/home" || pathname === "/") {
-            return (
-                <Navbar style={bgGreen_tr} dark expand="md" fixed="top" scrolling>
-                    <NavbarBrand href="#">
-                        <img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
-                        <strong>PiDronics</strong>
-                    </NavbarBrand>
-                    <NavbarToggler onClick={this.onClick} id="toggleBtn"/>
-                    <Collapse isOpen = { this.state.collapse } onClick={this.closeNav} navbar>
-                        {this.checkLogin()}
-                    </Collapse>
-                </Navbar>
-            );
-        }
-        else {
-            return (
-                <Navbar style={bgGreen} dark expand="md" fixed="top" scrolling>
-                    <NavbarBrand href="#">
-                        <img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
-                        <strong>PiDronics</strong>
-                    </NavbarBrand>
-                    <NavbarToggler onClick={this.onClick} id="toggleBtn"/>
-                    <Collapse isOpen = { this.state.collapse } onClick={this.closeNav} navbar>
-                        {this.checkLogin()}
-                    </Collapse>
-                </Navbar>
-            );
-        }
+        const bgGreen = {backgroundColor: 'rgba(76, 175, 80, 0.5)'}
+        return (
+            <Navbar style={bgGreen} dark expand="md" fixed="top" scrolling>
+                <NavbarBrand href="#">
+                    <img src="/img/logoFinal.png" height="30" className="nav-logo" alt="Logo"/>
+                    <strong>PiDronics</strong>
+                </NavbarBrand>
+                <NavbarToggler onClick={this.onClick} id="toggleBtn"/>
+                <Collapse isOpen = { this.state.collapse } onClick={this.closeNav} navbar>
+                    {this.checkLogin()}
+                </Collapse>
+            </Navbar>
+        );
     }
 }
 
-export default NavbarFeatures;
+export default NavbarLanding;

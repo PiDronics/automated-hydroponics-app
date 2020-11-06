@@ -13,10 +13,10 @@ class SignOut extends Component {
      */
     componentDidMount(){
         firebase.auth().signOut().then(() => {
-            this.props.history.push("/");
+            this.props.history.push("/home");
         }).catch(error => {
             alert(error);
-            this.props.history.push("/");
+            this.props.history.push("/home");
         });
     }
 

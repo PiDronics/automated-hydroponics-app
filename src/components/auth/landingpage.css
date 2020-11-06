@@ -7,7 +7,6 @@
     #videobackground .view video {
     top: 0!important;
     left: 0!important;
-    bottom: 0!important;
     transform: none!important;
     height: 129vh;
     width: auto;

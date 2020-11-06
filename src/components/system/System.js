@@ -108,28 +108,36 @@ class System extends Component{
     render(){
         return (
             <div className="container-fluid">
-                <div className="row">
-                    <div className="container-fluid text-center">
-                        <h1 id = "systemName">{this.state.systemName}</h1>
-                        <h6 id = "lastUpdated" className="font-italic text-muted">{this.state.lastUpdated}</h6>
-                    </div>
-                </div>
-                <div className="row mt-2">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="container-fluid d-flex justify-content-center">
-                                <p className="text-danger text-center">{this.state.error_message}</p>
+            <div className="row">
+                <div className="container mt-5">
+                    <div className="row mt-5">
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="container-fluid text-center">
+                                    <h1 id = "systemName">{this.state.systemName}</h1>
+                                    <h6 id = "lastUpdated" className="font-italic text-muted">{this.state.lastUpdated}</h6>
+                                </div>
+                            </div>
+                            <div className="row mt-2">
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        <div className="container-fluid d-flex justify-content-center">
+                                            <p className="text-danger text-center">{this.state.error_message}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row" id = "sensorList">
+                                {this.state.sensors && this.state.sensors.map(sensor => {
+                                    return (
+                                        <Sensor sensorName={sensor.sensorName} key={sensor.sensorName} min={sensor.min} max={sensor.max} avg={sensor.avg} current={sensor.current} device={this.state.id}/>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row" id = "sensorList">
-                    {this.state.sensors && this.state.sensors.map(sensor => {
-                        return (
-                            <Sensor sensorName={sensor.sensorName} key={sensor.sensorName} min={sensor.min} max={sensor.max} avg={sensor.avg} current={sensor.current} device={this.state.id}/>
-                        );
-                    })}
-                </div>
+            </div>
             </div>
         );
     }

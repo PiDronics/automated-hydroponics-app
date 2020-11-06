@@ -13,7 +13,6 @@ import firebase from './fire';
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 // import AppPage from './components/landing_page/AppPage';
-import BackgroundImagePage from './components/landing_page/background'
 
 class App extends Component {
 
@@ -36,12 +35,18 @@ class App extends Component {
 
         if(this.state.user){
             return(
+                <div>
+                {/* <Redirect to="/dashboard" />; */}
                 <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={Dashboard}/>
+                </div>
             )
         }
         else{
             return(
+                <div>
+                    {/* <Redirect to="/home" />; */}
                 <Route onUpdate={() => window.scrollTo(0, 0)} exact path='/' component={SignedOut}/>
+                </div>
             )
         }
     };
@@ -55,28 +60,21 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <div className="App" > 
-                    <NavbarFeatures/>
-                    {this.checkLogin()}
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="container mt-5">
-                                <div className="row mt-5">
-                                    <Switch>
-                                        {/* {this.checkLogin()} */}
-                                        <Route path='/system/:id' component={System}/>
-                                        <Route path='/login' component={Login}/>
-                                        <Route path='/register' component={Register}/>
-                                        <Route path='/signout' component={SignOut}/>
-                                        <Route path='/configuration' component={Configuration}/>
-                                        <Route path='/support' component={Support}/>
-                                        <Route path='/about' component={About}/>
-                                        <Route path='/landingpage' component={BackgroundImagePage}/>
-                                    </Switch>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="App" >
+                <NavbarFeatures/>
+                    {this.checkLogin()} 
+                    <Switch>
+                        {/* {this.checkLogin()} */}
+                        <Route path='/home' component={SignedOut}/>
+                        <Route path='/system/:id' component={System}/>
+                        <Route path='/login' component={Login}/>
+                        <Route path='/register' component={Register}/>
+                        <Route path='/signout' component={SignOut}/>
+                        <Route path='/configuration' component={Configuration}/>
+                        <Route path='/support' component={Support}/>
+                        <Route path='/about' component={About}/>
+                        <Route path='/dashboard' component={Dashboard}/>
+                    </Switch>
                 </div>
             </BrowserRouter>
         );
