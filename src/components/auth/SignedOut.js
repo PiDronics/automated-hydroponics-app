@@ -17,7 +17,7 @@ render() {
 return ( 
 <div id="videobackground" >
   <MDBView>
-    <video className="video-intro" poster="https://wallpaperaccess.com/full/1598445.jpg" playsInline
+    <video className="video-intro" poster="https://talkinghydroponics.files.wordpress.com/2017/05/hydroponic-lettuce-grow-1080.jpg" playsInline
       autoPlay muted loop>
       <source src={video_hydroponics} type="video/mp4" />
     </video>
