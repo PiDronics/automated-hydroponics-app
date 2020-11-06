@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, CardHeader, CardBody, Fa, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput, MDBModalFooter } from 'mdbreact';
+import {Fa, MDBCol, MDBCard, MDBCardBody, MDBModalFooter } from 'mdbreact';
 import firebase from "../../fire";
 
 

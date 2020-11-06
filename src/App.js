@@ -10,7 +10,7 @@ import About from './components/support/About';
 import Support from './components/support/Support';
 import firebase from './fire';
 
-import AppPage from './components/landing_page/AppPage';
+// import AppPage from './components/landing_page/AppPage';
 import BackgroundImagePage from './components/landing_page/background'
 
 class App extends Component {
