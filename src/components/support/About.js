@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Card, CardBody, MDBBtn, MDBCard, MDBCardBody, MDBInput, MDBRow, MDBCol, MDBIcon, Row, Col, Container } from "mdbreact";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { FaReact, FaThermometer, FaRobot, FaStar } from 'react-icons/fa';
+import { FaReact, FaThermometer, FaRobot, FaStar, FaToolbox } from 'react-icons/fa';
 import { GoTasklist, GoRocket, GoAlert, GoTools } from "react-icons/go";
+import { MdNotificationsActive } from "react-icons/md";
+
 
 /**
  * @class About
@@ -167,15 +169,32 @@ class About extends Component{
                       <h4 className="vertical-timeline-element-subtitle">Present</h4>
                       <ul className="list-unstyled">
                         <h6>Fully authenticated front-end Web App</h6>
+                        <h6>Configure new Hydroponics Systems</h6>
                         <h6>Multiple sensors can connect to a resilient Raspberry Pi server</h6>
                         <h6>Data can be pushed to Firebase in realtime</h6>
                         <h6>Sensor data visualization</h6>
-                        <h6>End of the day summary report of sensor data</h6>
-                        <h6>Notifies user if sensor values are too low/high</h6>
+                        <h6>Comments can be added to Sensor Graphs</h6>
+                        <h6>Plant Disease Detecter Developed</h6>
                       </ul>
 
                       <p className = "blue-grey-text">NOW 21/12/2018</p>
 
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                      icon={ <MdNotificationsActive />}
+                    >
+                      <h3 className="vertical-timeline-element-title">Reporting and Notification System</h3>
+                      <h4 className="vertical-timeline-element-subtitle">1 Month</h4>
+                      <ul className="list-unstyled">
+                        <h6>Generation Reports Daily</h6>
+                        <h6>Notifies user if sensor values are too low/high</h6>
+                        <h6>Show Nutrient Consumption</h6>
+                        <h6>Real-Time Notifications</h6>
+                        <h6>Allow user to choose sensor ranges</h6>
+                      </ul>
+                      <p className = "blue-grey-text">31/01/2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work"
@@ -192,22 +211,38 @@ class About extends Component{
                         <h6>Find promoters/affiliates</h6>
                         <h6>Launch initial mobile app as a monitoring system</h6>
                       </ul>
-                      <p className = "blue-grey-text">31/01/2019</p>
+                      <p className = "blue-grey-text">01/03/2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work"
                       iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                       icon={<GoAlert />}
                     >
-                      <h3 className="vertical-timeline-element-title">Plant Disease Diagnoser</h3>
+                      <h3 className="vertical-timeline-element-title">Plant Disease Detector</h3>
+                      <h4 className="vertical-timeline-element-subtitle">1 Months</h4>
+                    
+                      <ul className="list-unstyled">
+                      <h6>Upload Plant Disease Detector to the cloud</h6>
+                      <h6>Live camera feed viewable in app</h6>
+                      <h6>Use stills from video to obtain predictions</h6>
+                      <h6>Allow real-time notifications</h6>
+                      </ul>
+                      <p className = "blue-grey-text">01/04/2019</p>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                      icon={<FaToolbox/>}
+                    >
+                      <h3 className="vertical-timeline-element-title">Maintenance System</h3>
                       <h4 className="vertical-timeline-element-subtitle">2 Months</h4>
                     
                       <ul className="list-unstyled">
-                      <h6>Plant Disease Detecter and Diagnoser Developed</h6>
-                      <h6>Upload Plant Disease Diagnoser to the cloud</h6>
-                      <h6>Live camera feed viewable in app</h6>
+                      <h6>Remote Administrative Access</h6>
+                      <h6>Easier to Deploy Updates</h6>
+                      <h6>More Secure and Less Time Consuming</h6>
                       </ul>
-                      <p className = "blue-grey-text">31/03/2019</p>
+                      <p className = "blue-grey-text">30/04/2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work"
@@ -215,12 +250,13 @@ class About extends Component{
                       icon={<FaRobot />}
                     >
                       <h3 className="vertical-timeline-element-title">Hydroponics Automation System</h3>
-                      <h4 className="vertical-timeline-element-subtitle">3 Months</h4>
+                      <h4 className="vertical-timeline-element-subtitle">4 Months</h4>
                       <ul className="list-unstyled">
-                        <h6>Hydroponics system will be automated to maintain a homeostatic environment</h6>
+                        <h6>Maintains Constant and Optimal Environment</h6>
+                        <h6>Hydroponics system will be automated to maintain a homeostatic environment (Best for GreenHouses)</h6>
                         <h6>This involves the use of sun lamps, misting, ventilation fans, arduino to release a controlled amount of the nutrient chemical for controlled EC and alkaline solution for pH.</h6>
                       </ul>
-                      <p className = "blue-grey-text">30/06/2019</p>
+                      <p className = "blue-grey-text">30/08/2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--education"
@@ -235,7 +271,7 @@ class About extends Component{
                         <h6>Finalize launch content</h6>
                         <h6>Gather reviews from beta testers</h6>
                       </ul>
-                      <p className = "blue-grey-text">July 2019</p>
+                      <p className = "blue-grey-text">September 2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--education"
@@ -249,7 +285,7 @@ class About extends Component{
                         <h6>Keep sharing on social media and email list</h6>
                         <h6>Continue contact with stakeholders</h6>
                       </ul>
-                      <p className = "blue-grey-text">August 2019</p>
+                      <p className = "blue-grey-text">October 2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--education"
@@ -263,7 +299,7 @@ class About extends Component{
                         <h6>Follow up testimonials</h6>
                         <h6>Take feedback and make your product even better</h6>
                       </ul>
-                      <p className = "blue-grey-text">September 2019</p>
+                      <p className = "blue-grey-text">November 2019</p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
